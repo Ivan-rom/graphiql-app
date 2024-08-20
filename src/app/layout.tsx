@@ -13,5 +13,3 @@ export default function RootLayout({
 }) {
   return children;
 }
-
-RootLayout.metadata = metadata;
