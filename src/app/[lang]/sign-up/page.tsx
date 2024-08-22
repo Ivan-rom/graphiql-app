@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import FormField from '@/components/FormField/FormField';
 import classNames from 'classnames';
-import sharedStyles from '@/shared.module.css';
+import sharedStyles from '@/styles/shared.module.css';
 import styles from './page.module.css';
 import Link from 'next/link';
 import { useSignUpSchema } from '@/hooks/useSignUpSchema';

@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Routes, SignInInputsNames } from '@/helpers/enums';
 import classNames from 'classnames';
 import styles from './page.module.css';
-import sharedStyles from '@/shared.module.css';
+import sharedStyles from '@/styles/shared.module.css';
 import Link from 'next/link';
 import { useSignInSchema } from '@/hooks/useSignInSchema';
 

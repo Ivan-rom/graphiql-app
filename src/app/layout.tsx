@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '../styles/shared.module.css';
 
 export const metadata: Metadata = {
   title: 'Graphiql app',
