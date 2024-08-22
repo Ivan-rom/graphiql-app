@@ -6,6 +6,9 @@ import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import FormField from '../FormField/FormField';
+import classNames from 'classnames';
+import styles from './signInForm.module.css';
+import sharedStyles from '@/shared.module.css';
 
 type FormData = {
   [SignInInputsNames.email]: string;
@@ -46,9 +49,9 @@ function SignInForm() {
   const submitHandler = () => {};
 
   return (
-    <>
-      <h2>{tSignIn('title')}</h2>
-      <form onSubmit={handleSubmit(submitHandler)}>
+    <div className={styles.page}>
+      <h2 className={styles.title}>{tSignIn('title')}</h2>
+      <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
         {inputs.map(({ name, type }) => (
           <FormField
             key={name}
@@ -59,9 +62,11 @@ function SignInForm() {
             register={register(name)}
           />
         ))}
-        <button>{tSignIn('submit-text')}</button>
+        <button className={classNames(sharedStyles.button, styles.button)}>
+          {tSignIn('submit-text')}
+        </button>
       </form>
-    </>
+    </div>
   );
 }
 

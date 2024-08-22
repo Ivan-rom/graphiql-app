@@ -1,4 +1,5 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
+import styles from './formField.module.css';
 
 type Props = {
   name: string;
@@ -10,10 +11,18 @@ type Props = {
 
 function FormField({ name, type, label, error, register }: Props) {
   return (
-    <div key={name}>
-      <div>{error}</div>
-      <label htmlFor={name}>{label}:</label>
-      <input {...register} type={type} name={name} id={name} />
+    <div className={styles.formField}>
+      <label htmlFor={name} className={styles.label}>
+        {label}
+        <div className={styles.error}>{error}</div>
+      </label>
+      <input
+        {...register}
+        type={type}
+        name={name}
+        id={name}
+        className={styles.input}
+      />
     </div>
   );
 }

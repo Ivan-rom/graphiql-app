@@ -1,3 +1,5 @@
+import styles from './layout.module.css';
+
 type Props = {
   params: {
     lang: string;
@@ -8,7 +10,9 @@ type Props = {
 export default function Layout({ children, params }: Props) {
   return (
     <html lang={params.lang}>
-      <body>{children}</body>
+      <body className={styles.body}>
+        <main className={styles.main}>{children}</main>
+      </body>
     </html>
   );
 }

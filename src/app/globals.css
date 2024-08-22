@@ -1,0 +1,23 @@
+:root {
+  --body-bg-color: #181922;
+  --bg-color: #272937;
+  --accent-color: #2495fc;
+  --text-color: #ffffff;
+  --error-color: #ff5555;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--body-bg-color);
+  color: var(--text-color);
+}
+
+button {
+  all: unset;
+}
