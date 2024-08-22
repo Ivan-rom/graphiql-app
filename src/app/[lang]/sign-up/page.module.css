@@ -2,4 +2,31 @@
   display: flex;
   align-items: stretch;
   justify-content: center;
+
+  .container {
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 150px 20px var(--accent-color);
+
+    .title {
+      margin-bottom: 10px;
+      font-size: 30px;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .button {
+      margin-top: 10px;
+    }
+  }
 }

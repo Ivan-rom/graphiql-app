@@ -1,4 +1,6 @@
+import { NextIntlClientProvider } from 'next-intl';
 import styles from './layout.module.css';
+import { getMessages } from 'next-intl/server';
 
 type Props = {
   params: {
@@ -7,11 +9,15 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function Layout({ children, params }: Props) {
+export default async function Layout({ children, params }: Props) {
+  const messages = await getMessages();
+
   return (
     <html lang={params.lang}>
       <body className={styles.body}>
-        <main className={styles.main}>{children}</main>
+        <NextIntlClientProvider messages={messages}>
+          <main className={styles.main}>{children}</main>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
