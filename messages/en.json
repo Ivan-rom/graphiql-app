@@ -1,5 +1,22 @@
 {
   "HomePage": {
     "title": "Welcome to Graphiql App by Unit team"
+  },
+  "Form": {
+    "name-label": "Name",
+    "email-label": "Email",
+    "password-label": "Password",
+    "confirmPassword-label": "Confirm password",
+    "field-required": "This field is required",
+    "email-valid": "Incorrect email",
+    "passwords-match": "Passwords must match",
+    "password-length": "Must be minimum 8 symbols",
+    "password-letter": "Must be at least 1 letter",
+    "password-digit": "Must be at least 1 digit",
+    "password-spec-char": "Must be at least 1 special character (!@#$%^&*)"
+  },
+  "SignUp": {
+    "title": "Sign up",
+    "submit-text": "sign up"
   }
 }
