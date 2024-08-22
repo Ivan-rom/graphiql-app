@@ -9,3 +9,8 @@
     filter: brightness(1.1);
   }
 }
+
+.link {
+  text-decoration: none;
+  color: var(--accent-color);
+}

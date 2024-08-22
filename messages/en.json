@@ -17,10 +17,14 @@
   },
   "SignUp": {
     "title": "Sign up",
-    "submit-text": "sign up"
+    "submit-text": "sign up",
+    "hint": "Already have an account?",
+    "link": "Sign in"
   },
   "SignIn": {
     "title": "Sign in",
-    "submit-text": "sign in"
+    "submit-text": "sign in",
+    "hint": "Don't have an account?",
+    "link": "Sign up"
   }
 }

@@ -9,6 +9,7 @@ import { SignInInputsNames } from '@/helpers/enums';
 import classNames from 'classnames';
 import styles from './page.module.css';
 import sharedStyles from '@/shared.module.css';
+import Link from 'next/link';
 
 type FormData = {
   [SignInInputsNames.email]: string;
@@ -67,6 +68,12 @@ function SignInPage() {
             {tPage('submit-text')}
           </button>
         </form>
+        <div className={styles.hint}>
+          <span>{tPage('hint')}</span>
+          <Link href="sign-up" className={sharedStyles.link}>
+            {tPage('link')}
+          </Link>
+        </div>
       </div>
     </section>
   );

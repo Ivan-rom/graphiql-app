@@ -9,6 +9,7 @@ import FormField from '@/components/FormField/FormField';
 import classNames from 'classnames';
 import sharedStyles from '@/shared.module.css';
 import styles from './page.module.css';
+import Link from 'next/link';
 
 type FormData = {
   [SignUpInputsNames.name]: string;
@@ -38,7 +39,7 @@ const inputs: { name: SignUpInputsNames; type: string }[] = [
 
 function SignUpPage() {
   const t = useTranslations('Form');
-  const tSignUp = useTranslations('SignUp');
+  const tPage = useTranslations('SignUp');
 
   const schema = object({
     name: string().required(t('field-required')),
@@ -65,7 +66,7 @@ function SignUpPage() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.title}>{tSignUp('title')}</h2>
+        <h2 className={styles.title}>{tPage('title')}</h2>
         <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
           {inputs.map(({ name, type }) => (
             <FormField
@@ -78,9 +79,15 @@ function SignUpPage() {
             />
           ))}
           <button className={classNames(sharedStyles.button, styles.button)}>
-            {tSignUp('submit-text')}
+            {tPage('submit-text')}
           </button>
         </form>
+        <div className={styles.hint}>
+          <span>{tPage('hint')}</span>
+          <Link href="sign-in" className={sharedStyles.link}>
+            {tPage('link')}
+          </Link>
+        </div>
       </div>
     </section>
   );
