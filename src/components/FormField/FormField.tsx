@@ -7,9 +7,10 @@ type Props = {
   label: string;
   error?: string;
   register: UseFormRegisterReturn;
+  placeholder: string;
 };
 
-function FormField({ name, type, label, error, register }: Props) {
+function FormField({ name, type, label, error, register, placeholder }: Props) {
   return (
     <div className={styles.formField}>
       <label htmlFor={name} className={styles.label}>
@@ -22,6 +23,7 @@ function FormField({ name, type, label, error, register }: Props) {
         name={name}
         id={name}
         className={styles.input}
+        placeholder={placeholder}
       />
     </div>
   );

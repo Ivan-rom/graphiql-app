@@ -60,6 +60,7 @@ function SignInPage() {
               name={name}
               type={type}
               label={t(`${name}-label`)}
+              placeholder={t(`${name}-placeholder`)}
               error={errors[name]?.message}
               register={register(name)}
             />

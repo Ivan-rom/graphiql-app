@@ -4,9 +4,13 @@
   },
   "Form": {
     "name-label": "Name",
+    "name-placeholder": "Enter name",
     "email-label": "Email",
+    "email-placeholder": "Enter email",
     "password-label": "Password",
+    "password-placeholder": "Enter password",
     "confirmPassword-label": "Confirm password",
+    "confirmPassword-placeholder": "Repeat password",
     "field-required": "This field is required",
     "email-valid": "Incorrect email",
     "passwords-match": "Passwords must match",
