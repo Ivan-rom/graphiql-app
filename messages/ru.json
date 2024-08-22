@@ -1,5 +1,34 @@
 {
   "HomePage": {
     "title": "Добро пожаловать в Graphiql App от команды Unit"
+  },
+  "Form": {
+    "name-label": "Имя",
+    "name-placeholder": "Введите имя",
+    "email-label": "Электронная почта",
+    "email-placeholder": "Введите адрес электронной почты",
+    "password-label": "Пароль",
+    "password-placeholder": "Введите пароль",
+    "confirmPassword-label": "Подтвердите пароль",
+    "confirmPassword-placeholder": "Повторите пароль",
+    "field-required": "Это поле обязательно",
+    "email-valid": "Неправильный email",
+    "passwords-match": "Пароли должны совпадать",
+    "password-length": "Должно быть минимум 8 символов",
+    "password-letter": "Должна быть минимум 1 буква",
+    "password-digit": "Должна быть минимум 1 цифра",
+    "password-spec-char": "Должен быть минимум 1 специальный символ (!@#$%^&*)"
+  },
+  "SignUp": {
+    "title": "Регистрация",
+    "submit-text": "зарегистрироваться",
+    "hint": "Уже есть аккаунт?",
+    "link": "Вход"
+  },
+  "SignIn": {
+    "title": "Вход",
+    "submit-text": "вход",
+    "hint": "Еще нет аккаунта?",
+    "link": "Регистрация"
   }
 }
