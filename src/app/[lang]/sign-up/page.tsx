@@ -1,7 +1,6 @@
 'use client';
 
-import { SignUpInputsNames } from '@/helpers/enums';
-import { object, ref, string } from 'yup';
+import { Routes, SignUpInputsNames } from '@/helpers/enums';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,6 +9,7 @@ import classNames from 'classnames';
 import sharedStyles from '@/shared.module.css';
 import styles from './page.module.css';
 import Link from 'next/link';
+import { useSignUpSchema } from '@/hooks/useSignUpSchema';
 
 type FormData = {
   [SignUpInputsNames.name]: string;
@@ -40,21 +40,7 @@ const inputs: { name: SignUpInputsNames; type: string }[] = [
 function SignUpPage() {
   const t = useTranslations('Form');
   const tPage = useTranslations('SignUp');
-
-  const schema = object({
-    name: string().required(t('field-required')),
-    email: string().required(t('field-required')).email(t('email-valid')),
-    password: string()
-      .required(t('field-required'))
-      .min(8, t('password-length'))
-      .matches(/[A-Za-z]/, t('password-letter'))
-      .matches(/[0-9]/, t('password-digit'))
-      .matches(/[!@#$%^&*]/, t('password-spec-char')),
-    confirmPassword: string()
-      .required(t('field-required'))
-      .oneOf([ref('password')], t('passwords-match')),
-  }).required();
-
+  const schema = useSignUpSchema();
   const {
     register,
     handleSubmit,
@@ -85,7 +71,7 @@ function SignUpPage() {
         </form>
         <div className={styles.hint}>
           <span>{tPage('hint')}</span>
-          <Link href="sign-in" className={sharedStyles.link}>
+          <Link href={Routes.signIn} className={sharedStyles.link}>
             {tPage('link')}
           </Link>
         </div>

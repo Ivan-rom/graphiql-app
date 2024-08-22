@@ -2,21 +2,21 @@
 
 import { useTranslations } from 'next-intl';
 import FormField from '@/components/FormField/FormField';
-import { object, string } from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { SignInInputsNames } from '@/helpers/enums';
+import { Routes, SignInInputsNames } from '@/helpers/enums';
 import classNames from 'classnames';
 import styles from './page.module.css';
 import sharedStyles from '@/shared.module.css';
 import Link from 'next/link';
+import { useSignInSchema } from '@/hooks/useSignInSchema';
 
 type FormData = {
   [SignInInputsNames.email]: string;
   [SignInInputsNames.password]: string;
 };
 
-const inputs: { name: SignInInputsNames; type: string }[] = [
+const inputs = [
   {
     name: SignInInputsNames.email,
     type: 'email',
@@ -30,17 +30,7 @@ const inputs: { name: SignInInputsNames; type: string }[] = [
 function SignInPage() {
   const t = useTranslations('Form');
   const tPage = useTranslations('SignIn');
-
-  const schema = object({
-    email: string().required(t('field-required')).email(t('email-valid')),
-    password: string()
-      .required(t('field-required'))
-      .min(8, t('password-length'))
-      .matches(/[A-Za-z]/, t('password-letter'))
-      .matches(/[0-9]/, t('password-digit'))
-      .matches(/[!@#$%^&*]/, t('password-spec-char')),
-  }).required();
-
+  const schema = useSignInSchema();
   const {
     register,
     handleSubmit,
@@ -71,7 +61,7 @@ function SignInPage() {
         </form>
         <div className={styles.hint}>
           <span>{tPage('hint')}</span>
-          <Link href="sign-up" className={sharedStyles.link}>
+          <Link href={Routes.signUp} className={sharedStyles.link}>
             {tPage('link')}
           </Link>
         </div>
