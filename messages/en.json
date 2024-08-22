@@ -18,5 +18,9 @@
   "SignUp": {
     "title": "Sign up",
     "submit-text": "sign up"
+  },
+  "SignIn": {
+    "title": "Sign in",
+    "submit-text": "sign in"
   }
 }

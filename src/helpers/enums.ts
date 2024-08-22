@@ -4,3 +4,8 @@ export enum SignUpInputsNames {
   password = 'password',
   confirmPassword = 'confirmPassword',
 }
+
+export enum SignInInputsNames {
+  email = 'email',
+  password = 'password',
+}

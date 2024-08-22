@@ -18,5 +18,9 @@
   "SignUp": {
     "title": "Регистрация",
     "submit-text": "зарегистрироваться"
+  },
+  "SignIn": {
+    "title": "Вход",
+    "submit-text": "вход"
   }
 }
