@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RequestData } from './types';
+import { RequestData } from '../../helpers/types';
 import { RequestMethods } from '@/helpers/enums';
 
 const initialState: RequestData = {
@@ -14,16 +14,16 @@ export const requestSlice = createSlice({
   initialState: initialState,
   reducers: {
     setURL(state, action) {
-      state.url = action.payload;
+      return {...state, url: action.payload};
     },
     setMethod(state, action) {
-      state.method = action.payload;
+      return {...state, method: action.payload };
     },
     setBody(state, action) {
-      state.body = action.payload;
+      return {...state, body: action.payload};
     },
     setHeader(state, action) {
-      state.header = action.payload;
+      return {...state, header: action.payload };
     },
   },
 });
