@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { HeadersRequest, RequestData, RequestMethods } from './types';
+import { RequestData } from './types';
+import { RequestMethods } from '@/helpers/enums';
 
 const initialState: RequestData = {
   url: '',
   method: RequestMethods.GET,
   body: '',
-  header: {} as HeadersRequest,
+  header: {},
 };
 
 export const requestSlice = createSlice({
@@ -24,12 +25,9 @@ export const requestSlice = createSlice({
     setHeader(state, action) {
       state.header = action.payload;
     },
-    setRequest(state, action) {
-      state = action.payload;
-    },
   },
 });
 
-export const { setURL, setMethod, setBody, setHeader, setRequest } =
+export const { setURL, setMethod, setBody, setHeader } =
   requestSlice.actions;
 export default requestSlice.reducer;
