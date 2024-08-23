@@ -1,6 +1,6 @@
 'use client';
 
-import { Routes, SignInInputsNames, SignUpInputsNames } from '@/helpers/enums';
+import { Routes, SignUpInputsNames } from '@/helpers/enums';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -63,8 +63,8 @@ function SignUpPage() {
   const submitHandler = async (data: FormData) => {
     try {
       await signUp(
-        data[SignInInputsNames.email],
-        data[SignInInputsNames.password],
+        data[SignUpInputsNames.email],
+        data[SignUpInputsNames.password],
       );
       await updateProfile(auth.currentUser!, {
         displayName: data[SignUpInputsNames.name],
