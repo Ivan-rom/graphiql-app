@@ -1,6 +1,6 @@
 export enum Routes {
-  signIn = 'sign-in',
-  signUp = 'sign-up',
+  signIn = '/sign-in',
+  signUp = '/sign-up',
 }
 
 export enum SignUpInputsNames {

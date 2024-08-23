@@ -8,8 +8,13 @@ import { Routes, SignInInputsNames } from '@/helpers/enums';
 import classNames from 'classnames';
 import styles from './page.module.css';
 import sharedStyles from '@/styles/shared.module.css';
-import Link from 'next/link';
 import { useSignInSchema } from '@/hooks/useSignInSchema';
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+} from 'react-firebase-hooks/auth';
+import { auth } from '@/firebase/config';
+import { Link, useRouter } from '@/helpers/navigation';
 
 type FormData = {
   [SignInInputsNames.email]: string;
@@ -36,8 +41,27 @@ function SignInPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+  const router = useRouter();
+  const [user] = useAuthState(auth);
+  const [signIn] = useSignInWithEmailAndPassword(auth);
 
-  const submitHandler = () => {};
+  if (user) {
+    router.replace('/');
+  }
+
+  const submitHandler = async (data: FormData) => {
+    try {
+      await signIn(
+        data[SignInInputsNames.email],
+        data[SignInInputsNames.password],
+      );
+      // TODO: push result to Redux
+      router.replace('/');
+    } catch {
+      // TODO: Show error result to user
+      // use toastify for example
+    }
+  };
 
   return (
     <section className={styles.section}>

@@ -1,3 +1,4 @@
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import { useTranslations } from 'next-intl';
 
 export default function Home() {
@@ -5,6 +6,7 @@ export default function Home() {
 
   return (
     <main>
+      <LogoutButton />
       <h1>{t('title')}</h1>
     </main>
   );
