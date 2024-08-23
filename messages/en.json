@@ -1,6 +1,9 @@
 {
   "HomePage": {
-    "title": "Welcome to Graphiql App by Unit team"
+    "title": "Welcome to Graphiql App by Unit team",
+    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "welcomeBack": "Welcome back, ",
+    "unauthorized": "If you want to continue, please sign in or sign up if you aren't registered user."
   },
   "Form": {
     "name-label": "Name",
