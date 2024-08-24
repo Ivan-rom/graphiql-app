@@ -46,7 +46,7 @@ function SignInPage() {
   const [signIn] = useSignInWithEmailAndPassword(auth);
 
   if (user) {
-    router.replace('/');
+    router.replace(Routes.home);
   }
 
   const submitHandler = async (data: FormData) => {

@@ -57,7 +57,7 @@ function SignUpPage() {
   const [signUp] = useCreateUserWithEmailAndPassword(auth);
 
   if (user) {
-    router.replace('/');
+    router.replace(Routes.home);
   }
 
   const submitHandler = async (data: FormData) => {
