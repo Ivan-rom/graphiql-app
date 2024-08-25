@@ -1,4 +1,4 @@
-import { RequestMethods } from "@/helpers/enums";
+import { RequestMethods } from '@/helpers/enums';
 
 export type HeadersRequest = {
   [key: string]: string;

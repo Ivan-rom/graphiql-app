@@ -5,8 +5,8 @@ import { Routes } from '@/helpers/enums';
 import WelcomeDescription from '@/components/WelcomeDescription/WelcomeDescription';
 
 export default function Home() {
-  const t = useTranslations();
-  const isAuthorized = true;
+  const t = useTranslations('HomePage');
+  const isAuthorized = false;
   const userName = 'User';
 
   return (
@@ -16,39 +16,39 @@ export default function Home() {
           {isAuthorized ? (
             <>
               <h1 className={styles.title}>
-                {t('HomePage.welcomeBack').concat(userName)}
+                {t('welcomeBack').concat(userName)}
               </h1>
               <WelcomeDescription />
               <div className={styles.links}>
                 <Link className={styles.link} href={'#'}>
-                  {t('HomePage.mainLinks.restApi')}
+                  {t('mainLinks.restApi')}
                 </Link>
                 <Link href={'#'} className={styles.link}>
-                  {t('HomePage.mainLinks.graphiQL')}
+                  {t('mainLinks.graphiQL')}
                 </Link>
                 <Link className={styles.link} href={'#'}>
-                  {t('HomePage.mainLinks.history')}
+                  {t('mainLinks.history')}
                 </Link>
               </div>
             </>
           ) : (
             <>
-              <h1 className={styles.title}>{t('HomePage.title')}</h1>
-              <p className={styles.text}>{t('HomePage.unauthorized')}</p>
+              <h1 className={styles.title}>{t('title')}</h1>
+              <p className={styles.text}>{t('unauthorized')}</p>
               <div className={styles.links}>
                 <Link
                   className={styles.link}
                   href={Routes.signUp}
                   prefetch={false}
                 >
-                  {t('HomePage.authLinks.signUp')}
+                  {t('authLinks.signUp')}
                 </Link>
                 <Link
                   className={styles.link}
                   href={Routes.signIn}
                   prefetch={false}
                 >
-                  {t('HomePage.authLinks.signIn')}
+                  {t('authLinks.signIn')}
                 </Link>
               </div>
             </>
