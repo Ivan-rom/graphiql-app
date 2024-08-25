@@ -30,5 +30,14 @@
     "submit-text": "вход",
     "hint": "Еще нет аккаунта?",
     "link": "Регистрация"
+  },
+  "RestfulClient": {
+    "url-placeholder": "Введите URL или вставьте текст",
+    "send": "Отправить",
+    "headers": "Заголовки",
+    "add-header": "Добавить заголовок",
+    "key-placeholder": "Ключ",
+    "value-placeholder": "Значение",
+    "body-text": "Тело"
   }
 }
