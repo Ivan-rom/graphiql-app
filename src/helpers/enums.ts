@@ -1,6 +1,7 @@
 export enum Routes {
-  signIn = 'sign-in',
-  signUp = 'sign-up',
+  home = '/',
+  signIn = '/sign-in',
+  signUp = '/sign-up',
 }
 
 export enum SignUpInputsNames {
@@ -13,4 +14,13 @@ export enum SignUpInputsNames {
 export enum SignInInputsNames {
   email = 'email',
   password = 'password',
+}
+
+export enum RequestMethods {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  HEAD = 'HEAD',
+  OPTIONS = 'OPTIONS',
 }

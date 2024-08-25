@@ -8,8 +8,14 @@ import FormField from '@/components/FormField/FormField';
 import classNames from 'classnames';
 import sharedStyles from '@/styles/shared.module.css';
 import styles from './page.module.css';
-import Link from 'next/link';
 import { useSignUpSchema } from '@/hooks/useSignUpSchema';
+import { Link, useRouter } from '@/helpers/navigation';
+import {
+  useAuthState,
+  useCreateUserWithEmailAndPassword,
+} from 'react-firebase-hooks/auth';
+import { auth } from '@/firebase/config';
+import { updateProfile } from 'firebase/auth';
 
 type FormData = {
   [SignUpInputsNames.name]: string;
@@ -46,8 +52,30 @@ function SignUpPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+  const router = useRouter();
+  const [user] = useAuthState(auth);
+  const [signUp] = useCreateUserWithEmailAndPassword(auth);
 
-  const submitHandler = () => {};
+  if (user) {
+    router.replace(Routes.home);
+  }
+
+  const submitHandler = async (data: FormData) => {
+    try {
+      await signUp(
+        data[SignUpInputsNames.email],
+        data[SignUpInputsNames.password],
+      );
+      await updateProfile(auth.currentUser!, {
+        displayName: data[SignUpInputsNames.name],
+      });
+      // TODO: push result to Redux
+      router.replace('/');
+    } catch {
+      // TODO: Show error result to user
+      // use toastify for example
+    }
+  };
 
   return (
     <section className={styles.section}>

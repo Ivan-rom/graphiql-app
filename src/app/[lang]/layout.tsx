@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import styles from './layout.module.css';
 import { getMessages } from 'next-intl/server';
+import StoreProvider from '../StoreProvider/StoreProvider';
 
 type Props = {
   params: {
@@ -15,9 +16,11 @@ export default async function Layout({ children, params }: Props) {
   return (
     <html lang={params.lang}>
       <body className={styles.body}>
-        <NextIntlClientProvider messages={messages}>
-          <main className={styles.main}>{children}</main>
-        </NextIntlClientProvider>
+        <StoreProvider>
+          <NextIntlClientProvider messages={messages}>
+            <main className={styles.main}>{children}</main>
+          </NextIntlClientProvider>
+        </StoreProvider>
       </body>
     </html>
   );
