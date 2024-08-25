@@ -1,12 +1,12 @@
 import { useTranslations } from 'next-intl';
 import styles from './layout.module.css';
-import Link from 'next/link';
+import { Link } from '@/helpers/navigation';
 import { Routes } from '@/helpers/enums';
 import WelcomeDescription from '@/components/WelcomeDescription/WelcomeDescription';
 
 export default function Home() {
   const t = useTranslations();
-  const isAuthorized = false;
+  const isAuthorized = true;
   const userName = 'User';
 
   return (
