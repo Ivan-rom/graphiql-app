@@ -1,9 +1,38 @@
 {
   "HomePage": {
     "title": "Welcome to Graphiql App by Unit team",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "description": {
+      "title": "REST/GraphiQL Client",
+      "subtitle": "Project description",
+      "text": "This project is a lightweight application combining the functionalities of Postman and GraphiQL into a single interface. The application allows users to execute requests to RESTful and GraphQL APIs, providing a convenient tool for interacting with any open APIs.",
+      "listSubtitle": "Key Features:",
+      "list": [
+        "Authorization and Authentication - Access to the application is restricted to authorized users only",
+        "Request History - Ability to save and re-run previous requests.",
+        "RESTful Client - Supports HTTP method selection, URL input, header editing, request body editing, and response display",
+        "GraphiQL Client - Supports URL input, query and variable editing, header editing, and documentation exploration via SDL."
+      ],
+      "secondListSubtitle": "Technical Requirements:",
+      "secondList": [
+        "The application is built using Next.js, a React framework.",
+        "TypeScript for strong typing.",
+        "Supports private routes and 404 pages.",
+        "Test coverage of at least 80%.",
+        "ESLint and Prettier for code cleanliness.",
+        "Internationalization (i18n) with language switching in the interface."
+      ]
+    },
     "welcomeBack": "Welcome back, ",
-    "unauthorized": "If you want to continue, please sign in or sign up if you aren't registered user."
+    "unauthorized": "If you want to continue, please sign in or sign up if you aren't registered user.",
+    "authLinks": {
+      "signIn": "Sign in",
+      "signUp": "Sign up"
+    },
+    "mainLinks": {
+      "restApi": "REST API",
+      "graphiQL": "GraphiQL",
+      "history": "History"
+    }
   },
   "Form": {
     "name-label": "Name",
