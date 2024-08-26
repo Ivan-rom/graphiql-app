@@ -4,6 +4,8 @@
   --accent-color: #d6305f;
   --text-color: #ffffff;
   --error-color: #ff5555;
+
+  --border-radius: 10px;
 }
 
 * {
