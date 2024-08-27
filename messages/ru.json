@@ -38,6 +38,10 @@
     "add-header": "Добавить заголовок",
     "key-placeholder": "Ключ",
     "value-placeholder": "Значение",
-    "body-text": "Тело"
+    "body-text": "Тело",
+    "body-variables": "Переменные тела запроса",
+    "add-variable": "Добавить переменную",
+    "show-variables": "Показать переменные",
+    "hide-variables": "Скрыть переменные"
   }
 }

@@ -2,6 +2,7 @@
   --body-bg-color: #181922;
   --bg-color: #272937;
   --accent-color: #d6305f;
+  --disabled-assent-color: rgb(214, 48, 95, 0.7);
   --text-color: #ffffff;
   --error-color: #ff5555;
 }

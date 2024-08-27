@@ -38,6 +38,10 @@
     "add-header": "Add header",
     "key-placeholder": "Key",
     "value-placeholder": "Value",
-    "body-text": "Body"
+    "body-text": "Body",
+    "body-variables": "Body variables",
+    "add-variable": "Add variable",
+    "show-variables": "Show body variables",
+    "hide-variables": "Hidden body variables"
   }
 }
