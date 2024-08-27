@@ -1,15 +1,15 @@
-import { HeadersRequest } from '@/helpers/types';
+import { VariablesRequest } from '@/helpers/types';
 
 export interface IOptions {
   method: string;
-  headers: HeadersRequest;
+  headers: VariablesRequest;
   body: string;
 }
 
 export const setOptions = (
   method: string,
   body: string,
-  headers: HeadersRequest,
+  headers: VariablesRequest,
 ) => {
   return {
     method: method,
