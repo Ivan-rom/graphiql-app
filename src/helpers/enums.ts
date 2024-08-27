@@ -2,7 +2,7 @@ export enum Routes {
   home = '/',
   signIn = '/sign-in',
   signUp = '/sign-up',
-  restApi = '/rest-api',
+  restApi = '/restful-client',
   graphiQL = '/graphiql',
   history = '/history',
 }

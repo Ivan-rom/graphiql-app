@@ -1,0 +1,10 @@
+.page {
+  width: 100%;
+  align-self: stretch;
+  display: flex;
+  align-items: stretch;
+
+  .form {
+    flex-basis: 50%;
+  }
+}
