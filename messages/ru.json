@@ -18,6 +18,7 @@
       "signIn": "Вход",
       "signUp": "Регистрация"
     },
+    "logOut": "Выйти",
     "mainLinks": {
       "restApi": "REST API",
       "graphiQL": "GraphiQL",
