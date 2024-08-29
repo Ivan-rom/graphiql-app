@@ -2,8 +2,14 @@
 
 import { decodeUrlBase64 } from '@/helpers/decodeUrlBase64';
 import { useParams, useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './response.module.css';
+import '@/styles/editor.css';
+
+import { basicSetup } from 'codemirror';
+import { EditorState } from '@codemirror/state';
+import { EditorView } from '@codemirror/view';
+import { json } from '@codemirror/lang-json';
 
 function Response() {
   const params = useParams();
@@ -55,11 +61,31 @@ function Response() {
     });
   }, [body, method, url, headers]);
 
+  const editor = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const state = EditorState.create({
+      doc: responseObject.body,
+      extensions: [
+        basicSetup,
+        json(),
+        EditorView.lineWrapping,
+        EditorState.readOnly.of(true),
+      ],
+    });
+    const view = new EditorView({ state, parent: editor.current! });
+    return () => {
+      view.destroy();
+    };
+  }, [responseObject]);
+
   return (
     <div className={styles.response}>
       {isLoading && <div>Loading...</div>}
       <div>Status: {responseObject.status}</div>
-      <pre className={styles.code}>{responseObject.body}</pre>
+      <div>
+        <div className="editor" ref={editor}></div>
+      </div>
     </div>
   );
 }
