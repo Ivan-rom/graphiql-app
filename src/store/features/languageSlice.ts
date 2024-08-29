@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { locales } from '@/helpers/constants.ts';
 
-
 const initialState = {
   locale: locales[0],
 };

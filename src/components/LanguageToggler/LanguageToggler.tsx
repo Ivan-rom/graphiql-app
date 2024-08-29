@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import styles from './LanguageToggler.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,9 +15,10 @@ function LanguageToggler() {
   const pathname = usePathname();
 
   const toggleLanguage = () => {
-    const newLanguage = currentLanguage === locales[0] ? locales[1] : locales[0];
+    const newLanguage =
+      currentLanguage === locales[0] ? locales[1] : locales[0];
     dispatch(setLocale(newLanguage));
-    router.push(pathname,  { locale: newLanguage });
+    router.push(pathname, { locale: newLanguage });
   };
 
   return (
@@ -38,6 +39,6 @@ function LanguageToggler() {
       </label>
     </div>
   );
-};
+}
 
 export default LanguageToggler;

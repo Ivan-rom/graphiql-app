@@ -25,21 +25,21 @@
       right: 0;
       bottom: 0;
       background-color: var(--bg-color);
-      -webkit-transition: .4s;
-      transition: .4s;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
       border-radius: 34px;
     }
 
     .slider:before {
       position: absolute;
-      content: "Рус";
+      content: 'Рус';
       height: 35px;
       width: 35px;
       left: 4px;
       bottom: 4px;
       background-color: var(--accent-color);
-      -webkit-transition: .4s;
-      transition: .4s;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
       border-radius: 50%;
       color: var(--text-color);
       display: flex;
@@ -51,7 +51,7 @@
       -webkit-transform: translateX(30px);
       -ms-transform: translateX(30px);
       transform: translateX(30px);
-      content: "En";
+      content: 'En';
     }
 
     .slider.round {
