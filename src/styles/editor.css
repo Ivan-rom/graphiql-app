@@ -3,9 +3,9 @@
   background-color: transparent;
   padding: 5px 5px 5px 0;
   border-radius: var(--border-radius);
-  color: var(--accent-color);
+  color: #808080;
 
-  .cm-focused {
+  .cm-editor.cm-focused {
     outline: none;
   }
 

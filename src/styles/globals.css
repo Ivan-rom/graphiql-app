@@ -5,6 +5,11 @@
   --text-color: #ffffff;
   --error-color: #ff5555;
 
+  --editor-string-color: #73c573;
+  --editor-number-color: #68aad6;
+  --editor-boolean-color: #d6a368;
+  --editor-null-color: #d6d468;
+
   --border-radius: 10px;
 }
 
