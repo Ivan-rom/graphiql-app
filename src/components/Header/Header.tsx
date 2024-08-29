@@ -10,8 +10,10 @@ export default function Header() {
       <Link href={Routes.home} className={styles.logo}>
         Unit
       </Link>
-      <LanguageToggler />
-      <HeaderButtons />
+      <div className={styles.buttons}>
+        <HeaderButtons />
+        <LanguageToggler />
+      </div>
     </header>
   );
 }
