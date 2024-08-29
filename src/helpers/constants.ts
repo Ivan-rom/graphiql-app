@@ -1,4 +1,4 @@
-import { Routes } from '@/helpers/enums.ts';
+import { Routes } from '@/helpers/enums';
 
 export const locales = ['en', 'ru'];
 
