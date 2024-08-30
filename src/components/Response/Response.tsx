@@ -36,10 +36,18 @@ function Response() {
     const makeRequest = async () => {
       try {
         const requestOptions: RequestInit = {};
-        requestOptions.method = method;
-        requestOptions.headers = headers;
-        if (method !== 'GET') requestOptions.body = body;
-
+        if (method === 'GRAPHQL') {
+          requestOptions.method = 'POST';
+          requestOptions.headers = {
+            'Content-Type': 'application/json',
+            ...headers,
+          };
+          requestOptions.body = body;
+        } else {
+          requestOptions.method = method;
+          requestOptions.headers = headers;
+          if (method !== 'GET') requestOptions.body = body;
+        }
         const response = await fetch(url, requestOptions);
         const res = await response.json();
 
