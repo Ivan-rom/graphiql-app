@@ -2,13 +2,15 @@ import { EditorState, Extension } from '@codemirror/state';
 import { EditorView } from 'codemirror';
 import { useEffect, useRef } from 'react';
 import '@/styles/editor.css';
+import classNames from 'classnames';
 
 type Props = {
   extensions: Extension;
   value: string;
+  className?: string;
 };
 
-function CodeEditor({ extensions, value }: Props) {
+function CodeEditor({ extensions, value, className }: Props) {
   const editor = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ function CodeEditor({ extensions, value }: Props) {
     }
   }, [value, extensions, editor]);
 
-  return <div className="editor" ref={editor} />;
+  return <div className={classNames('editor', className)} ref={editor} />;
 }
 
 export default CodeEditor;

@@ -4,10 +4,37 @@
   align-self: stretch;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+
+  .status {
+    padding: 10px;
+    padding-bottom: 0;
+    font-weight: 600;
+
+    .statusCode {
+      &.info {
+        color: var(--status-info-color);
+      }
+
+      &.success {
+        color: var(--status-success-color);
+      }
+
+      &.redirect {
+        color: var(--status-redirect-color);
+      }
+
+      &.clientError {
+        color: var(--status-clientError-color);
+      }
+
+      &.serverError {
+        color: var(--status-clientError-color);
+      }
+    }
+  }
 
   .code {
-    cursor: text;
-    flex-grow: 1;
     overflow: auto;
   }
 }

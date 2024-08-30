@@ -11,6 +11,7 @@ import { json } from '@codemirror/lang-json';
 import { HighlightStyle, syntaxHighlighting } from '@codemirror/language';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import { tags } from '@lezer/highlight';
+import classNames from 'classnames';
 
 function Response() {
   const params = useParams();
@@ -31,6 +32,26 @@ function Response() {
 
   const [responseObject, setResponseObject] = useState({ status: 0, body: '' });
   const [isLoading, setIsLoading] = useState(true);
+  const [statusClassName, setStatusClassName] = useState('');
+
+  const updateStatusClassName = (code: number) => {
+    if (code >= 100 && code < 200) {
+      //information code
+      setStatusClassName('info');
+    } else if (code >= 200 && code < 300) {
+      //success code
+      setStatusClassName('success');
+    } else if (code >= 300 && code < 400) {
+      //redirect code
+      setStatusClassName('redirect');
+    } else if (code >= 400 && code < 500) {
+      // client side error
+      setStatusClassName('clientError');
+    } else if (code >= 500) {
+      // client side error
+      setStatusClassName('serverError');
+    }
+  };
 
   useEffect(() => {
     const makeRequest = async () => {
@@ -50,6 +71,8 @@ function Response() {
         }
         const response = await fetch(url, requestOptions);
         const res = await response.json();
+
+        updateStatusClassName(response.status);
 
         const resultObject = {
           status: response.status,
@@ -86,12 +109,24 @@ function Response() {
 
   return (
     <div className={styles.response}>
+      <h3>Response: </h3>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <>
-          <div>Status: {responseObject.status}</div>
-          <CodeEditor extensions={extensions} value={responseObject.body} />
+          <div className={styles.status}>
+            Status:{' '}
+            <span
+              className={classNames(styles.statusCode, styles[statusClassName])}
+            >
+              {responseObject.status}
+            </span>
+          </div>
+          <CodeEditor
+            className={styles.code}
+            extensions={extensions}
+            value={responseObject.body}
+          />
         </>
       )}
     </div>
