@@ -12,8 +12,10 @@ import { HighlightStyle, syntaxHighlighting } from '@codemirror/language';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import { tags } from '@lezer/highlight';
 import classNames from 'classnames';
+import { useTranslations } from 'next-intl';
 
 function Response() {
+  const t = useTranslations('Client');
   const params = useParams();
   const request = params.request || [];
   const [method, urlBase64, bodyBase64] = request;
@@ -109,13 +111,13 @@ function Response() {
 
   return (
     <div className={styles.response}>
-      <h3>Response: </h3>
+      <h3>{t('response.title')}: </h3>
       {isLoading ? (
-        <div>Loading...</div>
+        <div>{t('loading')}...</div>
       ) : (
         <>
           <div className={styles.status}>
-            Status:{' '}
+            {t('response.status')}:{' '}
             <span
               className={classNames(styles.statusCode, styles[statusClassName])}
             >

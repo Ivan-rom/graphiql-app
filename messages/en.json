@@ -52,5 +52,12 @@
     "submit-text": "sign in",
     "hint": "Don't have an account?",
     "link": "Sign up"
+  },
+  "Client": {
+    "response": {
+      "title": "Response",
+      "status": "Status"
+    },
+    "loading": "Loading"
   }
 }
