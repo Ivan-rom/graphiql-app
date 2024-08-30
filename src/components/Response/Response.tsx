@@ -4,16 +4,11 @@ import { decodeUrlBase64 } from '@/helpers/decodeUrlBase64';
 import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import styles from './response.module.css';
-import { basicSetup } from 'codemirror';
-import { EditorState, Extension } from '@codemirror/state';
-import { EditorView } from '@codemirror/view';
-import { json } from '@codemirror/lang-json';
-import { HighlightStyle, syntaxHighlighting } from '@codemirror/language';
 import CodeEditor from '../CodeEditor/CodeEditor';
-import { tags } from '@lezer/highlight';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 import { useStatusCodeClassName } from '@/hooks/useStatusCodeClassName';
+import { extensions } from './editorExtensions';
 
 function Response() {
   const t = useTranslations('Client');
@@ -72,22 +67,6 @@ function Response() {
       setIsLoading(false);
     });
   }, [body, method, url, headers]);
-
-  const theme = HighlightStyle.define([
-    { tag: tags.string, color: 'var(--editor-string-color)' },
-    { tag: tags.number, color: 'var(--editor-number-color)' },
-    { tag: tags.null, color: 'var(--editor-null-color)' },
-    { tag: tags.bool, color: 'var(--editor-boolean-color)' },
-    { tag: tags.propertyName, color: 'var(--accent-color)' },
-  ]);
-
-  const extensions: Extension = [
-    basicSetup,
-    json(),
-    syntaxHighlighting(theme),
-    EditorView.lineWrapping,
-    EditorState.readOnly.of(true),
-  ];
 
   return (
     <div className={styles.response}>
