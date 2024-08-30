@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import { useStatusCodeClassName } from '@/hooks/useStatusCodeClassName';
 import { extensions } from './editorExtensions';
 import { makeRequest } from '@/services/request';
+import Loader from '../Loader/Loader';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
@@ -29,7 +30,7 @@ function Response() {
 
   const [responseObject, setResponseObject] = useState(INITIAL_RESPONSE_VALUE);
   const [isLoading, setIsLoading] = useState(true);
-  const statusCodeClassName = useStatusCodeClassName(responseObject.status);
+  const codeClassName = useStatusCodeClassName(responseObject.status);
 
   useEffect(() => {
     makeRequest(urlBase64, bodyBase64, method, headers)
@@ -45,26 +46,28 @@ function Response() {
   return (
     <div className={styles.response}>
       <h3 className={styles.title}>{t('response.title')}</h3>
-      {isLoading ? (
-        <div>{t('loading')}...</div>
-      ) : (
-        <>
-          <div className={styles.status}>
-            <span className={styles.statusText}>{t('response.status')}</span>
-            <span
-              className={classNames(styles.code, styles[statusCodeClassName])}
-            >
-              {responseObject.status}
-            </span>
-          </div>
+      <div className={styles.wrapper}>
+        {isLoading ? (
+          <Loader className={styles.loader} />
+        ) : (
+          <>
+            <div className={styles.status}>
+              <span className={styles.statusText}>{t('response.status')}</span>
+              <span className={classNames(styles.code, styles[codeClassName])}>
+                {responseObject.status}
+              </span>
+            </div>
 
-          <CodeEditor
-            className={styles.viewer}
-            extensions={extensions}
-            value={responseObject.body}
-          />
-        </>
-      )}
+            <div className={styles.editorWrapper}>
+              <CodeEditor
+                className={styles.viewer}
+                extensions={extensions}
+                value={responseObject.body}
+              />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
