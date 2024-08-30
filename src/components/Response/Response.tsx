@@ -10,6 +10,8 @@ import { useTranslations } from 'next-intl';
 import { useStatusCodeClassName } from '@/hooks/useStatusCodeClassName';
 import { extensions } from './editorExtensions';
 
+const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
+
 function Response() {
   const t = useTranslations('Client');
   const params = useParams();
@@ -28,7 +30,7 @@ function Response() {
     return headersObject;
   }, [searchParams]);
 
-  const [responseObject, setResponseObject] = useState({ status: 0, body: '' });
+  const [responseObject, setResponseObject] = useState(INITIAL_RESPONSE_VALUE);
   const [isLoading, setIsLoading] = useState(true);
   const statusCodeClassName = useStatusCodeClassName(responseObject.status);
 
@@ -70,24 +72,22 @@ function Response() {
 
   return (
     <div className={styles.response}>
-      <h3>{t('response.title')}: </h3>
+      <h3 className={styles.title}>{t('response.title')}</h3>
       {isLoading ? (
         <div>{t('loading')}...</div>
       ) : (
         <>
           <div className={styles.status}>
-            {t('response.status')}:{' '}
+            <span className={styles.statusText}>{t('response.status')}</span>
             <span
-              className={classNames(
-                styles.statusCode,
-                styles[statusCodeClassName],
-              )}
+              className={classNames(styles.code, styles[statusCodeClassName])}
             >
               {responseObject.status}
             </span>
           </div>
+
           <CodeEditor
-            className={styles.code}
+            className={styles.viewer}
             extensions={extensions}
             value={responseObject.body}
           />

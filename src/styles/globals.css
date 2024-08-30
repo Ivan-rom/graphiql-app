@@ -15,6 +15,8 @@
   --editor-number-color: #68aad6;
   --editor-boolean-color: #d6a368;
   --editor-null-color: #d6d468;
+  --editor-select-color: #393e64;
+  --editor-default-color: #808080;
 
   --border-radius: 10px;
 }

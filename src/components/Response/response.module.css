@@ -6,12 +6,24 @@
   flex-direction: column;
   height: 100vh;
 
+  .title {
+    &::after {
+      content: ': ';
+    }
+  }
+
   .status {
     padding: 10px;
     padding-bottom: 0;
     font-weight: 600;
 
-    .statusCode {
+    .statusText {
+      &::after {
+        content: ': ';
+      }
+    }
+
+    .code {
       &.info {
         color: var(--status-info-color);
       }
@@ -34,7 +46,7 @@
     }
   }
 
-  .code {
+  .viewer {
     overflow: auto;
   }
 }

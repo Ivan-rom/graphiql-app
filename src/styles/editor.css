@@ -3,10 +3,10 @@
   background-color: transparent;
   padding: 5px 5px 5px 0;
   border-radius: var(--border-radius);
-  color: #808080;
+  color: var(--editor-default-color);
 
   .cm-editor .cm-selectionBackground {
-    background-color: #393e64;
+    background-color: var(--editor-select-color);
   }
 
   .cm-editor.cm-focused {
