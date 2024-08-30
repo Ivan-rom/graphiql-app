@@ -13,6 +13,7 @@ import CodeEditor from '../CodeEditor/CodeEditor';
 import { tags } from '@lezer/highlight';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
+import { useStatusCodeClassName } from '@/hooks/useStatusCodeClassName';
 
 function Response() {
   const t = useTranslations('Client');
@@ -34,26 +35,7 @@ function Response() {
 
   const [responseObject, setResponseObject] = useState({ status: 0, body: '' });
   const [isLoading, setIsLoading] = useState(true);
-  const [statusClassName, setStatusClassName] = useState('');
-
-  const updateStatusClassName = (code: number) => {
-    if (code >= 100 && code < 200) {
-      //information code
-      setStatusClassName('info');
-    } else if (code >= 200 && code < 300) {
-      //success code
-      setStatusClassName('success');
-    } else if (code >= 300 && code < 400) {
-      //redirect code
-      setStatusClassName('redirect');
-    } else if (code >= 400 && code < 500) {
-      // client side error
-      setStatusClassName('clientError');
-    } else if (code >= 500) {
-      // client side error
-      setStatusClassName('serverError');
-    }
-  };
+  const statusCodeClassName = useStatusCodeClassName(responseObject.status);
 
   useEffect(() => {
     const makeRequest = async () => {
@@ -73,8 +55,6 @@ function Response() {
         }
         const response = await fetch(url, requestOptions);
         const res = await response.json();
-
-        updateStatusClassName(response.status);
 
         const resultObject = {
           status: response.status,
@@ -119,7 +99,10 @@ function Response() {
           <div className={styles.status}>
             {t('response.status')}:{' '}
             <span
-              className={classNames(styles.statusCode, styles[statusClassName])}
+              className={classNames(
+                styles.statusCode,
+                styles[statusCodeClassName],
+              )}
             >
               {responseObject.status}
             </span>

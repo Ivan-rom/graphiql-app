@@ -29,7 +29,7 @@
       }
 
       &.serverError {
-        color: var(--status-clientError-color);
+        color: var(--status-serverError-color);
       }
     }
   }
