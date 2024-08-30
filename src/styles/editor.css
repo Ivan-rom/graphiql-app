@@ -5,6 +5,10 @@
   border-radius: var(--border-radius);
   color: #808080;
 
+  .cm-editor .cm-selectionBackground {
+    background-color: #393e64;
+  }
+
   .cm-editor.cm-focused {
     outline: none;
   }

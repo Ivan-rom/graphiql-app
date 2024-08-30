@@ -12,19 +12,21 @@ function CodeEditor({ extensions, value }: Props) {
   const editor = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const state = EditorState.create({
-      doc: value,
-      extensions: extensions,
-    });
+    if (editor.current) {
+      const state = EditorState.create({
+        doc: value,
+        extensions,
+      });
 
-    const view = new EditorView({ state, parent: editor.current! });
+      const view = new EditorView({ state, parent: editor.current });
 
-    return () => {
-      view.destroy();
-    };
-  }, [value, extensions]);
+      return () => {
+        view.destroy();
+      };
+    }
+  }, [value, extensions, editor]);
 
-  return <div className="editor" ref={editor}></div>;
+  return <div className="editor" ref={editor} />;
 }
 
 export default CodeEditor;
