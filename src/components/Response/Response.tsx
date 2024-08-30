@@ -1,6 +1,5 @@
 'use client';
 
-import { decodeUrlBase64 } from '@/helpers/decodeUrlBase64';
 import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import styles from './response.module.css';
@@ -9,6 +8,7 @@ import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 import { useStatusCodeClassName } from '@/hooks/useStatusCodeClassName';
 import { extensions } from './editorExtensions';
+import { makeRequest } from '@/services/request';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
@@ -17,9 +17,6 @@ function Response() {
   const params = useParams();
   const request = params.request || [];
   const [method, urlBase64, bodyBase64] = request;
-
-  const url = decodeUrlBase64(urlBase64);
-  const body = decodeUrlBase64(bodyBase64);
 
   const searchParams = useSearchParams();
   const headers = useMemo(() => {
@@ -35,40 +32,15 @@ function Response() {
   const statusCodeClassName = useStatusCodeClassName(responseObject.status);
 
   useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        const requestOptions: RequestInit = {};
-        if (method === 'GRAPHQL') {
-          requestOptions.method = 'POST';
-          requestOptions.headers = {
-            'Content-Type': 'application/json',
-            ...headers,
-          };
-          requestOptions.body = body;
-        } else {
-          requestOptions.method = method;
-          requestOptions.headers = headers;
-          if (method !== 'GET') requestOptions.body = body;
-        }
-        const response = await fetch(url, requestOptions);
-        const res = await response.json();
+    makeRequest(urlBase64, bodyBase64, method, headers)
+      .then((res) => setResponseObject(res))
 
-        const resultObject = {
-          status: response.status,
-          body: JSON.stringify(res, null, 4),
-        };
+      //TODO: show error result to user
+      // use toastify for example
+      .catch((error) => setResponseObject(error))
 
-        return resultObject;
-      } catch {
-        return { status: 500, body: 'Something went wrong' };
-      }
-    };
-
-    makeRequest().then((res) => {
-      setResponseObject(res);
-      setIsLoading(false);
-    });
-  }, [body, method, url, headers]);
+      .finally(() => setIsLoading(false));
+  }, [bodyBase64, method, urlBase64, headers]);
 
   return (
     <div className={styles.response}>

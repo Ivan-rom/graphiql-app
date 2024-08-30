@@ -26,4 +26,5 @@ export enum RequestMethods {
   DELETE = 'DELETE',
   HEAD = 'HEAD',
   OPTIONS = 'OPTIONS',
+  GRAPHQL = 'GRAPHQL',
 }
