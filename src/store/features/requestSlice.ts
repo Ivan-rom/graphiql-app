@@ -34,6 +34,5 @@ export const requestSlice = createSlice({
   },
 });
 
-export const { setURL, setMethod, setBody, setHeader, setRequest } =
-  requestSlice.actions;
+export const { setURL, setMethod, setBody, setHeader, setRequest } = requestSlice.actions;
 export default requestSlice.reducer;

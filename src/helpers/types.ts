@@ -19,9 +19,6 @@ export interface IVariable {
 
 export type setVariablesType = (value: SetStateAction<IVariable[]>) => void;
 
-export type changeVariableType = (
-  event: ChangeEvent<HTMLInputElement>,
-  index: number,
-) => void;
+export type changeVariableType = (event: ChangeEvent<HTMLInputElement>, index: number) => void;
 
 export type setBodyType = (value: SetStateAction<string>) => void;

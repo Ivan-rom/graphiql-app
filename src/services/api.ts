@@ -6,11 +6,7 @@ export interface IOptions {
   body: string;
 }
 
-export const setOptions = (
-  method: string,
-  body: string,
-  headers: VariablesRequest,
-) => {
+export const setOptions = (method: string, body: string, headers: VariablesRequest) => {
   return {
     method: method,
     headers: headers,

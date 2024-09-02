@@ -1,10 +1,6 @@
 import { ChangeEvent } from 'react';
-import {
-  IVariable,
-  setBodyType,
-  setVariablesType,
-  VariablesRequest,
-} from './types';
+import { IVariable, setBodyType, setVariablesType, VariablesRequest } from './types';
+import { emptyURL } from './constants';
 
 export function encodeToBase64(text: string) {
   const encoder = new TextEncoder();
@@ -20,10 +16,7 @@ export function decodeFromBase64(text: string) {
   }
 }
 
-export function variableObject(
-  variableArray: { key: string; value: string }[],
-  object: VariablesRequest,
-) {
+export function variableObject(variableArray: { key: string; value: string }[], object: VariablesRequest) {
   return variableArray.reduce((acc: VariablesRequest, variable) => {
     if (variable.key) {
       acc[variable.key] = variable.value;
@@ -63,11 +56,7 @@ export function removeItemFromArray(array: IVariable[], index: number) {
   return [...array.slice(0, index), ...array.slice(index + 1)];
 }
 
-export const handleChangeVariables = (
-  event: ChangeEvent<HTMLInputElement>,
-  index: number,
-  variables: IVariable[],
-) => {
+export const handleChangeVariables = (event: ChangeEvent<HTMLInputElement>, index: number, variables: IVariable[]) => {
   const { name, value } = event.target;
   const changedVariables = [...variables];
   if (name === 'key' || name === 'value') {
@@ -85,12 +74,9 @@ export const formatURL = (
   variableBodyVisible: boolean,
 ) => {
   let requestURL = `/${methodText}`;
-  requestURL += urlText ? `/${encodeToBase64(urlText)}` : '';
+  requestURL += urlText ? `/${encodeToBase64(urlText)}` : `/${encodeToBase64(emptyURL)}`;
   if (variableBodyVisible) {
-    requestURL +=
-      variables.length !== 0
-        ? `/${encodeToBase64(JSON.stringify(variableObject(variables, {})))}`
-        : '';
+    requestURL += variables.length !== 0 ? `/${encodeToBase64(JSON.stringify(variableObject(variables, {})))}` : '';
   } else {
     requestURL += bodyText ? `/${encodeToBase64(bodyText)}` : '';
   }
@@ -99,10 +85,7 @@ export const formatURL = (
   return requestURL;
 };
 
-export const addVariablesHandler = (
-  variablesArray: IVariable[],
-  callback: setVariablesType,
-) => {
+export const addVariablesHandler = (variablesArray: IVariable[], callback: setVariablesType) => {
   const changedVariables = [...variablesArray];
   changedVariables.push({ key: '', value: '' });
   callback(changedVariables);
