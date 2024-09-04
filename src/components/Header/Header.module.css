@@ -2,10 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 90vw;
-  width: 100%;
+  max-width: 1650px;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 1rem 4%;
+  position: fixed;
+  right: 0;
+  left: 0;
 
   .buttons {
     display: flex;
@@ -21,6 +23,22 @@
 
     &:hover {
       filter: drop-shadow(0 0 0.2rem var(--accent-color));
+    }
+  }
+
+  &.fixed {
+    box-shadow: 0 4px 6px var(--accent-color);
+    background-color: var(--body-bg-color);
+    transition: all 0.3s ease-in-out;
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
     }
   }
 }
