@@ -12,13 +12,13 @@ import {
 import { useTranslations } from 'next-intl';
 import { VariableComponent } from '@/components/VariableComponent/Variable';
 import { MethodSelector } from '@/components/MethodSelector/MethodSelector';
-import { DEFAULT_VARIABLE } from '@/helpers/constants';
+import { clientPath, DEFAULT_VARIABLE } from '@/helpers/constants';
 import { useDefaultParams } from '@/helpers/hooks/useDefaultParams';
 
 export default function RestfullClientPage() {
   const tPage = useTranslations('RestfulClient');
   const { lang, method, setMethod, url, setURL, body, setBody, headers, setHeaders } = useDefaultParams();
-  const [bodyVariable, setBodyVariable] = useState([DEFAULT_VARIABLE]);
+  const [bodyVariable, setBodyVariable] = useState([{ ...DEFAULT_VARIABLE }]);
   const [variableBodyVisible, setVariableBodyVisible] = useState(false);
 
   const handleChangeURL = (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,7 @@ export default function RestfullClientPage() {
     window.history.replaceState(
       null,
       '',
-      `/${lang}${formatURL(event.target.value.trim(), method, body, bodyVariable, headers, variableBodyVisible)}`,
+      `/${lang}/${clientPath}${formatURL(event.target.value.trim(), method, body, bodyVariable, headers, variableBodyVisible)}`,
     );
   };
 
@@ -35,7 +35,7 @@ export default function RestfullClientPage() {
     window.history.replaceState(
       null,
       '',
-      `/${lang}${formatURL(url, event.target.value, body, bodyVariable, headers, variableBodyVisible)}`,
+      `/${lang}/${clientPath}${formatURL(url, event.target.value, body, bodyVariable, headers, variableBodyVisible)}`,
     );
   };
 
@@ -45,7 +45,7 @@ export default function RestfullClientPage() {
     window.history.replaceState(
       null,
       '',
-      `/${lang}${formatURL(url, method, body, bodyVariable, changedHeaders, variableBodyVisible)}`,
+      `/${lang}/${clientPath}${formatURL(url, method, body, bodyVariable, changedHeaders, variableBodyVisible)}`,
     );
   };
 
@@ -53,7 +53,7 @@ export default function RestfullClientPage() {
     window.history.replaceState(
       null,
       '',
-      `/${lang}${formatURL(url, method, event.target.value.trim(), bodyVariable, headers, variableBodyVisible)}`,
+      `/${lang}/${clientPath}${formatURL(url, method, event.target.value.trim(), bodyVariable, headers, variableBodyVisible)}`,
     );
   };
 
@@ -63,7 +63,7 @@ export default function RestfullClientPage() {
     window.history.replaceState(
       null,
       '',
-      `/${lang}${formatURL(url, method, body, bodyVariable, changedVariables, variableBodyVisible)}`,
+      `/${lang}/${clientPath}${formatURL(url, method, body, bodyVariable, changedVariables, variableBodyVisible)}`,
     );
   };
 
@@ -73,7 +73,7 @@ export default function RestfullClientPage() {
     window.history.replaceState(
       null,
       '',
-      `/${lang}${formatURL(url, method, body, changedVariables, headers, variableBodyVisible)}`,
+      `/${lang}/${clientPath}${formatURL(url, method, body, changedVariables, headers, variableBodyVisible)}`,
     );
   };
 
@@ -83,7 +83,7 @@ export default function RestfullClientPage() {
     window.history.replaceState(
       null,
       '',
-      `/${lang}${formatURL(url, method, body, changedVariables, headers, variableBodyVisible)}`,
+      `/${lang}/${clientPath}${formatURL(url, method, body, changedVariables, headers, variableBodyVisible)}`,
     );
   };
 

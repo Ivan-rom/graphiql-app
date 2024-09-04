@@ -8,12 +8,10 @@ export function encodeToBase64(text: string) {
   return btoa(String.fromCharCode(...utf8Array));
 }
 
-export function decodeFromBase64(text: string) {
-  try {
-    return atob(text);
-  } catch {
-    return '';
-  }
+export function decodeFromBase64(encodedUrlBase64: string) {
+  const decodedUrlBase64 = decodeURIComponent(encodedUrlBase64 || '');
+  const decodedUrl = atob(decodedUrlBase64);
+  return decodedUrl;
 }
 
 export function variableObject(variableArray: { key: string; value: string }[], object: VariablesRequest) {
@@ -37,9 +35,11 @@ export function variablesToString(variables: IVariable[]) {
 }
 
 export function variablesToQueryParams(variables: IVariable[]) {
-  const queryParamsArray = variablesToString(variables);
-  const queryParamsString = queryParamsArray.join('&');
-  return queryParamsString;
+  const searchParams = new URLSearchParams();
+  variables.forEach(({ value, key }) => {
+    searchParams.set(key, value);
+  });
+  return searchParams.toString();
 }
 
 export const prettifyingBody = (bodyString: string, setValue: setBodyType) => {
@@ -74,7 +74,7 @@ export const formatURL = (
   variableBodyVisible: boolean,
 ) => {
   let requestURL = `/${methodText}`;
-  requestURL += urlText ? `/${encodeToBase64(urlText)}` : `/${encodeToBase64(emptyURL)}`;
+  requestURL += urlText ? `/${encodeToBase64(urlText)}` : `/${emptyURL}`;
   if (variableBodyVisible) {
     requestURL += variables.length !== 0 ? `/${encodeToBase64(JSON.stringify(variableObject(variables, {})))}` : '';
   } else {
