@@ -1,4 +1,8 @@
 .buttonsWrapper {
   display: flex;
   gap: 1rem;
+
+  & > button {
+    width: 95px;
+  }
 }
