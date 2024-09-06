@@ -1,5 +1,5 @@
 'use client';
-import { RequestMethods } from '@/helpers/enums';
+import { RequestMethods} from '@/helpers/enums';
 import { ChangeEvent, useState } from 'react';
 import styles from './page.module.css';
 import {
@@ -14,9 +14,11 @@ import { VariableComponent } from '@/components/VariableComponent/Variable';
 import { MethodSelector } from '@/components/MethodSelector/MethodSelector';
 import { clientPath, DEFAULT_VARIABLE } from '@/helpers/constants';
 import { useDefaultParams } from '@/helpers/hooks/useDefaultParams';
+import { useRouter } from '@/helpers/navigation';
 
 export default function RestfullClientPage() {
   const tPage = useTranslations('RestfulClient');
+  const router = useRouter();
   const { lang, method, setMethod, url, setURL, body, setBody, headers, setHeaders } = useDefaultParams();
   const [bodyVariable, setBodyVariable] = useState([{ ...DEFAULT_VARIABLE }]);
   const [variableBodyVisible, setVariableBodyVisible] = useState(false);
@@ -92,7 +94,7 @@ export default function RestfullClientPage() {
   };
 
   if (!Object.values(RequestMethods).includes(method.toUpperCase() as RequestMethods)) {
-    return <h1>Method not found</h1>;
+    router.replace(RequestMethods.GET);
   }
 
   return (
