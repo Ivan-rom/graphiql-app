@@ -15,8 +15,8 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "firebase": "^10.13.0",
     "@reduxjs/toolkit": "^2.2.7",
+    "firebase": "^10.13.0",
     "next": "14.2.5",
     "next-intl": "^3.17.4",
     "react": "^18",
@@ -28,6 +28,7 @@
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.9.0",
     "@hookform/resolvers": "^3.9.0",
+    "@svgr/webpack": "^8.1.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.0",
     "@types/node": "^20",

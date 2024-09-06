@@ -25,8 +25,14 @@ export const requestSlice = createSlice({
     setHeader(state, action) {
       state.header = action.payload;
     },
+    setRequest(state, action) {
+      state.url = action.payload.url;
+      state.method = action.payload.method;
+      state.header = action.payload.header;
+      state.body = action.payload.body;
+    },
   },
 });
 
-export const { setURL, setMethod, setBody, setHeader } = requestSlice.actions;
+export const { setURL, setMethod, setBody, setHeader, setRequest } = requestSlice.actions;
 export default requestSlice.reducer;

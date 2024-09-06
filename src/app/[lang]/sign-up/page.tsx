@@ -10,10 +10,7 @@ import sharedStyles from '@/styles/shared.module.css';
 import styles from './page.module.css';
 import { useSignUpSchema } from '@/hooks/useSignUpSchema';
 import { Link, useRouter } from '@/helpers/navigation';
-import {
-  useAuthState,
-  useCreateUserWithEmailAndPassword,
-} from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '@/firebase/config';
 import { updateProfile } from 'firebase/auth';
 
@@ -62,10 +59,7 @@ function SignUpPage() {
 
   const submitHandler = async (data: FormData) => {
     try {
-      await signUp(
-        data[SignUpInputsNames.email],
-        data[SignUpInputsNames.password],
-      );
+      await signUp(data[SignUpInputsNames.email], data[SignUpInputsNames.password]);
       await updateProfile(auth.currentUser!, {
         displayName: data[SignUpInputsNames.name],
       });
@@ -93,9 +87,7 @@ function SignUpPage() {
               register={register(name)}
             />
           ))}
-          <button className={classNames(sharedStyles.button, styles.button)}>
-            {tPage('submit-text')}
-          </button>
+          <button className={classNames(sharedStyles.button, styles.button)}>{tPage('submit-text')}</button>
         </form>
         <div className={styles.hint}>
           <span>{tPage('hint')}</span>

@@ -1,0 +1,10 @@
+.variable_item {
+  display: flex;
+  align-items: center;
+}
+.trash {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+}
