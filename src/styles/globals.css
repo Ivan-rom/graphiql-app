@@ -5,6 +5,8 @@
   --disabled-assent-color: rgb(214, 48, 95, 0.7);
   --text-color: #ffffff;
   --error-color: #ff5555;
+
+  --border-radius: 10px;
 }
 
 * {

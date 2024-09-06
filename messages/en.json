@@ -1,6 +1,28 @@
 {
   "HomePage": {
-    "title": "Welcome to Graphiql App by Unit team"
+    "title": "Welcome to Graphiql App by Unit team",
+    "description": {
+      "title": "REST/GraphiQL Client",
+      "subtitle": "Project description",
+      "text": "This project is a lightweight application combining the functionalities of Postman and GraphiQL into a single interface. The application allows users to execute requests to RESTful and GraphQL APIs, providing a convenient tool for interacting with any open APIs.",
+      "listSubtitle": "Key Features:",
+      "list": [
+        "Authorization and Authentication - Access to the application is restricted to authorized users only",
+        "Request History - Ability to save and re-run previous requests.",
+        "RESTful Client - Supports HTTP method selection, URL input, header editing, request body editing, and response display",
+        "GraphiQL Client - Supports URL input, query and variable editing, header editing, and documentation exploration via SDL."
+      ]
+    },
+    "welcomeBack": "Welcome back, ",
+    "authLinks": {
+      "signIn": "Sign in",
+      "signUp": "Sign up"
+    },
+    "mainLinks": {
+      "restApi": "REST API",
+      "graphiQL": "GraphiQL",
+      "history": "History"
+    }
   },
   "Form": {
     "name-label": "Name",

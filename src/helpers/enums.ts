@@ -2,6 +2,9 @@ export enum Routes {
   home = '/',
   signIn = '/sign-in',
   signUp = '/sign-up',
+  restApi = '/rest-api',
+  graphiQL = '/graphiql',
+  history = '/history',
 }
 
 export enum SignUpInputsNames {
