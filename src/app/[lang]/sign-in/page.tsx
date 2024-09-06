@@ -9,10 +9,7 @@ import classNames from 'classnames';
 import styles from './page.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import { useSignInSchema } from '@/hooks/useSignInSchema';
-import {
-  useAuthState,
-  useSignInWithEmailAndPassword,
-} from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '@/firebase/config';
 import { Link, useRouter } from '@/helpers/navigation';
 
@@ -51,10 +48,7 @@ function SignInPage() {
 
   const submitHandler = async (data: FormData) => {
     try {
-      await signIn(
-        data[SignInInputsNames.email],
-        data[SignInInputsNames.password],
-      );
+      await signIn(data[SignInInputsNames.email], data[SignInInputsNames.password]);
       // TODO: push result to Redux
       router.replace('/');
     } catch {
@@ -79,9 +73,7 @@ function SignInPage() {
               register={register(name)}
             />
           ))}
-          <button className={classNames(sharedStyles.button, styles.button)}>
-            {tPage('submit-text')}
-          </button>
+          <button className={classNames(sharedStyles.button, styles.button)}>{tPage('submit-text')}</button>
         </form>
         <div className={styles.hint}>
           <span>{tPage('hint')}</span>

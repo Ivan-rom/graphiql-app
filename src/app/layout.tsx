@@ -6,10 +6,6 @@ export const metadata: Metadata = {
   description: 'React course final project',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
