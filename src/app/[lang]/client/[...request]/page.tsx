@@ -1,6 +1,6 @@
 'use client';
-import { RequestMethods} from '@/helpers/enums';
-import { ChangeEvent, useState } from 'react';
+import { RequestMethods } from '@/helpers/enums';
+import { ChangeEvent, useEffect, useState } from 'react';
 import styles from './page.module.css';
 import {
   addVariablesHandler,
@@ -15,6 +15,10 @@ import { MethodSelector } from '@/components/MethodSelector/MethodSelector';
 import { clientPath, DEFAULT_VARIABLE } from '@/helpers/constants';
 import { useDefaultParams } from '@/helpers/hooks/useDefaultParams';
 import { useRouter } from '@/helpers/navigation';
+import Response from '@/components/Response/Response';
+import { makeRequest } from '@/services/request';
+
+const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
 export default function RestfullClientPage() {
   const tPage = useTranslations('RestfulClient');
@@ -22,6 +26,8 @@ export default function RestfullClientPage() {
   const { lang, method, setMethod, url, setURL, body, setBody, headers, setHeaders } = useDefaultParams();
   const [bodyVariable, setBodyVariable] = useState([{ ...DEFAULT_VARIABLE }]);
   const [variableBodyVisible, setVariableBodyVisible] = useState(false);
+  const [responseObject, setResponseObject] = useState(INITIAL_RESPONSE_VALUE);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChangeURL = (event: ChangeEvent<HTMLInputElement>) => {
     setURL(event.target.value.trim());
@@ -90,12 +96,25 @@ export default function RestfullClientPage() {
   };
 
   const sendRequestHandler = async () => {
-    // add send request
+    setIsLoading(true);
+    makeRequest(url, body, method, headers)
+      .then((res) => setResponseObject(res))
+
+      //TODO: show error result to user
+      // use toastify for example
+      .catch((error) => setResponseObject(error))
+
+      .finally(() => setIsLoading(false));
   };
 
   if (!Object.values(RequestMethods).includes(method.toUpperCase() as RequestMethods)) {
     router.replace(RequestMethods.GET);
   }
+
+  useEffect(() => {
+    sendRequestHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <section className={styles.restfill_container}>
@@ -153,7 +172,7 @@ export default function RestfullClientPage() {
           id="input_body"
           className={`${styles.input_body} ${variableBodyVisible ? `${styles.hidden}` : ''}`}
           value={body}
-          onChange={(event) => prettifyingBody(event.target.value.trim(), setBody)}
+          onChange={(event) => setBody(prettifyingBody(event.target.value.trim()))}
           onBlur={bodyOnBlurHandler}
           inputMode="text"
         />
@@ -173,6 +192,7 @@ export default function RestfullClientPage() {
           </div>
         </div>
       </div>
+      <Response value={responseObject} isLoading={isLoading} />
     </section>
   );
 }

@@ -1,7 +1,7 @@
-import { decodeUrlBase64 } from '@/helpers/decodeUrlBase64';
+import { emptyURL } from '@/helpers/constants';
 import { RequestMethods } from '@/helpers/enums';
 
-type Headers = { [key: string]: string };
+type Headers = { key: string; value: string }[];
 
 const DEFAULT_GRAPHQL_HEADERS = {
   'Content-Type': 'application/json',
@@ -9,47 +9,37 @@ const DEFAULT_GRAPHQL_HEADERS = {
 
 const RESPONSE_ERRORS = {
   defaultError: { status: 500, body: 'Something went wrong' },
-  badUrl: { status: 501, body: 'Wrong encoded url endpoint' },
-  badBody: { status: 502, body: 'Wrong encoded body' },
+  badUrl: { status: 501, body: 'Endpoint url is not filled' },
   badMethod: { status: 503, body: 'Incorrect Method selected' },
 };
 
-export const makeRequest = async (
-  urlBase64: string,
-  bodyBase64: string,
-  method: string,
-  headers: Headers,
-) => {
+export const makeRequest = async (url: string, body: string, method: string, headers: Headers) => {
   const decodedOptions = { url: '', body: '' };
   const requestOptions: RequestInit = {};
 
+  const headersObject: { [key: string]: string } = {};
+  headers.forEach(({ value, key }) => {
+    if (key && value) headersObject[key] = value;
+  });
+
   if (!(method in RequestMethods)) throw RESPONSE_ERRORS.badMethod;
 
-  try {
-    const url = decodeUrlBase64(urlBase64);
-    decodedOptions.url = url;
-  } catch {
-    throw RESPONSE_ERRORS.badUrl;
-  }
+  if (!url || url === emptyURL) throw RESPONSE_ERRORS.badUrl;
 
-  try {
-    const body = decodeUrlBase64(bodyBase64);
-    decodedOptions.body = body;
-  } catch {
-    throw RESPONSE_ERRORS.badBody;
-  }
+  decodedOptions.url = url;
+  decodedOptions.body = body;
 
   try {
     if (method === RequestMethods.GRAPHQL) {
       requestOptions.method = RequestMethods.POST;
       requestOptions.headers = {
         ...DEFAULT_GRAPHQL_HEADERS,
-        ...headers,
+        ...headersObject,
       };
       requestOptions.body = decodedOptions.body;
     } else {
       requestOptions.method = method;
-      requestOptions.headers = headers;
+      requestOptions.headers = headersObject;
 
       if (method !== RequestMethods.GET) {
         requestOptions.body = decodedOptions.body;

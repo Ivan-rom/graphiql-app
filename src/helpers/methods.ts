@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { IVariable, setBodyType, setVariablesType, VariablesRequest } from './types';
+import { IVariable, setVariablesType, VariablesRequest } from './types';
 import { emptyURL } from './constants';
 
 export function encodeToBase64(text: string) {
@@ -42,13 +42,13 @@ export function variablesToQueryParams(variables: IVariable[]) {
   return searchParams.toString();
 }
 
-export const prettifyingBody = (bodyString: string, setValue: setBodyType) => {
+export const prettifyingBody = (bodyString: string) => {
   try {
     const jsonObject = JSON.parse(bodyString);
     const prettyJson = JSON.stringify(jsonObject, null, 2);
-    setValue(prettyJson);
+    return prettyJson;
   } catch {
-    setValue(bodyString);
+    return bodyString;
   }
 };
 
