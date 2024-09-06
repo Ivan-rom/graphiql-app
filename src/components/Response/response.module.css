@@ -1,7 +1,7 @@
 .response {
   padding: 10px;
-  flex-basis: 50%;
-  max-width: 50%;
+  flex-basis: 40%;
+  /* max-width: 50%; */
   align-self: stretch;
   display: flex;
   flex-direction: column;

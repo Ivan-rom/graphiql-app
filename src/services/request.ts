@@ -1,4 +1,3 @@
-import { emptyURL } from '@/helpers/constants';
 import { RequestMethods } from '@/helpers/enums';
 
 type Headers = { key: string; value: string }[];
@@ -24,7 +23,7 @@ export const makeRequest = async (url: string, body: string, method: string, hea
 
   if (!(method in RequestMethods)) throw RESPONSE_ERRORS.badMethod;
 
-  if (!url || url === emptyURL) throw RESPONSE_ERRORS.badUrl;
+  if (!url) throw RESPONSE_ERRORS.badUrl;
 
   decodedOptions.url = url;
   decodedOptions.body = body;
