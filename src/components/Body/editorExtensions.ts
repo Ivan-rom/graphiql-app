@@ -1,9 +1,9 @@
-import { basicSetup } from 'codemirror';
 import { Extension } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
-import { json } from '@codemirror/lang-json';
+import { json, jsonParseLinter } from '@codemirror/lang-json';
 import { HighlightStyle, syntaxHighlighting } from '@codemirror/language';
 import { tags } from '@lezer/highlight';
+import { linter } from '@codemirror/lint';
 
 const theme = HighlightStyle.define([
   { tag: tags.string, color: 'var(--editor-string-color)' },
@@ -13,4 +13,6 @@ const theme = HighlightStyle.define([
   { tag: tags.propertyName, color: 'var(--accent-color)' },
 ]);
 
-export const extensions: Extension = [basicSetup, json(), syntaxHighlighting(theme), EditorView.lineWrapping];
+const syntaxLinter = linter(jsonParseLinter());
+
+export const extensions: Extension = [json(), syntaxLinter, syntaxHighlighting(theme), EditorView.lineWrapping];
