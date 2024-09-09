@@ -37,3 +37,7 @@ body {
 button {
   all: unset;
 }
+
+input {
+  outline: none;
+}

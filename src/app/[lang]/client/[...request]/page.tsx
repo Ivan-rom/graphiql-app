@@ -67,8 +67,8 @@ export default function RestfullClientPage() {
     <section className={styles.page}>
       <div className={styles.client}>
         <Endpoint sendHandler={sendRequest} />
-        <Headers />
         <Body />
+        <Headers />
       </div>
       <Response value={responseObject} isLoading={isLoading} />
     </section>

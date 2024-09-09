@@ -1,13 +1,16 @@
 .endpoint {
   display: flex;
   gap: 10px;
+  width: 100%;
 
   .container {
     display: flex;
     box-shadow: 0 0 10px 3px var(--accent-color);
     border-radius: 5px;
+    width: 100%;
 
     .input {
+      flex-grow: 1;
       display: block;
       font-size: 18px;
       padding: 10px;

@@ -25,12 +25,10 @@ function Headers() {
 
   return (
     <div className={styles.headers}>
-      <div className={styles.header}>
-        <p>{t('headers')}:</p>
-      </div>
-      <div className={styles.variables}>
-        {headers.map((value, index) => {
-          return (
+      <p className={styles.title}>{t('headers')}</p>
+      <div className={styles.variablesWrapper}>
+        <div className={styles.variables}>
+          {headers.map((value, index) => (
             <VariableComponent
               key={index}
               variable={value}
@@ -38,8 +36,8 @@ function Headers() {
               callback={handleChangeHeaders}
               removeCallback={removeHeaderVariable}
             />
-          );
-        })}
+          ))}
+        </div>
         <button
           className={classNames(sharedStyles.button, styles.button)}
           onClick={() => dispatch(setHeaders(addVariablesHandler(headers)))}

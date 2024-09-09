@@ -1,9 +1,10 @@
 .body {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 10px;
-  font-size: 18px;
+  overflow: hidden;
 
   .header {
     display: flex;
@@ -48,21 +49,26 @@
     }
   }
 
-  .variables {
+  .variablesWrapper {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    border-radius: 5px;
-    max-height: 150px;
-    overflow-y: auto;
 
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
+    .variables {
+      flex-grow: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      overflow-y: auto;
+      margin-bottom: 5px;
 
-    &::-webkit-scrollbar-thumb {
-      background: var(--accent-color);
-      border-radius: 5px;
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+        border-radius: 5px;
+      }
     }
 
     .button {
@@ -70,28 +76,24 @@
     }
   }
 
-  .input {
-    display: block;
-    font-size: 18px;
-    padding: 10px;
-    border: none;
-    border-radius: 0px 5px 5px 0px;
+  .editorWrapper {
+    overflow: hidden;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
     background-color: var(--bg-color);
-    color: var(--text-color);
-    border-radius: 5px;
-    min-width: 300px;
-    resize: none;
+    border-radius: var(--border-radius);
 
-    &:focus {
-      outline: 1px solid var(--accent-color);
-    }
+    .editor {
+      overflow: auto;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
 
-    &:hover {
-      outline: 1px solid var(--accent-color);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--accent-color);
+      &::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+      }
     }
   }
 }

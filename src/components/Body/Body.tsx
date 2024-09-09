@@ -74,8 +74,8 @@ function Body() {
 
   return (
     <div className={styles.body}>
-      <p>{t('body-title')}</p>
       <div className={styles.header}>
+        <p>{t('body-title')}</p>
         <label className={styles.toggler}>
           <input
             type="radio"
@@ -100,9 +100,9 @@ function Body() {
         </label>
       </div>
       {variableBodyVisible ? (
-        <div className={styles.variables}>
-          {bodyVariable.map((value, index) => {
-            return (
+        <div className={styles.variablesWrapper}>
+          <div className={styles.variables}>
+            {bodyVariable.map((value, index) => (
               <VariableComponent
                 key={index}
                 variable={value}
@@ -110,8 +110,8 @@ function Body() {
                 callback={handleChangeBodyVariables}
                 removeCallback={removeBodyVariable}
               />
-            );
-          })}
+            ))}
+          </div>
           <button
             className={classNames(sharedStyles.button, styles.button)}
             onClick={() => setBodyVariable(addVariablesHandler(bodyVariable))}
@@ -120,12 +120,14 @@ function Body() {
           </button>
         </div>
       ) : (
-        <CodeEditor
-          className={styles.input}
-          extensions={extensions}
-          value={prettifyingBody(body)}
-          blurHandler={bodyOnBlurHandler}
-        />
+        <div className={styles.editorWrapper}>
+          <CodeEditor
+            className={styles.editor}
+            extensions={extensions}
+            value={prettifyingBody(body)}
+            blurHandler={bodyOnBlurHandler}
+          />
+        </div>
       )}
     </div>
   );
