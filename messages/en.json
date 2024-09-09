@@ -65,5 +65,12 @@
     "add-variable": "Add variable",
     "show-variables": "Show body variables",
     "hide-variables": "Hidden body variables"
+  },
+  "Client": {
+    "response": {
+      "title": "Response",
+      "status": "Status"
+    },
+    "loading": "Loading"
   }
 }

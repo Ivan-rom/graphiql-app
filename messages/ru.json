@@ -65,5 +65,12 @@
     "add-variable": "Добавить переменную",
     "show-variables": "Показать переменные",
     "hide-variables": "Скрыть переменные"
+  },
+  "Client": {
+    "response": {
+      "title": "Ответ",
+      "status": "Статус"
+    },
+    "loading": "Загрузка"
   }
 }

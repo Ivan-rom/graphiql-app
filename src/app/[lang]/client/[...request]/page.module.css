@@ -1,5 +1,12 @@
+.page {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
 .restfill_container {
-  width: 100%;
+  flex-grow: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
