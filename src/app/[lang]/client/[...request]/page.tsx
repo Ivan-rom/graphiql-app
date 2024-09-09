@@ -3,7 +3,7 @@ import { RequestMethods, Routes } from '@/helpers/enums';
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import { formatURL } from '@/helpers/methods';
-import { useDefaultParams } from '@/helpers/hooks/useDefaultParams';
+import { useDefaultParams } from '@/hooks/useDefaultParams';
 import { useRouter } from '@/helpers/navigation';
 import Response from '@/components/Response/Response';
 import { makeRequest } from '@/services/request';
@@ -22,7 +22,7 @@ export default function RestfullClientPage() {
   const dispatch = useDispatch();
   const request = useSelector((state) => (state as RootState).request);
 
-  const { lang, defaultMethod, defaultUrl, defaultBody, defaultHeaders } = useDefaultParams();
+  const { lang, method, url, body, headers } = useDefaultParams();
 
   const [responseObject, setResponseObject] = useState(INITIAL_RESPONSE_VALUE);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +39,7 @@ export default function RestfullClientPage() {
       .finally(() => setIsLoading(false));
   };
 
-  if (!Object.values(RequestMethods).includes(defaultMethod.toUpperCase() as RequestMethods)) {
+  if (!Object.values(RequestMethods).includes(method as RequestMethods)) {
     router.replace(RequestMethods.GET);
   }
 
@@ -53,10 +53,10 @@ export default function RestfullClientPage() {
 
   useEffect(() => {
     const requestObject = {
-      method: defaultMethod as RequestMethods,
-      url: defaultUrl,
-      headers: defaultHeaders,
-      body: defaultBody,
+      method: method as RequestMethods,
+      url: url,
+      headers: headers,
+      body: body,
     };
     dispatch(setRequest(requestObject));
     sendRequest(requestObject);
