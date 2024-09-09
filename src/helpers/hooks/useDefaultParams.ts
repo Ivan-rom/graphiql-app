@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { decodeFromBase64, prettifyingBody } from '../methods';
 import { useParams, useSearchParams } from 'next/navigation';
 import { DEFAULT_VARIABLE, emptyURL } from '../constants';
@@ -6,30 +5,33 @@ import { DEFAULT_VARIABLE, emptyURL } from '../constants';
 export function useDefaultParams() {
   const params = useParams();
   const lang = params.lang;
-  const [methodValue, urlBase64, bodyBase64] = params.request;
+  const [defaultMethodValue, defaultUrlBase64, defaultBodyBase64] = params.request;
   const searchParams = useSearchParams();
 
-  const defaultUrl = urlBase64 && urlBase64 !== emptyURL ? decodeFromBase64(urlBase64) : '';
-
-  const headersArray = [{ ...DEFAULT_VARIABLE }];
+  const defaultHeaders = [];
+  let id = 1;
   for (const [key, value] of searchParams.entries()) {
-    headersArray.push({ key, value });
+    defaultHeaders.push({ key, value, id });
+    id++;
   }
 
-  const [url, setURL] = useState(defaultUrl);
-  const [method, setMethod] = useState(methodValue.toUpperCase());
-  const [headers, setHeaders] = useState([...headersArray]);
-  const [body, setBody] = useState(prettifyingBody(decodeFromBase64(bodyBase64)));
+  const emptyHeader = defaultHeaders.find(
+    (header) => header.key === DEFAULT_VARIABLE.key && header.value === DEFAULT_VARIABLE.value,
+  );
+
+  if (!emptyHeader) {
+    defaultHeaders.unshift(DEFAULT_VARIABLE);
+  }
+
+  const defaultUrl = defaultUrlBase64 && defaultUrlBase64 !== emptyURL ? decodeFromBase64(defaultUrlBase64) : '';
+  const defaultMethod = defaultMethodValue;
+  const defaultBody = prettifyingBody(decodeFromBase64(defaultBodyBase64));
 
   return {
     lang,
-    method,
-    setMethod,
-    url,
-    setURL,
-    body,
-    setBody,
-    headers,
-    setHeaders,
+    defaultMethod,
+    defaultUrl,
+    defaultBody,
+    defaultHeaders,
   };
 }

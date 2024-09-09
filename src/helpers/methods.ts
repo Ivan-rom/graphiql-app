@@ -1,4 +1,4 @@
-import { IVariable, setVariablesType, VariablesRequest } from './types';
+import { IVariable, VariablesRequest } from './types';
 import { emptyURL } from './constants';
 
 export function encodeToBase64(text: string) {
@@ -72,8 +72,8 @@ export const formatURL = (urlText: string, methodText: string, bodyText: string,
   return requestURL;
 };
 
-export const addVariablesHandler = (variablesArray: IVariable[], callback: setVariablesType) => {
+export const addVariablesHandler = (variablesArray: IVariable[]) => {
   const changedVariables = [...variablesArray];
   changedVariables.push({ key: '', value: '' });
-  callback(changedVariables);
+  return changedVariables;
 };

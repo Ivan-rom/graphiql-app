@@ -1,6 +1,5 @@
 import { RequestMethods } from '@/helpers/enums';
-
-type Headers = { key: string; value: string }[];
+import { RequestData } from '@/helpers/types';
 
 const DEFAULT_GRAPHQL_HEADERS = {
   'Content-Type': 'application/json',
@@ -12,7 +11,7 @@ const RESPONSE_ERRORS = {
   badMethod: { status: 503, body: 'Incorrect Method selected' },
 };
 
-export const makeRequest = async (url: string, body: string, method: string, headers: Headers) => {
+export const makeRequest = async ({ url, body, method, headers }: RequestData) => {
   const decodedOptions = { url: '', body: '' };
   const requestOptions: RequestInit = {};
 

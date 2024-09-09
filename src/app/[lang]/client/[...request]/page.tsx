@@ -1,5 +1,5 @@
 'use client';
-import { RequestMethods } from '@/helpers/enums';
+import { RequestMethods, Routes } from '@/helpers/enums';
 import { ChangeEvent, useEffect, useState } from 'react';
 import styles from './page.module.css';
 import {
@@ -13,27 +13,40 @@ import {
 import { useTranslations } from 'next-intl';
 import { VariableComponent } from '@/components/VariableComponent/Variable';
 import { MethodSelector } from '@/components/MethodSelector/MethodSelector';
-import { clientPath, DEFAULT_VARIABLE } from '@/helpers/constants';
+import { DEFAULT_VARIABLE } from '@/helpers/constants';
 import { useDefaultParams } from '@/helpers/hooks/useDefaultParams';
 import { useRouter } from '@/helpers/navigation';
 import Response from '@/components/Response/Response';
 import { makeRequest } from '@/services/request';
-import { IVariable, VariableKeys } from '@/helpers/types';
+import { IVariable, RequestData, VariableKeys } from '@/helpers/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
+import { setBody, setHeaders, setMethod, setRequest, setURL, updateHeader } from '@/store/features/requestSlice';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
 export default function RestfullClientPage() {
   const tPage = useTranslations('RestfulClient');
   const router = useRouter();
-  const { lang, method, setMethod, url, setURL, body, setBody, headers, setHeaders } = useDefaultParams();
+  const dispatch = useDispatch();
+  const request = useSelector((state) => (state as RootState).request);
+  const { method, headers, body, url } = request;
+
+  const { lang, defaultMethod, defaultUrl, defaultBody, defaultHeaders } = useDefaultParams();
+
   const [bodyVariable, setBodyVariable] = useState<IVariable[]>([{ ...DEFAULT_VARIABLE }]);
+  const [currentBody, setCurrentBody] = useState(defaultBody);
   const [variableBodyVisible, setVariableBodyVisible] = useState(false);
   const [responseObject, setResponseObject] = useState(INITIAL_RESPONSE_VALUE);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setCurrentBody(body);
+  }, [body]);
+
+  useEffect(() => {
     try {
-      const obj = JSON.parse(body);
+      const obj = JSON.parse(currentBody);
 
       const result = Object.keys(obj).map((key, index) => {
         const value = typeof obj[key] === 'string' ? obj[key] : JSON.stringify(obj[key]);
@@ -44,41 +57,26 @@ export default function RestfullClientPage() {
     } catch {
       setBodyVariable([{ ...DEFAULT_VARIABLE }]);
     }
-  }, [body]);
+  }, [currentBody]);
 
   const handleChangeURL = (event: ChangeEvent<HTMLInputElement>) => {
-    setURL(event.target.value.trim());
-    window.history.replaceState(
-      null,
-      '',
-      `/${lang}/${clientPath}${formatURL(event.target.value.trim(), method, body, headers)}`,
-    );
+    dispatch(setURL(event.target.value.trim()));
   };
 
   const handleChangeMethod = (event: ChangeEvent<HTMLSelectElement>) => {
-    setMethod(event.target.value);
-    window.history.replaceState(null, '', `/${lang}/${clientPath}${formatURL(url, event.target.value, body, headers)}`);
+    dispatch(setMethod(event.target.value));
   };
 
   const removeHeaderVariable = (index: number) => {
-    const changedHeaders = removeItemFromArray(headers, index);
-    setHeaders(changedHeaders);
-    window.history.replaceState(null, '', `/${lang}/${clientPath}${formatURL(url, method, body, changedHeaders)}`);
+    dispatch(setHeaders(removeItemFromArray(headers, index)));
   };
 
   const bodyOnBlurHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setBody(prettifyingBody(event.target.value.trim()));
-    window.history.replaceState(
-      null,
-      '',
-      `/${lang}/${clientPath}${formatURL(url, method, event.target.value.trim(), headers)}`,
-    );
+    dispatch(setBody(prettifyingBody(event.target.value.trim())));
   };
 
   const handleChangeHeaders = (value: string, name: VariableKeys, index: number) => {
-    const changedVariables = handleChangeVariables(value, name, index, headers);
-    setHeaders(changedVariables);
-    window.history.replaceState(null, '', `/${lang}/${clientPath}${formatURL(url, method, body, changedVariables)}`);
+    dispatch(updateHeader({ value, name, index }));
   };
 
   const handleChangeBodyVariables = (value: string, name: string, index: number) => {
@@ -92,13 +90,17 @@ export default function RestfullClientPage() {
   const updateBodyVariableState = (variables: IVariable[]) => {
     setBodyVariable(variables);
     const newBody = JSON.stringify(variableObject(variables, {}));
-    setBody(newBody);
-    window.history.replaceState(null, '', `/${lang}/${clientPath}${formatURL(url, method, newBody, headers)}`);
+    setCurrentBody(newBody);
+    dispatch(setBody(newBody));
   };
 
-  const sendRequestHandler = async () => {
+  const sendRequestHandler = () => {
+    sendRequest(request);
+  };
+
+  const sendRequest = ({ url, body, method, headers }: RequestData) => {
     setIsLoading(true);
-    makeRequest(url, body, method, headers)
+    makeRequest({ url, body, method, headers })
       .then((res) => setResponseObject(res))
 
       //TODO: show error result to user
@@ -108,12 +110,27 @@ export default function RestfullClientPage() {
       .finally(() => setIsLoading(false));
   };
 
-  if (!Object.values(RequestMethods).includes(method.toUpperCase() as RequestMethods)) {
+  if (!Object.values(RequestMethods).includes(defaultMethod.toUpperCase() as RequestMethods)) {
     router.replace(RequestMethods.GET);
   }
 
   useEffect(() => {
-    sendRequestHandler();
+    window.history.replaceState(
+      null,
+      '',
+      `/${lang}${Routes.client}${formatURL(request.url, request.method, request.body, request.headers)}`,
+    );
+  }, [request, lang]);
+
+  useEffect(() => {
+    const requestObject = {
+      method: defaultMethod as RequestMethods,
+      url: defaultUrl,
+      headers: defaultHeaders,
+      body: defaultBody,
+    };
+    dispatch(setRequest(requestObject));
+    sendRequest(requestObject);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -139,7 +156,7 @@ export default function RestfullClientPage() {
         <div className={styles.headers_container}>
           <div className={styles.headers_header}>
             <p> {tPage('headers')}:</p>
-            <button className={styles.header_button} onClick={() => addVariablesHandler(headers, setHeaders)}>
+            <button className={styles.header_button} onClick={() => dispatch(setHeaders(addVariablesHandler(headers)))}>
               {tPage('add-header')}
             </button>
           </div>
@@ -165,7 +182,7 @@ export default function RestfullClientPage() {
             </button>
             <button
               className={`${styles.header_button} ${variableBodyVisible ? '' : `${styles.hidden}`}`}
-              onClick={() => addVariablesHandler(bodyVariable, setBodyVariable)}
+              onClick={() => setBodyVariable(addVariablesHandler(bodyVariable))}
             >
               {tPage('add-variable')}
             </button>
@@ -173,8 +190,8 @@ export default function RestfullClientPage() {
           <textarea
             id="input_body"
             className={`${styles.input_body} ${variableBodyVisible ? `${styles.hidden}` : ''}`}
-            value={body}
-            onChange={(event) => setBody(event.target.value)}
+            value={currentBody}
+            onChange={(event) => setCurrentBody(event.target.value)}
             onBlur={bodyOnBlurHandler}
             inputMode="text"
           />
