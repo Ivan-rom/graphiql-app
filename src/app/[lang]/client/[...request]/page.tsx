@@ -9,18 +9,18 @@ import Response from '@/components/Response/Response';
 import { makeRequest } from '@/services/request';
 import { RequestData } from '@/helpers/types';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
 import { setRequest } from '@/store/features/requestSlice';
 import Body from '@/components/Body/Body';
 import Endpoint from '@/components/Endpoint/Endpoint';
 import Headers from '@/components/Headers/Headers';
+import { selectRequest } from '@/store/features/selectors';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
 export default function ClientPage() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const request = useSelector((state) => (state as RootState).request);
+  const request = useSelector(selectRequest);
 
   const { lang, method, url, body, headers } = useDefaultParams();
 

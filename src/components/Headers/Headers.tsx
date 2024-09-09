@@ -1,19 +1,19 @@
 import { useTranslations } from 'next-intl';
 import { VariableComponent } from '../VariableComponent/Variable';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
 import { setHeaders, updateHeader } from '@/store/features/requestSlice';
 import { addVariablesHandler, removeItemFromArray } from '@/helpers/methods';
 import { VariableKeys } from '@/helpers/types';
 import styles from './headers.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import classNames from 'classnames';
+import { selectHeaders } from '@/store/features/selectors';
 
 function Headers() {
   const t = useTranslations('Client');
 
   const dispatch = useDispatch();
-  const { headers } = useSelector((state) => (state as RootState).request);
+  const headers = useSelector(selectHeaders);
 
   const removeHeaderVariable = (index: number) => {
     dispatch(setHeaders(removeItemFromArray(headers, index)));

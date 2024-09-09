@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { MethodSelector } from '../MethodSelector/MethodSelector';
-import { RootState } from '@/store/store';
 import { setURL } from '@/store/features/requestSlice';
 import { useTranslations } from 'next-intl';
 import { RequestData } from '@/helpers/types';
 import styles from './endpoint.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import classNames from 'classnames';
+import { selectRequest } from '@/store/features/selectors';
 
 type Props = {
   sendHandler: (request: RequestData) => void;
@@ -15,7 +15,7 @@ type Props = {
 function Endpoint({ sendHandler }: Props) {
   const t = useTranslations('Client');
   const dispatch = useDispatch();
-  const request = useSelector((state) => (state as RootState).request);
+  const request = useSelector(selectRequest);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setURL(event.target.value.trim()));

@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { IVariable } from '@/helpers/types';
 import { DEFAULT_VARIABLE } from '@/helpers/constants';
@@ -18,6 +17,7 @@ import { extensions } from './editorExtensions';
 import styles from './body.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import classNames from 'classnames';
+import { selectBody } from '@/store/features/selectors';
 
 enum BodyType {
   variables = 'variables',
@@ -27,7 +27,7 @@ enum BodyType {
 function Body() {
   const t = useTranslations('Client');
   const dispatch = useDispatch();
-  const { body } = useSelector((state) => (state as RootState).request);
+  const body = useSelector(selectBody);
 
   const [bodyVariable, setBodyVariable] = useState<IVariable[]>([]);
   const [variableBodyVisible, setVariableBodyVisible] = useState(false);

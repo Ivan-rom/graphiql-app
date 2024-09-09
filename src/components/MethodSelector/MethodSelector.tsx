@@ -2,12 +2,12 @@ import { RequestMethods } from '@/helpers/enums';
 import { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMethod } from '@/store/features/requestSlice';
-import { RootState } from '@/store/store';
 import styles from './methodSelector.module.css';
+import { selectMethod } from '@/store/features/selectors';
 
 export function MethodSelector() {
   const dispatch = useDispatch();
-  const { method } = useSelector((state) => (state as RootState).request);
+  const method = useSelector(selectMethod);
 
   const changeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     dispatch(setMethod(event.target.value));
