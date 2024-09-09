@@ -25,7 +25,7 @@ enum BodyType {
 }
 
 function Body() {
-  const t = useTranslations('RestfulClient');
+  const t = useTranslations('Client');
   const dispatch = useDispatch();
   const { body } = useSelector((state) => (state as RootState).request);
 

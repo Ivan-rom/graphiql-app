@@ -12,7 +12,7 @@ type Props = {
 };
 
 export function VariableComponent({ variable: { key, value }, index, callback, removeCallback }: Props) {
-  const t = useTranslations('RestfulClient');
+  const t = useTranslations('Client');
 
   const [currentKey, setKey] = useState(key);
   const [currentValue, setValue] = useState(value);

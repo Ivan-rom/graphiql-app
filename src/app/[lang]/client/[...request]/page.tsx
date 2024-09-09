@@ -17,7 +17,7 @@ import Headers from '@/components/Headers/Headers';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
-export default function RestfullClientPage() {
+export default function ClientPage() {
   const router = useRouter();
   const dispatch = useDispatch();
   const request = useSelector((state) => (state as RootState).request);
@@ -52,12 +52,7 @@ export default function RestfullClientPage() {
   }, [request, lang]);
 
   useEffect(() => {
-    const requestObject = {
-      method: method as RequestMethods,
-      url: url,
-      headers: headers,
-      body: body,
-    };
+    const requestObject = { method: method as RequestMethods, url, headers, body };
     dispatch(setRequest(requestObject));
     sendRequest(requestObject);
     // eslint-disable-next-line react-hooks/exhaustive-deps

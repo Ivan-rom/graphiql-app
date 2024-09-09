@@ -13,7 +13,7 @@ type Props = {
 };
 
 function Endpoint({ sendHandler }: Props) {
-  const t = useTranslations('RestfulClient');
+  const t = useTranslations('Client');
   const dispatch = useDispatch();
   const request = useSelector((state) => (state as RootState).request);
 

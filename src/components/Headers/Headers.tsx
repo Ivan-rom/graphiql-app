@@ -10,7 +10,7 @@ import sharedStyles from '@/styles/shared.module.css';
 import classNames from 'classnames';
 
 function Headers() {
-  const t = useTranslations('RestfulClient');
+  const t = useTranslations('Client');
 
   const dispatch = useDispatch();
   const { headers } = useSelector((state) => (state as RootState).request);
