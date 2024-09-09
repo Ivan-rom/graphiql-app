@@ -5,7 +5,7 @@
   justify-content: space-between;
 }
 
-.restfill_container {
+.client {
   flex-grow: 1;
   height: 100%;
   display: flex;

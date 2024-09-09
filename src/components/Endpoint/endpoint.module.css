@@ -1,15 +1,15 @@
-.send_container {
+.endpoint {
   display: flex;
   gap: 10px;
 }
 
-.methods_container {
+.container {
   display: flex;
   box-shadow: 0 0 10px 3px var(--accent-color);
   border-radius: 5px;
 }
 
-.url_input {
+.input {
   display: block;
   font-size: 18px;
   padding: 10px;
@@ -27,14 +27,11 @@
   }
 }
 
-.send_button {
-  border-radius: 5px;
-  background-color: var(--accent-color);
-  color: white;
-  font-size: 18px;
-  padding: 10px;
-}
-
-.send_button:disabled {
+.button:disabled {
+  cursor: default;
   background-color: var(--disabled-assent-color);
+
+  &:hover {
+    filter: none;
+  }
 }

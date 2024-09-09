@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { MethodSelector } from '../MethodSelector/MethodSelector';
-import styles from './endpoint.module.css';
 import { RootState } from '@/store/store';
 import { setURL } from '@/store/features/requestSlice';
 import { useTranslations } from 'next-intl';
 import { RequestData } from '@/helpers/types';
+import styles from './endpoint.module.css';
+import sharedStyles from '@/styles/shared.module.css';
+import classNames from 'classnames';
 
 type Props = {
   sendHandler: (request: RequestData) => void;
@@ -24,18 +26,18 @@ function Endpoint({ sendHandler }: Props) {
   };
 
   return (
-    <div className={styles.send_container}>
-      <div className={styles.methods_container}>
+    <div className={styles.endpoint}>
+      <div className={styles.container}>
         <MethodSelector />
         <input
-          className={styles.url_input}
+          className={styles.input}
           value={request.url}
           onChange={changeHandler}
           type="text"
           placeholder={t('url-placeholder')}
         />
       </div>
-      <button className={styles.send_button} onClick={clickHandler} disabled={!request.url}>
+      <button className={classNames(sharedStyles.button, styles.button)} onClick={clickHandler} disabled={!request.url}>
         {t('send')}
       </button>
     </div>

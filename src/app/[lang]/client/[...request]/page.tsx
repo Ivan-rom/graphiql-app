@@ -65,7 +65,7 @@ export default function RestfullClientPage() {
 
   return (
     <section className={styles.page}>
-      <div className={styles.restfill_container}>
+      <div className={styles.client}>
         <Endpoint sendHandler={sendRequest} />
         <Headers />
         <Body />

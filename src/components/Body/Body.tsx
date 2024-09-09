@@ -1,5 +1,4 @@
 import { useTranslations } from 'next-intl';
-import styles from './body.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { useEffect, useState } from 'react';
@@ -16,6 +15,8 @@ import { setBody } from '@/store/features/requestSlice';
 import { VariableComponent } from '../VariableComponent/Variable';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import { extensions } from './editorExtensions';
+import styles from './body.module.css';
+import sharedStyles from '@/styles/shared.module.css';
 
 function Body() {
   const t = useTranslations('RestfulClient');
@@ -62,27 +63,20 @@ function Body() {
   };
 
   return (
-    <div className={styles.body_container}>
-      <label htmlFor="input_body">{t(variableBodyVisible ? 'body-variables' : 'body-text')}</label>
-      <div className={styles.body_container_title}>
-        <button className={styles.header_button} onClick={() => setVariableBodyVisible((visible) => !visible)}>
+    <div className={styles.body}>
+      <p>{t(variableBodyVisible ? 'body-variables' : 'body-text')}</p>
+      <div className={styles.header}>
+        <button className={sharedStyles.button} onClick={() => setVariableBodyVisible((visible) => !visible)}>
           {t(variableBodyVisible ? 'hide-variables' : 'show-variables')}
         </button>
-        <button
-          className={`${styles.header_button} ${variableBodyVisible ? '' : `${styles.hidden}`}`}
-          onClick={() => setBodyVariable(addVariablesHandler(bodyVariable))}
-        >
-          {t('add-variable')}
-        </button>
+        {variableBodyVisible && (
+          <button className={sharedStyles.button} onClick={() => setBodyVariable(addVariablesHandler(bodyVariable))}>
+            {t('add-variable')}
+          </button>
+        )}
       </div>
-      <CodeEditor
-        className={`${styles.input_body} ${variableBodyVisible ? `${styles.hidden}` : ''}`}
-        extensions={extensions}
-        value={prettifyingBody(body)}
-        blurHandler={bodyOnBlurHandler}
-      />
-      <div className={`body_variable_container ${!variableBodyVisible ? `${styles.hidden}` : ''}`}>
-        <div className={styles.headers_input}>
+      {variableBodyVisible ? (
+        <div className={styles.variables}>
           {bodyVariable.map((value, index) => {
             return (
               <VariableComponent
@@ -95,7 +89,14 @@ function Body() {
             );
           })}
         </div>
-      </div>
+      ) : (
+        <CodeEditor
+          className={styles.input}
+          extensions={extensions}
+          value={prettifyingBody(body)}
+          blurHandler={bodyOnBlurHandler}
+        />
+      )}
     </div>
   );
 }

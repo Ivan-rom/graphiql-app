@@ -1,4 +1,4 @@
-.input_body {
+.input {
   display: block;
   font-size: 18px;
   padding: 10px;
@@ -16,15 +16,7 @@
   }
 }
 
-.header_button {
-  border-radius: 5px;
-  background-color: var(--accent-color);
-  color: white;
-  font-size: 18px;
-  padding: 10px;
-}
-
-.body_container {
+.body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,12 +24,12 @@
   font-size: 18px;
 }
 
-.body_container_title {
+.header {
   display: flex;
   gap: 10px;
 }
 
-.headers_input {
+.variables {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -90,7 +82,7 @@
   }
 }
 
-.input_body {
+.input {
   border-radius: 5px;
   min-width: 300px;
   resize: none;

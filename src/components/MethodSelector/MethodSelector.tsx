@@ -1,9 +1,9 @@
 import { RequestMethods } from '@/helpers/enums';
 import { ChangeEvent } from 'react';
-import styles from './methodSelector.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMethod } from '@/store/features/requestSlice';
 import { RootState } from '@/store/store';
+import styles from './methodSelector.module.css';
 
 export function MethodSelector() {
   const dispatch = useDispatch();
@@ -14,10 +14,10 @@ export function MethodSelector() {
   };
 
   return (
-    <select value={method ? method : ''} className={styles.select_methods} onChange={changeHandler}>
+    <select value={method ? method : ''} className={styles.methods} onChange={changeHandler}>
       {Object.values(RequestMethods).map((method) => {
         return (
-          <option key={method} className={styles.method_option} value={method}>
+          <option key={method} className={styles.option} value={method}>
             {method}
           </option>
         );

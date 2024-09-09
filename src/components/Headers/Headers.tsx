@@ -1,11 +1,12 @@
 import { useTranslations } from 'next-intl';
 import { VariableComponent } from '../VariableComponent/Variable';
-import styles from './headers.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { setHeaders, updateHeader } from '@/store/features/requestSlice';
 import { addVariablesHandler, removeItemFromArray } from '@/helpers/methods';
 import { VariableKeys } from '@/helpers/types';
+import styles from './headers.module.css';
+import sharedStyles from '@/styles/shared.module.css';
 
 function Headers() {
   const t = useTranslations('RestfulClient');
@@ -22,14 +23,14 @@ function Headers() {
   };
 
   return (
-    <div className={styles.headers_container}>
-      <div className={styles.headers_header}>
+    <div className={styles.headers}>
+      <div className={styles.header}>
         <p>{t('headers')}:</p>
-        <button className={styles.header_button} onClick={() => dispatch(setHeaders(addVariablesHandler(headers)))}>
+        <button className={sharedStyles.button} onClick={() => dispatch(setHeaders(addVariablesHandler(headers)))}>
           {t('add-header')}
         </button>
       </div>
-      <div className={styles.headers_input}>
+      <div className={styles.variables}>
         {headers.map((value, index) => {
           return (
             <VariableComponent
