@@ -75,14 +75,8 @@
         flex-direction: column;
         justify-content: start;
 
-        &::-webkit-scrollbar {
-          background: none;
-          width: 5px;
-        }
-
         &::-webkit-scrollbar-thumb {
           background: var(--bg-color);
-          border-radius: var(--border-radius);
         }
       }
     }

@@ -24,10 +24,11 @@ export function VariableComponent({ variable: { key, value }, index, callback, r
   };
 
   return (
-    <div key={index} className={styles.variable_item}>
+    <div key={index} className={styles.variable}>
       <input
         name={VariableKeys.key}
         value={currentKey}
+        className={styles.key}
         placeholder={t('key-placeholder')}
         onChange={({ target }) => setKey(target.value)}
         onBlur={blurHandler}
@@ -35,6 +36,7 @@ export function VariableComponent({ variable: { key, value }, index, callback, r
       <input
         name={VariableKeys.value}
         value={currentValue}
+        className={styles.value}
         placeholder={t('value-placeholder')}
         onChange={({ target }) => setValue(target.value)}
         onBlur={blurHandler}

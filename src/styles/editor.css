@@ -5,6 +5,15 @@
   border-radius: var(--border-radius);
   color: var(--editor-default-color);
 
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: var(--border-radius);
+  }
+
   .cm-editor .cm-selectionBackground {
     background-color: var(--editor-select-color);
   }
