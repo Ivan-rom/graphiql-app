@@ -1,5 +1,5 @@
 import { RequestMethods } from '@/helpers/enums';
-import { ChangeEvent, SetStateAction } from 'react';
+import { SetStateAction } from 'react';
 
 export type VariablesRequest = {
   [key: string]: string;
@@ -17,6 +17,11 @@ export interface IVariable {
   value: string;
 }
 
+export enum VariableKeys {
+  key = 'key',
+  value = 'value',
+}
+
 export type setVariablesType = (value: SetStateAction<IVariable[]>) => void;
 
-export type changeVariableType = (event: ChangeEvent<HTMLInputElement>, index: number) => void;
+export type changeVariableType = (value: string, name: VariableKeys, index: number) => void;

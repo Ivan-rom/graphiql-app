@@ -1,4 +1,3 @@
-import { ChangeEvent } from 'react';
 import { IVariable, setVariablesType, VariablesRequest } from './types';
 import { emptyURL } from './constants';
 
@@ -56,8 +55,7 @@ export function removeItemFromArray(array: IVariable[], index: number) {
   return [...array.slice(0, index), ...array.slice(index + 1)];
 }
 
-export const handleChangeVariables = (event: ChangeEvent<HTMLInputElement>, index: number, variables: IVariable[]) => {
-  const { name, value } = event.target;
+export const handleChangeVariables = (value: string, name: string, index: number, variables: IVariable[]) => {
   const changedVariables = [...variables];
   if (name === 'key' || name === 'value') {
     changedVariables[index][name] = value;
@@ -65,21 +63,10 @@ export const handleChangeVariables = (event: ChangeEvent<HTMLInputElement>, inde
   return changedVariables;
 };
 
-export const formatURL = (
-  urlText: string,
-  methodText: string,
-  bodyText: string,
-  variables: IVariable[],
-  headersObject: IVariable[],
-  variableBodyVisible: boolean,
-) => {
+export const formatURL = (urlText: string, methodText: string, bodyText: string, headersObject: IVariable[]) => {
   let requestURL = `/${methodText}`;
   requestURL += urlText ? `/${encodeToBase64(urlText)}` : `/${emptyURL}`;
-  if (variableBodyVisible) {
-    requestURL += variables.length !== 0 ? `/${encodeToBase64(JSON.stringify(variableObject(variables, {})))}` : '';
-  } else {
-    requestURL += bodyText ? `/${encodeToBase64(bodyText)}` : '';
-  }
+  requestURL += bodyText ? `/${encodeToBase64(bodyText)}` : '';
   const headersVariables = variablesToQueryParams(headersObject);
   requestURL += headersVariables ? `/?${headersVariables}` : '';
   return requestURL;
