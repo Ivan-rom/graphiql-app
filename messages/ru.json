@@ -59,10 +59,8 @@
     "headers": "Заголовки",
     "key-placeholder": "Ключ",
     "value-placeholder": "Значение",
-    "body-text": "Тело",
-    "body-variables": "Переменные тела запроса",
-    "show-variables": "Показать переменные",
-    "hide-variables": "Скрыть переменные"
+    "body-title": "Тело",
+    "variables-title": "Переменные"
   },
   "Client": {
     "response": {

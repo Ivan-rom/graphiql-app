@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { IVariable } from '@/helpers/types';
 import { DEFAULT_VARIABLE } from '@/helpers/constants';
 import {
@@ -18,6 +18,11 @@ import { extensions } from './editorExtensions';
 import styles from './body.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import classNames from 'classnames';
+
+enum BodyType {
+  variables = 'variables',
+  JSON = 'JSON',
+}
 
 function Body() {
   const t = useTranslations('RestfulClient');
@@ -42,6 +47,10 @@ function Body() {
     }
   }, [body]);
 
+  const bodyToggle = (event: ChangeEvent<HTMLInputElement>) => {
+    setVariableBodyVisible(event.target.value === BodyType.variables);
+  };
+
   const setBodyHandler = (value: string) => {
     dispatch(setBody(value.trim()));
   };
@@ -65,11 +74,30 @@ function Body() {
 
   return (
     <div className={styles.body}>
-      <p>{t(variableBodyVisible ? 'body-variables' : 'body-text')}</p>
+      <p>{t('body-title')}</p>
       <div className={styles.header}>
-        <button className={sharedStyles.button} onClick={() => setVariableBodyVisible((visible) => !visible)}>
-          {t(variableBodyVisible ? 'hide-variables' : 'show-variables')}
-        </button>
+        <label className={styles.toggler}>
+          <input
+            type="radio"
+            name="body_type"
+            value={BodyType.JSON}
+            checked={!variableBodyVisible}
+            onChange={bodyToggle}
+          />
+          <div className={styles.radio} />
+          <span>JSON</span>
+        </label>
+        <label className={styles.toggler}>
+          <input
+            type="radio"
+            name="body_type"
+            value={BodyType.variables}
+            checked={variableBodyVisible}
+            onChange={bodyToggle}
+          />
+          <div className={styles.radio} />
+          <span>{t('variables-title')}</span>
+        </label>
       </div>
       {variableBodyVisible ? (
         <div className={styles.variables}>

@@ -59,10 +59,8 @@
     "headers": "Headers",
     "key-placeholder": "Key",
     "value-placeholder": "Value",
-    "body-text": "Body",
-    "body-variables": "Body variables",
-    "show-variables": "Show body variables",
-    "hide-variables": "Hidden body variables"
+    "body-title": "Body",
+    "variables-title": "Body variables"
   },
   "Client": {
     "response": {
