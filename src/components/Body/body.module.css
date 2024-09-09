@@ -51,6 +51,7 @@
 
   .variablesWrapper {
     display: flex;
+    overflow: hidden;
     flex-direction: column;
 
     .variables {
