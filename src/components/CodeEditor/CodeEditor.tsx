@@ -1,7 +1,7 @@
 import { EditorState, Extension } from '@codemirror/state';
 import { EditorView } from 'codemirror';
 import { useEffect, useRef, useState } from 'react';
-import '@/styles/editor.css';
+import './codeEditor.css';
 import classNames from 'classnames';
 
 type Props = {
