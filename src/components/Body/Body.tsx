@@ -17,6 +17,7 @@ import CodeEditor from '../CodeEditor/CodeEditor';
 import { extensions } from './editorExtensions';
 import styles from './body.module.css';
 import sharedStyles from '@/styles/shared.module.css';
+import classNames from 'classnames';
 
 function Body() {
   const t = useTranslations('RestfulClient');
@@ -69,11 +70,6 @@ function Body() {
         <button className={sharedStyles.button} onClick={() => setVariableBodyVisible((visible) => !visible)}>
           {t(variableBodyVisible ? 'hide-variables' : 'show-variables')}
         </button>
-        {variableBodyVisible && (
-          <button className={sharedStyles.button} onClick={() => setBodyVariable(addVariablesHandler(bodyVariable))}>
-            {t('add-variable')}
-          </button>
-        )}
       </div>
       {variableBodyVisible ? (
         <div className={styles.variables}>
@@ -88,6 +84,12 @@ function Body() {
               />
             );
           })}
+          <button
+            className={classNames(sharedStyles.button, styles.button)}
+            onClick={() => setBodyVariable(addVariablesHandler(bodyVariable))}
+          >
+            +
+          </button>
         </div>
       ) : (
         <CodeEditor

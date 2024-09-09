@@ -7,6 +7,7 @@ import { addVariablesHandler, removeItemFromArray } from '@/helpers/methods';
 import { VariableKeys } from '@/helpers/types';
 import styles from './headers.module.css';
 import sharedStyles from '@/styles/shared.module.css';
+import classNames from 'classnames';
 
 function Headers() {
   const t = useTranslations('RestfulClient');
@@ -26,9 +27,6 @@ function Headers() {
     <div className={styles.headers}>
       <div className={styles.header}>
         <p>{t('headers')}:</p>
-        <button className={sharedStyles.button} onClick={() => dispatch(setHeaders(addVariablesHandler(headers)))}>
-          {t('add-header')}
-        </button>
       </div>
       <div className={styles.variables}>
         {headers.map((value, index) => {
@@ -42,6 +40,12 @@ function Headers() {
             />
           );
         })}
+        <button
+          className={classNames(sharedStyles.button, styles.button)}
+          onClick={() => dispatch(setHeaders(addVariablesHandler(headers)))}
+        >
+          +
+        </button>
       </div>
     </div>
   );
