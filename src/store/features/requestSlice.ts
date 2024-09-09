@@ -26,6 +26,10 @@ export const requestSlice = createSlice({
     setHeaders(state, action: { payload: IVariable[] }) {
       state.headers = [...action.payload];
     },
+    addHeader(state) {
+      const newId = state.headers[state.headers.length - 1].id + 1;
+      state.headers.push({ key: '', value: '', id: newId });
+    },
     updateHeader(state, { payload }: { payload: { name: VariableKeys; value: string; index: number } }) {
       state.headers[payload.index][payload.name] = payload.value;
     },
@@ -38,5 +42,5 @@ export const requestSlice = createSlice({
   },
 });
 
-export const { setURL, setMethod, setBody, setHeaders, updateHeader, setRequest } = requestSlice.actions;
+export const { setURL, setMethod, setBody, setHeaders, addHeader, updateHeader, setRequest } = requestSlice.actions;
 export default requestSlice.reducer;

@@ -24,7 +24,7 @@ export function VariableComponent({ variable: { key, value }, index, callback, r
   };
 
   return (
-    <div key={index} className={styles.variable}>
+    <div className={styles.variable}>
       <input
         name={VariableKeys.key}
         value={currentKey}

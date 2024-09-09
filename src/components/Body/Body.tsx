@@ -104,7 +104,7 @@ function Body() {
           <div className={styles.variables}>
             {bodyVariable.map((value, index) => (
               <VariableComponent
-                key={index}
+                key={value.id}
                 variable={value}
                 index={index}
                 callback={handleChangeBodyVariables}

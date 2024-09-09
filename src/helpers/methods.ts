@@ -74,7 +74,8 @@ export const formatURL = (urlText: string, methodText: string, bodyText: string,
 
 export const addVariablesHandler = (variablesArray: IVariable[]) => {
   const changedVariables = [...variablesArray];
-  changedVariables.push({ key: '', value: '' });
+  const newId = variablesArray[variablesArray.length - 1]?.id + 1 || 1;
+  changedVariables.push({ key: '', value: '', id: newId });
   return changedVariables;
 };
 

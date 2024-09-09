@@ -14,6 +14,7 @@ export interface RequestData {
 export interface IVariable {
   key: string;
   value: string;
+  id: number;
 }
 
 export enum VariableKeys {

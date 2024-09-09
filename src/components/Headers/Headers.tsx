@@ -30,7 +30,7 @@ function Headers() {
         <div className={styles.variables}>
           {headers.map((value, index) => (
             <VariableComponent
-              key={index}
+              key={value.id}
               variable={value}
               index={index}
               callback={handleChangeHeaders}
