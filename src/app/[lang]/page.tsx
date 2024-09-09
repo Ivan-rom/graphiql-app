@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import styles from './layout.module.css';
+import styles from './page.module.css';
 import WelcomeDescription from '@/components/WelcomeDescription/WelcomeDescription';
 import NavigationLinks from '@/components/NavigationLinks/NavigationLinks';
 import { auth } from '@/firebase/config';
@@ -24,9 +24,7 @@ export default function Home() {
   return (
     <section className={styles.welcome}>
       <div className={styles.container}>
-        <h1 className={styles.title}>
-          {isAuthorized ? t('welcomeBack') + userName : t('welcomeBack')}
-        </h1>
+        <h1 className={styles.title}>{isAuthorized ? t('welcomeBack') + userName : t('welcomeBack')}</h1>
         <NavigationLinks isAuthLinks={isAuthorized} />
         <WelcomeDescription />
       </div>
