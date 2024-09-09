@@ -1,7 +1,7 @@
 import { RequestMethods } from '@/helpers/enums';
 
 export type VariablesRequest = {
-  [key: string]: string;
+  [key: string]: JSONTypes;
 };
 
 export interface RequestData {
@@ -22,3 +22,5 @@ export enum VariableKeys {
 }
 
 export type changeVariableType = (value: string, name: VariableKeys, index: number) => void;
+
+export type JSONTypes = string | null | number | boolean | { [key: string]: JSONTypes } | JSONTypes[];

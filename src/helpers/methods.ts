@@ -1,4 +1,4 @@
-import { IVariable, VariablesRequest } from './types';
+import { IVariable, JSONTypes, VariablesRequest } from './types';
 import { emptyURL } from './constants';
 
 export function encodeToBase64(text: string) {
@@ -13,10 +13,10 @@ export function decodeFromBase64(encodedUrlBase64: string) {
   return decodedUrl;
 }
 
-export function variableObject(variableArray: { key: string; value: string }[], object: VariablesRequest) {
+export function variableObject(variableArray: IVariable[], object: VariablesRequest) {
   return variableArray.reduce((acc: VariablesRequest, variable) => {
     if (variable.key) {
-      acc[variable.key] = variable.value;
+      acc[variable.key] = transformValue(variable.value);
     }
     return acc;
   }, object);
@@ -76,4 +76,35 @@ export const addVariablesHandler = (variablesArray: IVariable[]) => {
   const changedVariables = [...variablesArray];
   changedVariables.push({ key: '', value: '' });
   return changedVariables;
+};
+
+export const transformValue = (value: string): JSONTypes => {
+  if (value === '' || value === undefined) return value;
+
+  if (value === 'null') return null;
+
+  if (!isNaN(+value)) return +value;
+
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+
+  try {
+    const parsedValue = JSON.parse(value);
+
+    if (Array.isArray(parsedValue)) {
+      return JSON.parse(value).map((el: string) => transformValue(el));
+    }
+
+    if (typeof parsedValue === 'object') {
+      const obj: { [key: string]: JSONTypes } = {};
+      Object.keys(parsedValue).map((key) => {
+        obj[key] = transformValue(parsedValue[key]);
+      });
+      return obj;
+    }
+
+    return value;
+  } catch {
+    return value;
+  }
 };
