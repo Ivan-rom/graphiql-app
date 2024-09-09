@@ -22,6 +22,8 @@ import { IVariable, RequestData, VariableKeys } from '@/helpers/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { setBody, setHeaders, setMethod, setRequest, setURL, updateHeader } from '@/store/features/requestSlice';
+import CodeEditor from '@/components/CodeEditor/CodeEditor';
+import { extensions } from './editorExtensions';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
@@ -71,8 +73,10 @@ export default function RestfullClientPage() {
     dispatch(setHeaders(removeItemFromArray(headers, index)));
   };
 
-  const bodyOnBlurHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setBody(prettifyingBody(event.target.value.trim())));
+  useEffect(() => {});
+
+  const bodyOnBlurHandler = (value: string) => {
+    dispatch(setBody(value));
   };
 
   const handleChangeHeaders = (value: string, name: VariableKeys, index: number) => {
@@ -187,13 +191,11 @@ export default function RestfullClientPage() {
               {tPage('add-variable')}
             </button>
           </div>
-          <textarea
-            id="input_body"
+          <CodeEditor
             className={`${styles.input_body} ${variableBodyVisible ? `${styles.hidden}` : ''}`}
-            value={currentBody}
-            onChange={(event) => setCurrentBody(event.target.value)}
-            onBlur={bodyOnBlurHandler}
-            inputMode="text"
+            extensions={extensions}
+            value={prettifyingBody(body)}
+            blurHandler={bodyOnBlurHandler}
           />
           <div className={`body_variable_container ${!variableBodyVisible ? `${styles.hidden}` : ''}`}>
             <div className={styles.headers_input}>
