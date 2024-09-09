@@ -17,7 +17,7 @@ export function MethodSelector() {
     <select value={method ? method : ''} className={styles.methods} onChange={changeHandler}>
       {Object.values(RequestMethods).map((method) => {
         return (
-          <option key={method} className={styles.option} value={method}>
+          <option key={method} value={method}>
             {method}
           </option>
         );

@@ -6,12 +6,3 @@
   font-size: 18px;
   border: 1px solid transparent;
 }
-
-.option {
-  color: var(--text-color);
-  background-color: var(--accent-color);
-}
-
-.option:hover {
-  background-color: var(--bg-color);
-}

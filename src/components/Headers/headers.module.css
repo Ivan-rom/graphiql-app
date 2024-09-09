@@ -2,34 +2,34 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-}
 
-.header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  color: white;
-  font-size: 18px;
-}
-
-.variables {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  border-radius: 5px;
-  max-height: 150px;
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 5px;
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    font-size: 18px;
   }
 
-  &::-webkit-scrollbar-thumb {
-    background: var(--accent-color);
+  .variables {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     border-radius: 5px;
-  }
-}
+    max-height: 150px;
+    overflow-y: auto;
 
-.button {
-  padding: 2px;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 5px;
+    }
+
+    .button {
+      padding: 2px;
+    }
+  }
 }
