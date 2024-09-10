@@ -18,20 +18,7 @@
   }
 
   .input {
-    display: block;
     font-size: 18px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
     background-color: var(--body-bg-color);
-    color: var(--text-color);
-
-    &:active {
-      outline: 1px solid var(--text-color);
-    }
-
-    &:hover {
-      outline: 1px solid var(--text-color);
-    }
   }
 }

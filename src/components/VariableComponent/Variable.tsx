@@ -2,7 +2,9 @@ import { changeVariableType, IVariable, VariableKeys } from '@/helpers/types';
 import { useTranslations } from 'next-intl';
 import Trash from '../../assets/svg/trash.svg';
 import styles from './variable.module.css';
+import sharedStyles from '@/styles/shared.module.css';
 import { FocusEvent, useState } from 'react';
+import classNames from 'classnames';
 
 type Props = {
   variable: IVariable;
@@ -28,7 +30,7 @@ export function VariableComponent({ variable: { key, value }, index, callback, r
       <input
         name={VariableKeys.key}
         value={currentKey}
-        className={styles.key}
+        className={classNames(sharedStyles.input, styles.key)}
         placeholder={t('key-placeholder')}
         onChange={({ target }) => setKey(target.value)}
         onBlur={blurHandler}
@@ -36,7 +38,7 @@ export function VariableComponent({ variable: { key, value }, index, callback, r
       <input
         name={VariableKeys.value}
         value={currentValue}
-        className={styles.value}
+        className={classNames(sharedStyles.input, styles.value)}
         placeholder={t('value-placeholder')}
         onChange={({ target }) => setValue(target.value)}
         onBlur={blurHandler}

@@ -6,6 +6,7 @@ import { RequestData } from '@/helpers/types';
 import styles from './endpoint.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import { selectRequest } from '@/store/features/selectors';
+import classNames from 'classnames';
 
 type Props = {
   sendHandler: (request: RequestData) => void;
@@ -29,7 +30,7 @@ function Endpoint({ sendHandler }: Props) {
       <div className={styles.container}>
         <MethodSelector />
         <input
-          className={styles.input}
+          className={classNames(sharedStyles.input, styles.input)}
           value={request.url}
           onChange={changeHandler}
           type="text"

@@ -11,21 +11,8 @@
 
     .input {
       flex-grow: 1;
-      display: block;
       font-size: 18px;
-      padding: 10px;
-      border: none;
       border-radius: 0px 5px 5px 0px;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-
-      &:focus {
-        outline: 1px solid var(--accent-color);
-      }
-
-      &:hover {
-        outline: 1px solid var(--accent-color);
-      }
     }
   }
 }
