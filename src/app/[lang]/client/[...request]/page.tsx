@@ -14,6 +14,7 @@ import Endpoint from '@/components/Endpoint/Endpoint';
 import Headers from '@/components/Headers/Headers';
 import { selectRequest } from '@/store/features/selectors';
 import { useParams } from 'next/navigation';
+import { METHODS } from '@/helpers/constants';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
@@ -44,7 +45,10 @@ export default function ClientPage() {
   }, [request, lang]);
 
   useEffect(() => {
-    const requestObject = { method: method as RequestMethods, url, headers, body };
+    const requestObject = { method, url, headers, body };
+    if (!METHODS.includes(method)) {
+      requestObject.method = RequestMethods.GET;
+    }
     dispatch(setRequest(requestObject));
     sendRequest(requestObject);
     // eslint-disable-next-line react-hooks/exhaustive-deps

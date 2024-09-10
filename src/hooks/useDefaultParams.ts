@@ -1,6 +1,7 @@
 import { decodeFromBase64, prettifyingBody } from '../helpers/methods';
 import { useParams, useSearchParams } from 'next/navigation';
 import { DEFAULT_VARIABLE, emptyURL } from '../helpers/constants';
+import { RequestMethods } from '@/helpers/enums';
 
 export function useDefaultParams() {
   const params = useParams();
@@ -26,7 +27,7 @@ export function useDefaultParams() {
   const body = prettifyingBody(decodeFromBase64(bodyBase64));
 
   return {
-    method,
+    method: method as RequestMethods,
     url,
     body,
     headers,
