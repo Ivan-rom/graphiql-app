@@ -1,17 +1,13 @@
-.select_methods {
+.methods {
   border-radius: 5px 0px 0px 5px;
   background-color: var(--accent-color);
   color: var(--text-color);
   padding: 10px;
   font-size: 18px;
-  border: 1px solid transparent;
-}
+  border: none;
+  cursor: pointer;
 
-.select_methods option {
-  color: var(--text-color);
-  background-color: var(--accent-color);
-}
-
-.method_option:hover {
-  background-color: var(--bg-color);
+  &:focus {
+    outline: none;
+  }
 }

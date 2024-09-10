@@ -1,4 +1,3 @@
-import { basicSetup } from 'codemirror';
 import { EditorState, Extension } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { json } from '@codemirror/lang-json';
@@ -14,7 +13,6 @@ const theme = HighlightStyle.define([
 ]);
 
 export const extensions: Extension = [
-  basicSetup,
   json(),
   syntaxHighlighting(theme),
   EditorView.lineWrapping,

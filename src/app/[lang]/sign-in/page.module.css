@@ -1,6 +1,7 @@
 .section {
   display: flex;
-  align-items: stretch;
+  flex-grow: 1;
+  align-items: center;
   justify-content: center;
 
   .container {

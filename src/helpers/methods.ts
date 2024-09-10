@@ -1,6 +1,6 @@
-import { ChangeEvent } from 'react';
-import { IVariable, setVariablesType, VariablesRequest } from './types';
-import { emptyURL } from './constants';
+import { IVariable, JSONTypes, RequestData, VariablesRequest } from './types';
+import { emptyURL, METHODS } from './constants';
+import { RequestMethods, Routes } from './enums';
 
 export function encodeToBase64(text: string) {
   const encoder = new TextEncoder();
@@ -14,10 +14,10 @@ export function decodeFromBase64(encodedUrlBase64: string) {
   return decodedUrl;
 }
 
-export function variableObject(variableArray: { key: string; value: string }[], object: VariablesRequest) {
+export function variableObject(variableArray: IVariable[], object: VariablesRequest) {
   return variableArray.reduce((acc: VariablesRequest, variable) => {
     if (variable.key) {
-      acc[variable.key] = variable.value;
+      acc[variable.key] = transformValue(variable.value);
     }
     return acc;
   }, object);
@@ -56,8 +56,7 @@ export function removeItemFromArray(array: IVariable[], index: number) {
   return [...array.slice(0, index), ...array.slice(index + 1)];
 }
 
-export const handleChangeVariables = (event: ChangeEvent<HTMLInputElement>, index: number, variables: IVariable[]) => {
-  const { name, value } = event.target;
+export const handleChangeVariables = (value: string, name: string, index: number, variables: IVariable[]) => {
   const changedVariables = [...variables];
   if (name === 'key' || name === 'value') {
     changedVariables[index][name] = value;
@@ -65,28 +64,54 @@ export const handleChangeVariables = (event: ChangeEvent<HTMLInputElement>, inde
   return changedVariables;
 };
 
-export const formatURL = (
-  urlText: string,
-  methodText: string,
-  bodyText: string,
-  variables: IVariable[],
-  headersObject: IVariable[],
-  variableBodyVisible: boolean,
-) => {
-  let requestURL = `/${methodText}`;
-  requestURL += urlText ? `/${encodeToBase64(urlText)}` : `/${emptyURL}`;
-  if (variableBodyVisible) {
-    requestURL += variables.length !== 0 ? `/${encodeToBase64(JSON.stringify(variableObject(variables, {})))}` : '';
-  } else {
-    requestURL += bodyText ? `/${encodeToBase64(bodyText)}` : '';
-  }
-  const headersVariables = variablesToQueryParams(headersObject);
+export const formatURL = ({ url, method, body, headers }: RequestData) => {
+  const validMethod = METHODS.includes(method) ? method : RequestMethods.GET;
+  let requestURL = `/${validMethod}`;
+  requestURL += url ? `/${encodeToBase64(url)}` : `/${emptyURL}`;
+  requestURL += body ? `/${encodeToBase64(body)}` : '';
+  const headersVariables = variablesToQueryParams(headers);
   requestURL += headersVariables ? `/?${headersVariables}` : '';
   return requestURL;
 };
 
-export const addVariablesHandler = (variablesArray: IVariable[], callback: setVariablesType) => {
+export const updateUrl = (lang: string, request: RequestData) => {
+  window.history.replaceState(null, '', `/${lang}${Routes.client}${formatURL(request)}`);
+};
+
+export const addVariablesHandler = (variablesArray: IVariable[]) => {
   const changedVariables = [...variablesArray];
-  changedVariables.push({ key: '', value: '' });
-  callback(changedVariables);
+  const newId = variablesArray[variablesArray.length - 1]?.id + 1 || 1;
+  changedVariables.push({ key: '', value: '', id: newId });
+  return changedVariables;
+};
+
+export const transformValue = (value: string): JSONTypes => {
+  if (value === '' || value === undefined) return value;
+
+  if (value === 'null') return null;
+
+  if (!isNaN(+value)) return +value;
+
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+
+  try {
+    const parsedValue = JSON.parse(value);
+
+    if (Array.isArray(parsedValue)) {
+      return JSON.parse(value).map((el: string) => transformValue(el));
+    }
+
+    if (typeof parsedValue === 'object') {
+      const obj: { [key: string]: JSONTypes } = {};
+      Object.keys(parsedValue).map((key) => {
+        obj[key] = transformValue(parsedValue[key]);
+      });
+      return obj;
+    }
+
+    return value;
+  } catch {
+    return value;
+  }
 };

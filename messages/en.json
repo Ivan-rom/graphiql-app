@@ -53,20 +53,14 @@
     "hint": "Don't have an account?",
     "link": "Sign up"
   },
-  "RestfulClient": {
+  "Client": {
     "url-placeholder": "Enter URL or paste text",
     "send": "Send",
     "headers": "Headers",
-    "add-header": "Add header",
     "key-placeholder": "Key",
     "value-placeholder": "Value",
-    "body-text": "Body",
-    "body-variables": "Body variables",
-    "add-variable": "Add variable",
-    "show-variables": "Show body variables",
-    "hide-variables": "Hidden body variables"
-  },
-  "Client": {
+    "body-title": "Body",
+    "variables-title": "Body variables",
     "response": {
       "title": "Response",
       "status": "Status"

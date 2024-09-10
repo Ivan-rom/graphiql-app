@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RequestData } from '@/helpers/types';
+import { IVariable, RequestData, VariableKeys } from '@/helpers/types';
 import { RequestMethods } from '@/helpers/enums';
+import { DEFAULT_VARIABLE } from '@/helpers/constants';
 
 const initialState: RequestData = {
   url: '',
   method: RequestMethods.GET,
   body: '',
-  header: {},
+  headers: [{ ...DEFAULT_VARIABLE }],
 };
 
 export const requestSlice = createSlice({
@@ -22,17 +23,24 @@ export const requestSlice = createSlice({
     setBody(state, action) {
       state.body = action.payload;
     },
-    setHeader(state, action) {
-      state.header = action.payload;
+    setHeaders(state, action: { payload: IVariable[] }) {
+      state.headers = [...action.payload];
+    },
+    addHeader(state) {
+      const newId = state.headers[state.headers.length - 1].id + 1;
+      state.headers.push({ key: '', value: '', id: newId });
+    },
+    updateHeader(state, { payload }: { payload: { name: VariableKeys; value: string; index: number } }) {
+      state.headers[payload.index][payload.name] = payload.value;
     },
     setRequest(state, action) {
       state.url = action.payload.url;
       state.method = action.payload.method;
-      state.header = action.payload.header;
+      state.headers = action.payload.headers;
       state.body = action.payload.body;
     },
   },
 });
 
-export const { setURL, setMethod, setBody, setHeader, setRequest } = requestSlice.actions;
+export const { setURL, setMethod, setBody, setHeaders, addHeader, updateHeader, setRequest } = requestSlice.actions;
 export default requestSlice.reducer;

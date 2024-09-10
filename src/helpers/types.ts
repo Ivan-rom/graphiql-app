@@ -1,22 +1,27 @@
 import { RequestMethods } from '@/helpers/enums';
-import { ChangeEvent, SetStateAction } from 'react';
 
 export type VariablesRequest = {
-  [key: string]: string;
+  [key: string]: JSONTypes;
 };
 
 export interface RequestData {
   url: string;
   method: RequestMethods;
   body: string;
-  header: VariablesRequest;
+  headers: IVariable[];
 }
 
 export interface IVariable {
   key: string;
   value: string;
+  id: number;
 }
 
-export type setVariablesType = (value: SetStateAction<IVariable[]>) => void;
+export enum VariableKeys {
+  key = 'key',
+  value = 'value',
+}
 
-export type changeVariableType = (event: ChangeEvent<HTMLInputElement>, index: number) => void;
+export type changeVariableType = (value: string, name: VariableKeys, index: number) => void;
+
+export type JSONTypes = string | null | number | boolean | { [key: string]: JSONTypes } | JSONTypes[];
