@@ -28,13 +28,4 @@
       }
     }
   }
-
-  .button:disabled {
-    cursor: default;
-    background-color: var(--disabled-assent-color);
-
-    &:hover {
-      filter: none;
-    }
-  }
 }

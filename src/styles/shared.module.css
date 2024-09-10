@@ -8,6 +8,15 @@
   &:hover {
     filter: brightness(1.1);
   }
+
+  &:disabled {
+    cursor: default;
+    background-color: var(--disabled-assent-color);
+
+    &:hover {
+      filter: none;
+    }
+  }
 }
 
 .link {

@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { RequestData } from '@/helpers/types';
 import styles from './endpoint.module.css';
 import sharedStyles from '@/styles/shared.module.css';
-import classNames from 'classnames';
 import { selectRequest } from '@/store/features/selectors';
 
 type Props = {
@@ -37,7 +36,7 @@ function Endpoint({ sendHandler }: Props) {
           placeholder={t('url-placeholder')}
         />
       </div>
-      <button className={classNames(sharedStyles.button, styles.button)} onClick={clickHandler} disabled={!request.url}>
+      <button className={sharedStyles.button} onClick={clickHandler} disabled={!request.url}>
         {t('send')}
       </button>
     </div>
