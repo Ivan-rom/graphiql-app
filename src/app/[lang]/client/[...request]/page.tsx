@@ -15,6 +15,7 @@ import Headers from '@/components/Headers/Headers';
 import { selectRequest } from '@/store/features/selectors';
 import { useParams } from 'next/navigation';
 import { METHODS } from '@/helpers/constants';
+import SdlUrl from '@/components/SdlUrl/SdlUrl';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
@@ -58,6 +59,7 @@ export default function ClientPage() {
     <section className={styles.page}>
       <div className={styles.client}>
         <Endpoint sendHandler={sendRequest} />
+        {request.method === RequestMethods.GRAPHQL && <SdlUrl />}
         <Body />
         <Headers />
       </div>

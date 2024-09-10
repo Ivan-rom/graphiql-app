@@ -55,7 +55,9 @@
   },
   "Client": {
     "url-placeholder": "Enter URL or paste text",
+    "sdl-placeholder": "Enter URL for GraphQl docs",
     "send": "Send",
+    "sdl-button": "Get docs",
     "headers": "Headers",
     "key-placeholder": "Key",
     "value-placeholder": "Value",

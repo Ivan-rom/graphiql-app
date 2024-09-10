@@ -55,7 +55,9 @@
   },
   "Client": {
     "url-placeholder": "Введите URL или вставьте текст",
+    "sdl-placeholder": "Введите URL для GraphQl документации",
     "send": "Отправить",
+    "sdl-button": "Получить документацию",
     "headers": "Заголовки",
     "key-placeholder": "Ключ",
     "value-placeholder": "Значение",
