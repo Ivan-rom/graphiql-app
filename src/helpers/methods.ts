@@ -1,5 +1,6 @@
-import { IVariable, JSONTypes, VariablesRequest } from './types';
-import { emptyURL } from './constants';
+import { IVariable, JSONTypes, RequestData, VariablesRequest } from './types';
+import { emptyURL, METHODS } from './constants';
+import { RequestMethods, Routes } from './enums';
 
 export function encodeToBase64(text: string) {
   const encoder = new TextEncoder();
@@ -63,13 +64,18 @@ export const handleChangeVariables = (value: string, name: string, index: number
   return changedVariables;
 };
 
-export const formatURL = (urlText: string, methodText: string, bodyText: string, headersObject: IVariable[]) => {
-  let requestURL = `/${methodText}`;
-  requestURL += urlText ? `/${encodeToBase64(urlText)}` : `/${emptyURL}`;
-  requestURL += bodyText ? `/${encodeToBase64(bodyText)}` : '';
-  const headersVariables = variablesToQueryParams(headersObject);
+export const formatURL = ({ url, method, body, headers }: RequestData) => {
+  const validMethod = METHODS.includes(method) ? method : RequestMethods.GET;
+  let requestURL = `/${validMethod}`;
+  requestURL += url ? `/${encodeToBase64(url)}` : `/${emptyURL}`;
+  requestURL += body ? `/${encodeToBase64(body)}` : '';
+  const headersVariables = variablesToQueryParams(headers);
   requestURL += headersVariables ? `/?${headersVariables}` : '';
   return requestURL;
+};
+
+export const updateUrl = (lang: string, request: RequestData) => {
+  window.history.replaceState(null, '', `/${lang}${Routes.client}${formatURL(request)}`);
 };
 
 export const addVariablesHandler = (variablesArray: IVariable[]) => {

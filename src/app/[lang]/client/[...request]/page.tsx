@@ -1,10 +1,9 @@
 'use client';
-import { RequestMethods, Routes } from '@/helpers/enums';
+import { RequestMethods } from '@/helpers/enums';
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
-import { formatURL } from '@/helpers/methods';
+import { updateUrl } from '@/helpers/methods';
 import { useDefaultParams } from '@/hooks/useDefaultParams';
-import { useRouter } from '@/helpers/navigation';
 import Response from '@/components/Response/Response';
 import { makeRequest } from '@/services/request';
 import { RequestData } from '@/helpers/types';
@@ -14,41 +13,34 @@ import Body from '@/components/Body/Body';
 import Endpoint from '@/components/Endpoint/Endpoint';
 import Headers from '@/components/Headers/Headers';
 import { selectRequest } from '@/store/features/selectors';
+import { useParams } from 'next/navigation';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
 export default function ClientPage() {
-  const router = useRouter();
   const dispatch = useDispatch();
   const request = useSelector(selectRequest);
 
-  const { lang, method, url, body, headers } = useDefaultParams();
+  const { lang } = useParams();
+  const { method, url, body, headers } = useDefaultParams();
 
   const [responseObject, setResponseObject] = useState(INITIAL_RESPONSE_VALUE);
   const [isLoading, setIsLoading] = useState(false);
 
-  const sendRequest = ({ url, body, method, headers }: RequestData) => {
+  const sendRequest = (request: RequestData) => {
     setIsLoading(true);
-    makeRequest({ url, body, method, headers })
-      .then((res) => setResponseObject(res))
+    makeRequest(request)
+      .then(setResponseObject)
 
       //TODO: show error result to user
       // use toastify for example
-      .catch((error) => setResponseObject(error))
+      .catch(setResponseObject)
 
       .finally(() => setIsLoading(false));
   };
 
-  if (!Object.values(RequestMethods).includes(method as RequestMethods)) {
-    router.replace(RequestMethods.GET);
-  }
-
   useEffect(() => {
-    window.history.replaceState(
-      null,
-      '',
-      `/${lang}${Routes.client}${formatURL(request.url, request.method, request.body, request.headers)}`,
-    );
+    updateUrl(lang as string, request);
   }, [request, lang]);
 
   useEffect(() => {

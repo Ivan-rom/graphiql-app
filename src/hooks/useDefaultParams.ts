@@ -4,7 +4,6 @@ import { DEFAULT_VARIABLE, emptyURL } from '../helpers/constants';
 
 export function useDefaultParams() {
   const params = useParams();
-  const lang = params.lang;
   const [method, urlBase64, bodyBase64] = params.request;
   const searchParams = useSearchParams();
 
@@ -27,7 +26,6 @@ export function useDefaultParams() {
   const body = prettifyingBody(decodeFromBase64(bodyBase64));
 
   return {
-    lang,
     method,
     url,
     body,
