@@ -10,55 +10,7 @@ import SdlUrl from '../SdlUrl/SdlUrl';
 import { useTranslations } from 'next-intl';
 import { GraphQLSchema, printSchema } from 'graphql';
 import { graphql } from 'cm6-graphql';
-
-function formatGraphQLQuery(query: string): string {
-  let indentLevel = 0;
-  const indentString = '  '; // Используем два пробела для отступов
-  let formattedQuery = '';
-
-  for (let i = 0; i < query.length; i++) {
-    const char = query[i];
-
-    switch (char) {
-      case '{':
-        // Если открывающая фигурная скобка, то добавляем её и увеличиваем уровень отступов
-        formattedQuery += ' {\n' + indentString.repeat(++indentLevel);
-        break;
-
-      case '}':
-        // Если закрывающая фигурная скобка, то уменьшаем уровень отступов и добавляем её на новой строке
-        formattedQuery += '\n' + indentString.repeat(--indentLevel) + '}';
-        break;
-
-      case ',':
-        // Если запятая, то добавляем её и переходим на новую строку с текущим отступом
-        formattedQuery += ',\n' + indentString.repeat(indentLevel);
-        break;
-
-      default:
-        // В остальных случаях просто добавляем символ
-        formattedQuery += char;
-
-        // Если символ - пробел, но после него идет "}", убираем лишний пробел перед закрывающей скобкой
-        if (char === ' ' && query[i + 1] === '}') {
-          formattedQuery = formattedQuery.slice(0, -1);
-        }
-        break;
-    }
-  }
-
-  return formattedQuery;
-}
-
-function compactGraphQLQuery(query: string): string {
-  // Удаляем все переносы строк, лишние пробелы и форматируем запрос в одну строку
-  return query
-    .replace(/\s+/g, ' ') // Заменяем все виды пробельных символов (переносы строк, табуляции, пробелы) на один пробел
-    .replace(/\s*{\s*/g, '{') // Убираем пробелы перед и после открывающей скобки
-    .replace(/\s*}\s*/g, '}') // Убираем пробелы перед и после закрывающей скобки
-    .replace(/\s*,\s*/g, ',') // Убираем пробелы перед и после запятой
-    .trim(); // Убираем возможные пробелы в начале и конце строки
-}
+import { compactGraphQLQuery, formatGraphQLQuery } from '@/helpers/methods';
 
 function GraphqlBody() {
   const t = useTranslations('Client');
@@ -91,7 +43,7 @@ function GraphqlBody() {
   }, []);
 
   useEffect(() => {
-    const newBody = { query, variables: '{}' };
+    const newBody = { query, variables: '' };
 
     try {
       const parsedVariables = JSON.parse(variables);

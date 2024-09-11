@@ -5,34 +5,11 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import styles from './sdlUrl.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import classNames from 'classnames';
-import { buildClientSchema, getIntrospectionQuery, GraphQLSchema } from 'graphql';
+import { GraphQLSchema } from 'graphql';
 import Schema from '../../assets/svg/schema.svg';
+import { fetchSchema } from '@/services/schema';
 
 const SDL_POSTFIX = '?sdl';
-
-const fetchSchema = async (url: string) => {
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ query: getIntrospectionQuery() }),
-    });
-
-    const introspection = await res.json();
-
-    if (introspection.errors) {
-      return null;
-    }
-
-    const clientSchema = buildClientSchema(introspection.data);
-
-    return clientSchema;
-  } catch {
-    return null;
-  }
-};
 
 type Props = {
   updateSchema: (schema: GraphQLSchema | null) => void;

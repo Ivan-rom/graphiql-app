@@ -21,6 +21,8 @@
   --editor-error-bg-color: #45485d;
   --editor-variable-name-color: #ef6197;
   --editor-keyword-color: #ec94aa;
+  --editor-atom-color: #ff6cd3;
+  --editor-attribute-name-color: #936cff;
 
   --border-radius: 10px;
 }

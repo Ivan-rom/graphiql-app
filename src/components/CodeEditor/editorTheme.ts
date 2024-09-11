@@ -11,6 +11,8 @@ export const editorTheme = [
       { tag: tags.number, color: 'var(--editor-number-color)' },
       { tag: tags.null, color: 'var(--editor-null-color)' },
       { tag: tags.bool, color: 'var(--editor-boolean-color)' },
+      { tag: tags.atom, color: 'var(--editor-atom-color)' },
+      { tag: tags.attributeName, color: 'var(--editor-attribute-name-color)' },
     ]),
   ),
 ];
