@@ -1,7 +1,5 @@
 import { Extension } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
-
-import { graphql } from 'cm6-graphql';
 import { linter, Diagnostic } from '@codemirror/lint';
 import { GraphQLError, parse, SourceLocation } from 'graphql';
 
@@ -35,4 +33,4 @@ function graphqlLinter(view: EditorView): Diagnostic[] {
   return []; // Если нет ошибок, ничего не возвращаем
 }
 
-export const extensions: Extension = [graphql(), linter(graphqlLinter), EditorView.lineWrapping];
+export const extensions: Extension = [linter(graphqlLinter), EditorView.lineWrapping];
