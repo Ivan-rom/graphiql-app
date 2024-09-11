@@ -13,6 +13,17 @@
   gap: 15px;
 }
 
+.client_empty_links_container {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.empty_link {
+  text-decoration: none;
+  color: white;
+}
+
 .client_links_container {
   display: flex;
   flex-direction: column;
