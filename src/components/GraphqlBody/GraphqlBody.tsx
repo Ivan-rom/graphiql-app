@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setBody } from '@/store/features/requestSlice';
 import CodeEditor from '../CodeEditor/CodeEditor';
-import { extensions as defaultExtensions } from './editorExtensions';
+import { editorExtensions, schemaExtensions } from './editorExtensions';
 import styles from './graphqlBody.module.css';
 import { selectBody } from '@/store/features/selectors';
 import { useEffect, useState } from 'react';
@@ -10,7 +10,6 @@ import SdlUrl from '../SdlUrl/SdlUrl';
 import { useTranslations } from 'next-intl';
 import { GraphQLSchema, printSchema } from 'graphql';
 import { graphql } from 'cm6-graphql';
-import { Extension } from '@codemirror/state';
 
 function formatGraphQLQuery(query: string): string {
   let indentLevel = 0;
@@ -69,7 +68,7 @@ function GraphqlBody() {
   const [variables, setVariables] = useState('');
   const [schema, setSchema] = useState<GraphQLSchema | null>(null);
   const [isSchemaVisible, setIsSchemaVisible] = useState(false);
-  const [extensions, setExtensions] = useState<Extension>(defaultExtensions);
+  const [extensions, setExtensions] = useState(editorExtensions);
 
   useEffect(() => {
     if (body) {
@@ -105,8 +104,8 @@ function GraphqlBody() {
   }, [query, variables, dispatch]);
 
   useEffect(() => {
-    if (schema) setExtensions([defaultExtensions, graphql(schema)]);
-    else setExtensions([defaultExtensions, graphql()]);
+    if (schema) setExtensions([editorExtensions, graphql(schema)]);
+    else setExtensions([editorExtensions, graphql()]);
   }, [schema]);
 
   const queryBlurHandler = (value: string) => {
@@ -125,7 +124,7 @@ function GraphqlBody() {
       <div className={styles.wrapper}>
         {schema && isSchemaVisible && (
           <div className={styles.schemaWrapper}>
-            <CodeEditor className={styles.schema} extensions={extensions} value={printSchema(schema)} />
+            <CodeEditor className={styles.schema} extensions={schemaExtensions} value={printSchema(schema)} />
           </div>
         )}
 

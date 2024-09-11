@@ -1,7 +1,8 @@
-import { Extension } from '@codemirror/state';
+import { EditorState, Extension } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { linter, Diagnostic } from '@codemirror/lint';
 import { GraphQLError, parse, SourceLocation } from 'graphql';
+import { graphql } from 'cm6-graphql';
 
 interface GraphQLSyntaxError extends GraphQLError {
   locations: SourceLocation[];
@@ -33,4 +34,5 @@ function graphqlLinter(view: EditorView): Diagnostic[] {
   return []; // Если нет ошибок, ничего не возвращаем
 }
 
-export const extensions: Extension = [linter(graphqlLinter), EditorView.lineWrapping];
+export const editorExtensions: Extension = [linter(graphqlLinter), EditorView.lineWrapping];
+export const schemaExtensions: Extension = [graphql(), EditorView.lineWrapping, EditorState.readOnly.of(true)];
