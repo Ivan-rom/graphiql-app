@@ -129,9 +129,7 @@ function GraphqlBody() {
         )}
 
         <div className={styles.body}>
-          <div className={styles.header}>
-            <p>{t('query-title')}</p>
-          </div>
+          <p>{t('query-title')}</p>
 
           <div className={styles.editorWrapper}>
             <CodeEditor
@@ -142,7 +140,9 @@ function GraphqlBody() {
             />
           </div>
 
-          <GraphqlVariables variables={variables} setVariables={setVariables} title={t('variables-title')} />
+          <div className={styles.variables}>
+            <GraphqlVariables variables={variables} setVariables={setVariables} title={t('variables-title')} />
+          </div>
         </div>
       </div>
     </>
