@@ -9,72 +9,6 @@
   .header {
     display: flex;
     gap: 10px;
-
-    .toggler {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 3px;
-
-      .radio {
-        position: relative;
-        width: 16px;
-        height: 16px;
-        background-color: var(--bg-color);
-        border-radius: 50%;
-
-        &::before {
-          content: '';
-          position: absolute;
-          width: 8px;
-          height: 8px;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          border-radius: 50%;
-        }
-
-        input:checked ~ &::before {
-          background-color: var(--accent-color);
-        }
-
-        input:hover ~ & {
-          outline: 1px solid var(--accent-color);
-        }
-      }
-
-      & input {
-        display: none;
-      }
-    }
-  }
-
-  .variablesWrapper {
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
-
-    .variables {
-      flex-grow: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      overflow-y: auto;
-      margin-bottom: 5px;
-
-      &::-webkit-scrollbar {
-        width: 5px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: var(--accent-color);
-        border-radius: 5px;
-      }
-    }
-
-    .button {
-      padding: 2px;
-    }
   }
 
   .editorWrapper {
@@ -95,6 +29,34 @@
       &::-webkit-scrollbar-thumb {
         background: var(--accent-color);
       }
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  overflow: hidden;
+  flex-grow: 1;
+  gap: 10px;
+}
+
+.schemaWrapper {
+  overflow: hidden;
+  display: flex;
+  width: 40%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding: 5px;
+
+  .schema {
+    overflow: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--bg-color);
     }
   }
 }

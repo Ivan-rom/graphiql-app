@@ -5,10 +5,43 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import styles from './sdlUrl.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import classNames from 'classnames';
+import { buildClientSchema, getIntrospectionQuery, GraphQLSchema } from 'graphql';
+import Schema from '../../assets/svg/schema.svg';
 
 const SDL_POSTFIX = '?sdl';
 
-function SdlUrl() {
+const fetchSchema = async (url: string) => {
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: getIntrospectionQuery() }),
+    });
+
+    const introspection = await res.json();
+
+    if (introspection.errors) {
+      return null;
+    }
+
+    const clientSchema = buildClientSchema(introspection.data);
+
+    return clientSchema;
+  } catch {
+    return null;
+  }
+};
+
+type Props = {
+  updateSchema: (schema: GraphQLSchema | null) => void;
+  schema: GraphQLSchema | null;
+  setIsSchemaVisible: (status: boolean) => void;
+  isSchemaVisible: boolean;
+};
+
+function SdlUrl({ updateSchema, schema, setIsSchemaVisible, isSchemaVisible }: Props) {
   const t = useTranslations('Client');
   const endpoint = useSelector(selectURL);
   const [sdlEndpoint, setSdlEndpoint] = useState('');
@@ -29,10 +62,25 @@ function SdlUrl() {
     setSdlEndpoint(value.trim());
   };
 
-  const clickHandler = () => {};
+  const clickHandler = async () => {
+    const schema = await fetchSchema(sdlEndpoint);
+    updateSchema(schema);
+    setIsSchemaVisible(Boolean(schema));
+  };
+
+  const schemaToggler = () => {
+    setIsSchemaVisible(!isSchemaVisible);
+  };
 
   return (
     <div className={styles.sdl}>
+      <button
+        className={classNames(sharedStyles.button, styles.schemaButton)}
+        onClick={schemaToggler}
+        disabled={!schema}
+      >
+        <Schema className={styles.svg} />
+      </button>
       <div className={styles.container}>
         <input
           className={classNames(sharedStyles.input, styles.input)}

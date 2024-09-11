@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import GraphqlVariables from '../JSONEditor/JSONEditor';
 import SdlUrl from '../SdlUrl/SdlUrl';
 import { useTranslations } from 'next-intl';
+import { GraphQLSchema, printSchema } from 'graphql';
 
 function formatGraphQLQuery(query: string): string {
   let indentLevel = 0;
@@ -64,6 +65,8 @@ function GraphqlBody() {
   const body = useSelector(selectBody);
   const [query, setQuery] = useState('');
   const [variables, setVariables] = useState('');
+  const [schema, setSchema] = useState<GraphQLSchema | null>(null);
+  const [isSchemaVisible, setIsSchemaVisible] = useState(false);
 
   useEffect(() => {
     if (body) {
@@ -104,22 +107,36 @@ function GraphqlBody() {
 
   return (
     <>
-      <SdlUrl />
-      <div className={styles.body}>
-        <div className={styles.header}>
-          <p>{t('query-title')}</p>
-        </div>
+      <SdlUrl
+        updateSchema={setSchema}
+        schema={schema}
+        setIsSchemaVisible={setIsSchemaVisible}
+        isSchemaVisible={isSchemaVisible}
+      />
 
-        <div className={styles.editorWrapper}>
-          <CodeEditor
-            className={styles.editor}
-            extensions={extensions}
-            value={formatGraphQLQuery(query)}
-            blurHandler={queryBlurHandler}
-          />
-        </div>
+      <div className={styles.wrapper}>
+        {schema && isSchemaVisible && (
+          <div className={styles.schemaWrapper}>
+            <CodeEditor className={styles.schema} extensions={extensions} value={printSchema(schema)} />
+          </div>
+        )}
 
-        <GraphqlVariables variables={variables} setVariables={setVariables} title={t('variables-title')} />
+        <div className={styles.body}>
+          <div className={styles.header}>
+            <p>{t('query-title')}</p>
+          </div>
+
+          <div className={styles.editorWrapper}>
+            <CodeEditor
+              className={styles.editor}
+              extensions={extensions}
+              value={formatGraphQLQuery(query)}
+              blurHandler={queryBlurHandler}
+            />
+          </div>
+
+          <GraphqlVariables variables={variables} setVariables={setVariables} title={t('variables-title')} />
+        </div>
       </div>
     </>
   );
