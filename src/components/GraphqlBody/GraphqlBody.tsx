@@ -63,7 +63,7 @@ function GraphqlBody() {
   const dispatch = useDispatch();
   const body = useSelector(selectBody);
   const [query, setQuery] = useState('');
-  const [variables, setVariables] = useState('{}');
+  const [variables, setVariables] = useState('');
 
   useEffect(() => {
     if (body) {

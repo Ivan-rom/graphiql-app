@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl';
 import JSONEditor from '../JSONEditor/JSONEditor';
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBody } from '@/store/features/selectors';
 import { setBody } from '@/store/features/requestSlice';
@@ -10,13 +9,11 @@ function RestfulBody() {
   const dispatch = useDispatch();
   const body = useSelector(selectBody);
 
-  const [currentBody, setCurrentBody] = useState(body);
+  const updateBody = (value: string) => {
+    dispatch(setBody(value));
+  };
 
-  useEffect(() => {
-    dispatch(setBody(currentBody));
-  }, [currentBody, dispatch]);
-
-  return <JSONEditor title={t('body-title')} variables={currentBody} setVariables={setCurrentBody} />;
+  return <JSONEditor title={t('body-title')} variables={body} setVariables={updateBody} />;
 }
 
 export default RestfulBody;

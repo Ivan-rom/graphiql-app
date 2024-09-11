@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { IVariable } from '@/helpers/types';
 import { DEFAULT_VARIABLE } from '@/helpers/constants';
 import {
@@ -24,7 +24,7 @@ enum BodyType {
 type Props = {
   title: string;
   variables: string;
-  setVariables: Dispatch<SetStateAction<string>>;
+  setVariables: (value: string) => void;
 };
 
 function JSONEditor({ title, variables, setVariables }: Props) {
