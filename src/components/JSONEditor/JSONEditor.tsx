@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { useDispatch, useSelector } from 'react-redux';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { IVariable } from '@/helpers/types';
 import { DEFAULT_VARIABLE } from '@/helpers/constants';
 import {
@@ -10,31 +9,33 @@ import {
   removeItemFromArray,
   variableObject,
 } from '@/helpers/methods';
-import { setBody } from '@/store/features/requestSlice';
 import { VariableComponent } from '../VariableComponent/Variable';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import { extensions } from './editorExtensions';
-import styles from './body.module.css';
+import styles from './JSONEditor.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import classNames from 'classnames';
-import { selectBody } from '@/store/features/selectors';
 
 enum BodyType {
   variables = 'variables',
   JSON = 'JSON',
 }
 
-function Body() {
+type Props = {
+  title: string;
+  variables: string;
+  setVariables: Dispatch<SetStateAction<string>>;
+};
+
+function JSONEditor({ title, variables, setVariables }: Props) {
   const t = useTranslations('Client');
-  const dispatch = useDispatch();
-  const body = useSelector(selectBody);
 
   const [bodyVariable, setBodyVariable] = useState<IVariable[]>([]);
   const [variableBodyVisible, setVariableBodyVisible] = useState(false);
 
   useEffect(() => {
     try {
-      const obj = JSON.parse(body);
+      const obj = JSON.parse(variables);
 
       const result = Object.keys(obj).map((key, index) => {
         const value = typeof obj[key] === 'string' ? obj[key] : JSON.stringify(obj[key]);
@@ -45,18 +46,14 @@ function Body() {
     } catch {
       setBodyVariable([{ ...DEFAULT_VARIABLE }]);
     }
-  }, [body]);
+  }, [variables]);
 
   const bodyToggle = (event: ChangeEvent<HTMLInputElement>) => {
     setVariableBodyVisible(event.target.value === BodyType.variables);
   };
 
   const setBodyHandler = (value: string) => {
-    dispatch(setBody(value.trim()));
-  };
-
-  const bodyOnBlurHandler = (value: string) => {
-    dispatch(setBody(value));
+    setVariables(value.trim());
   };
 
   const handleChangeBodyVariables = (value: string, name: string, index: number) => {
@@ -75,7 +72,7 @@ function Body() {
   return (
     <div className={styles.body}>
       <div className={styles.header}>
-        <p>{t('body-title')}</p>
+        <p>{title}</p>
         <label className={styles.toggler}>
           <input
             type="radio"
@@ -96,7 +93,7 @@ function Body() {
             onChange={bodyToggle}
           />
           <div className={styles.radio} />
-          <span>{t('variables-title')}</span>
+          <span>{t('variables-type')}</span>
         </label>
       </div>
       {variableBodyVisible ? (
@@ -124,8 +121,8 @@ function Body() {
           <CodeEditor
             className={styles.editor}
             extensions={extensions}
-            value={prettifyingBody(body)}
-            blurHandler={bodyOnBlurHandler}
+            value={prettifyingBody(variables)}
+            blurHandler={setBodyHandler}
           />
         </div>
       )}
@@ -133,4 +130,4 @@ function Body() {
   );
 }
 
-export default Body;
+export default JSONEditor;

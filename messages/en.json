@@ -62,7 +62,9 @@
     "key-placeholder": "Key",
     "value-placeholder": "Value",
     "body-title": "Body",
-    "variables-title": "Body variables",
+    "variables-type": "variables",
+    "variables-title": "Variables",
+    "query-title": "Query",
     "response": {
       "title": "Response",
       "status": "Status"

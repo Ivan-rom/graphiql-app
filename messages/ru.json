@@ -62,7 +62,9 @@
     "key-placeholder": "Ключ",
     "value-placeholder": "Значение",
     "body-title": "Тело",
+    "variables-type": "переменные",
     "variables-title": "Переменные",
+    "query-title": "Запрос",
     "response": {
       "title": "Ответ",
       "status": "Статус"

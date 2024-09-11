@@ -9,13 +9,13 @@ import { makeRequest } from '@/services/request';
 import { RequestData } from '@/helpers/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRequest } from '@/store/features/requestSlice';
-import Body from '@/components/Body/Body';
 import Endpoint from '@/components/Endpoint/Endpoint';
 import Headers from '@/components/Headers/Headers';
 import { selectRequest } from '@/store/features/selectors';
 import { useParams } from 'next/navigation';
 import { METHODS } from '@/helpers/constants';
-import SdlUrl from '@/components/SdlUrl/SdlUrl';
+import GraphqlBody from '@/components/GraphqlBody/GraphqlBody';
+import RestfulBody from '@/components/RestfulBody/RestfulBody';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
@@ -59,8 +59,7 @@ export default function ClientPage() {
     <section className={styles.page}>
       <div className={styles.client}>
         <Endpoint sendHandler={sendRequest} />
-        {request.method === RequestMethods.GRAPHQL && <SdlUrl />}
-        <Body />
+        {request.method === RequestMethods.GRAPHQL ? <GraphqlBody /> : <RestfulBody />}
         <Headers />
       </div>
       <Response value={responseObject} isLoading={isLoading} />
