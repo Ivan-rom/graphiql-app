@@ -1,0 +1,16 @@
+.historyLink {
+  display: flex;
+  text-decoration: none;
+  gap: 15px;
+  font-size: 18px;
+}
+
+.historyLinkMethod {
+  color: var(--accent-color);
+  font-weight: bold;
+  width: 90px;
+}
+
+.historyLinkURL {
+  color: white;
+}
