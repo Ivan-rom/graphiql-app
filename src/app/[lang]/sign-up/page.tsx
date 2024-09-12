@@ -14,7 +14,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/firebase/config';
 import { AuthError, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { toast } from 'react-toastify';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Loader from '@/components/Loader/Loader';
 
 type FormData = {
   [SignUpInputsNames.name]: string;
@@ -55,13 +56,15 @@ function SignUpPage() {
   } = useForm<FormData>({ resolver: yupResolver(schema) });
   const router = useRouter();
   const [user] = useAuthState(auth);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (user) router.replace(Routes.home);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user, router]);
 
   const submitHandler = async (data: FormData) => {
+    setIsLoading(true);
+
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
@@ -78,6 +81,8 @@ function SignUpPage() {
     } catch (e) {
       toast(tError((e as AuthError).code));
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -96,7 +101,9 @@ function SignUpPage() {
               register={register(name)}
             />
           ))}
-          <button className={classNames(sharedStyles.button, styles.button)}>{tPage('submit-text')}</button>
+          <button className={classNames(sharedStyles.button, styles.button)} disabled={isLoading}>
+            {isLoading ? <Loader className={styles.loader} /> : tPage('submit-text')}
+          </button>
         </form>
         <div className={styles.hint}>
           <span>{tPage('hint')}</span>

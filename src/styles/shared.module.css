@@ -11,11 +11,7 @@
 
   &:disabled {
     cursor: default;
-    background-color: var(--disabled-assent-color);
-
-    &:hover {
-      filter: none;
-    }
+    filter: brightness(0.9);
   }
 }
 

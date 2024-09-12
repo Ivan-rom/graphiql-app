@@ -28,6 +28,16 @@
 
     .button {
       margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .loader {
+        width: 1lh;
+        height: 1lh;
+        border: 2px solid var(--text-color);
+        border-top-color: transparent;
+      }
     }
 
     .hint {
