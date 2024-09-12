@@ -1,6 +1,6 @@
 import styles from './Footer.module.css';
 import Link from 'next/link';
-import GitHubLogo from '../../assets/img/github-logo.png';
+import GitHubLogo from '../../assets/svg/github-logo.svg';
 import ReactLogo from '../../assets/svg/react-logo.svg';
 import Image from 'next/image';
 
