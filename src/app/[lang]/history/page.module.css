@@ -21,7 +21,8 @@
 
 .empty_link {
   text-decoration: none;
-  color: white;
+  color: var(--accent-color);
+  font-size: 20px;
 }
 
 .client_links {

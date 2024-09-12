@@ -7,7 +7,6 @@ import HistoryLink from '@/components/HistoryLink/HistoryLink';
 import { RequestData } from '@/helpers/types';
 import { useTranslations } from 'next-intl';
 import classNames from 'classnames';
-import sharedStyles from '@/styles/shared.module.css';
 
 export default function History() {
   const [history, setHistory] = useState<RequestData[] | null>(null);
@@ -34,10 +33,10 @@ export default function History() {
         <div className={styles.empty_history}>
           <p>{t('empty-msg')}</p>
           <div className={styles.client_empty_links}>
-            <Link className={classNames(sharedStyles.button, styles.empty_link)} href={Routes.restApi}>
+            <Link className={classNames(styles.empty_link)} href={Routes.restApi}>
               REST {t('client')}
             </Link>
-            <Link className={classNames(sharedStyles.button, styles.empty_link)} href={Routes.graphiQL}>
+            <Link className={classNames(styles.empty_link)} href={Routes.graphiQL}>
               GraphiQL {t('client')}
             </Link>
           </div>
