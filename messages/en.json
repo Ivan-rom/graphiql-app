@@ -66,5 +66,10 @@
       "status": "Status"
     },
     "loading": "Loading"
+  },
+  "NotFound": {
+    "title": "Page is not found",
+    "description": "You can go ",
+    "home-link": "home"
   }
 }
