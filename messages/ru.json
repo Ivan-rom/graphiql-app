@@ -71,5 +71,14 @@
     "title": "Страница не найдена",
     "description": "Вы можете перейти ",
     "home-link": "на главную"
+  },
+
+  "FirebaseErrors": {
+    "auth/email-already-exists": "Адрес электронной почты уже существует",
+    "auth/email-already-in-use": "Адрес электронной почты уже используется",
+    "auth/invalid-email": "Указан недопустимый email",
+    "auth/invalid-password": "Пароль должен быть длиннее 6 символов",
+    "auth/user-not-found": "Пользователь не найден",
+    "auth/invalid-credential": "Введен неверный email или пароль"
   }
 }

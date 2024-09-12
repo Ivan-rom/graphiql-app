@@ -15,6 +15,7 @@ import Headers from '@/components/Headers/Headers';
 import { selectRequest } from '@/store/features/selectors';
 import { useParams } from 'next/navigation';
 import { METHODS } from '@/helpers/constants';
+import { toast } from 'react-toastify';
 
 const INITIAL_RESPONSE_VALUE = { status: 0, body: '' };
 
@@ -33,9 +34,10 @@ export default function ClientPage() {
     makeRequest(request)
       .then(setResponseObject)
 
-      //TODO: show error result to user
-      // use toastify for example
-      .catch(setResponseObject)
+      .catch((res: { status: number; body: string }) => {
+        setResponseObject(res);
+        toast.error(res.body);
+      })
 
       .finally(() => setIsLoading(false));
   };

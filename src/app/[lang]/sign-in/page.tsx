@@ -9,9 +9,12 @@ import classNames from 'classnames';
 import styles from './page.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import { useSignInSchema } from '@/hooks/useSignInSchema';
-import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/firebase/config';
 import { Link, useRouter } from '@/helpers/navigation';
+import { toast } from 'react-toastify';
+import { AuthError, signInWithEmailAndPassword } from 'firebase/auth';
+import { useEffect } from 'react';
 
 type FormData = {
   [SignInInputsNames.email]: string;
@@ -32,6 +35,8 @@ const inputs = [
 function SignInPage() {
   const t = useTranslations('Form');
   const tPage = useTranslations('SignIn');
+  const tError = useTranslations('FirebaseErrors');
+
   const schema = useSignInSchema();
   const {
     register,
@@ -40,20 +45,22 @@ function SignInPage() {
   } = useForm<FormData>({ resolver: yupResolver(schema) });
   const router = useRouter();
   const [user] = useAuthState(auth);
-  const [signIn] = useSignInWithEmailAndPassword(auth);
 
-  if (user) {
-    router.replace(Routes.home);
-  }
+  useEffect(() => {
+    if (user) router.replace(Routes.home);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const submitHandler = async (data: FormData) => {
     try {
-      await signIn(data[SignInInputsNames.email], data[SignInInputsNames.password]);
-      // TODO: push result to Redux
-      router.replace('/');
-    } catch {
-      // TODO: Show error result to user
-      // use toastify for example
+      await signInWithEmailAndPassword(auth, data[SignInInputsNames.email], data[SignInInputsNames.password]);
+
+      toast.success('Success');
+      router.replace(Routes.home);
+    } catch (e) {
+      const error = e as AuthError;
+
+      toast(tError(error.code) || error.code);
     }
   };
 

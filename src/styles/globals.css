@@ -20,6 +20,11 @@
   --editor-default-color: #808080;
   --editor-error-bg-color: #45485d;
 
+  --toastify-color-progress-dark: var(--accent-color) !important;
+  --toastify-color-dark: var(--bg-color) !important;
+  --toastify-color-error: var(--error-color) !important;
+  --toastify-text-color-dark: var(--text-color) !important;
+
   --border-radius: 10px;
 }
 

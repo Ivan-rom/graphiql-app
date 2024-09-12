@@ -71,5 +71,14 @@
     "title": "Page is not found",
     "description": "You can go ",
     "home-link": "home"
+  },
+
+  "FirebaseErrors": {
+    "auth/email-already-exists": "This email is already exists",
+    "auth/email-already-in-use": "This email is already in use",
+    "auth/invalid-email": "Invalid email specified",
+    "auth/invalid-password": "Password must be longer than 6 characters",
+    "auth/user-not-found": "User is not found",
+    "auth/invalid-credential": "Incorrect email or password entered"
   }
 }
