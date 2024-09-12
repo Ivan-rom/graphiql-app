@@ -7,16 +7,24 @@
   height: 60px;
   gap: 20px;
 
+  .links {
+    display: flex;
+    gap: 20px;
+  }
+
   .text {
     font-size: 1.2rem;
   }
 
   .link {
-
     .image {
       width: 45px;
       height: 45px;
       transition: filter 0.3s;
+
+      &:first-child {
+        order: 3;
+      }
 
       &:hover {
         filter: drop-shadow(0 0 0.2rem var(--accent-color));

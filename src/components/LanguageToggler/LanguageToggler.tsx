@@ -1,24 +1,19 @@
 'use client';
 
 import styles from './LanguageToggler.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from '@/helpers/navigation.ts';
-import { selectCurrentLocale } from '@/store/features/selectors.ts';
-import { locales } from '@/helpers/constants.ts';
-import { setLocale } from '@/store/features/languageSlice.ts';
-import { usePathname } from '@/helpers/navigation.ts';
+import { useRouter, usePathname } from '@/helpers/navigation';
+import { locales } from '@/helpers/constants';
+import { useParams } from 'next/navigation';
 
 function LanguageToggler() {
-  const dispatch = useDispatch();
   const router = useRouter();
-  const currentLanguage = useSelector(selectCurrentLocale);
   const pathname = usePathname();
+  const params = useParams();
+  const locale = params.lang;
 
   const toggleLanguage = () => {
-    const newLanguage =
-      currentLanguage === locales[0] ? locales[1] : locales[0];
-    dispatch(setLocale(newLanguage));
-    router.push(pathname, { locale: newLanguage });
+    const newLocale = locale === locales[0] ? locales[1] : locales[0];
+    router.push(newLocale + pathname);
   };
 
   return (
@@ -27,7 +22,7 @@ function LanguageToggler() {
         <input
           className={styles.input}
           type="checkbox"
-          checked={currentLanguage === locales[0]}
+          checked={locale === locales[0]}
           onChange={toggleLanguage}
         />
         <span
