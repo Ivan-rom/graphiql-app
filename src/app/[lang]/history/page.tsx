@@ -18,24 +18,22 @@ export default function History() {
     if (localStorageInfo !== null) {
       const storedHistory = JSON.parse(localStorageInfo);
       setHistory(storedHistory);
-    } else {
-      setHistory(localStorageInfo);
     }
   }, []);
 
   return (
-    <div className={styles.history_container}>
+    <div className={styles.history}>
       <h1>{t('history-header')}</h1>
       {history ? (
-        <div className={styles.client_links_container}>
-          {history.map(({ url, body, method, headers }: RequestData, index) => (
-            <HistoryLink key={index} url={url} body={body} method={method} headers={headers} />
+        <div className={styles.client_links}>
+          {history.map((request: RequestData, index) => (
+            <HistoryLink key={index} request={request} />
           ))}
         </div>
       ) : (
         <div className={styles.empty_history}>
           <p>{t('empty-msg')}</p>
-          <div className={styles.client_empty_links_container}>
+          <div className={styles.client_empty_links}>
             <Link className={classNames(sharedStyles.button, styles.empty_link)} href={Routes.restApi}>
               REST {t('client')}
             </Link>

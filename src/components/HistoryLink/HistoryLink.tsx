@@ -3,11 +3,15 @@ import { Link } from '@/helpers/navigation';
 import { RequestData } from '@/helpers/types';
 import styles from './HistoryLink.module.css';
 
-export default function HistoryLink({ url, body, method, headers }: RequestData) {
+type Props = {
+  request: RequestData;
+};
+
+export default function HistoryLink({ request }: Props) {
   return (
-    <Link href={`client/${formatURL({ url, body, method, headers })}`} className={styles.historyLink}>
-      <p className={styles.historyLinkMethod}>{method}</p>
-      <p className={styles.historyLinkURL}>{url}</p>
+    <Link href={`client/${formatURL(request)}`} className={styles.historyLink}>
+      <p className={styles.method}>{request.method}</p>
+      <p className={styles.url}>{request.url}</p>
     </Link>
   );
 }

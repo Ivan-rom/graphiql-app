@@ -116,14 +116,12 @@ export const transformValue = (value: string): JSONTypes => {
   }
 };
 
-export const saveRequest = async ({ url, body, method, headers }: RequestData) => {
+export const saveRequest = async (request: RequestData) => {
   const historyString = localStorage.getItem('history');
   const history = [];
   if (historyString !== null) {
     history.push(...JSON.parse(historyString));
   }
-  if (url) {
-    history.push({ url, body, method, headers });
-    localStorage.setItem('history', JSON.stringify(history));
-  }
+  history.push(request);
+  localStorage.setItem('history', JSON.stringify(history));
 };

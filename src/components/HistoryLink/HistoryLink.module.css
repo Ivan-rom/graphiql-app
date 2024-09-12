@@ -6,12 +6,12 @@
   cursor: pointer;
 }
 
-.historyLinkMethod {
+.method {
   color: var(--accent-color);
   font-weight: bold;
   width: 90px;
 }
 
-.historyLinkURL {
+.url {
   color: white;
 }
