@@ -2,8 +2,23 @@
   --body-bg-color: #181922;
   --bg-color: #272937;
   --accent-color: #d6305f;
+  --disabled-assent-color: rgb(214, 48, 95, 0.7);
   --text-color: #ffffff;
   --error-color: #ff5555;
+
+  --status-info-color: #68aad6;
+  --status-success-color: #73c573;
+  --status-redirect-color: #d6a368;
+  --status-clientError-color: #d6d468;
+  --status-serverError-color: #d6305f;
+
+  --editor-string-color: #73c573;
+  --editor-number-color: #68aad6;
+  --editor-boolean-color: #d6a368;
+  --editor-null-color: #d6d468;
+  --editor-select-color: #393e64;
+  --editor-default-color: #808080;
+  --editor-error-bg-color: #45485d;
 
   --border-radius: 10px;
 }
@@ -22,4 +37,8 @@ body {
 
 button {
   all: unset;
+}
+
+input {
+  outline: none;
 }

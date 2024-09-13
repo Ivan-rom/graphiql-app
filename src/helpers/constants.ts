@@ -1,4 +1,5 @@
 import { Routes } from '@/helpers/enums';
+import { RequestMethods } from './enums';
 
 export const locales = ['en', 'ru'];
 
@@ -12,3 +13,9 @@ export const authLinks = [
   { href: Routes.signUp, label: 'authLinks.signUp' },
   { href: Routes.signIn, label: 'authLinks.signIn' },
 ];
+
+export const DEFAULT_VARIABLE = { key: '', value: '', id: 0 };
+
+export const emptyURL = 'emptyURL';
+
+export const METHODS = Object.values(RequestMethods);

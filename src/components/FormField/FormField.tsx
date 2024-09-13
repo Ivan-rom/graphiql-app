@@ -1,4 +1,6 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
+import classNames from 'classnames';
+import sharedStyles from '@/styles/shared.module.css';
 import styles from './formField.module.css';
 
 type Props = {
@@ -22,7 +24,7 @@ function FormField({ name, type, label, error, register, placeholder }: Props) {
         type={type}
         name={name}
         id={name}
-        className={styles.input}
+        className={classNames(sharedStyles.input, styles.input)}
         placeholder={placeholder}
       />
     </div>

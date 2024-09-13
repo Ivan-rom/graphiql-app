@@ -10,9 +10,35 @@
   &:hover {
     filter: brightness(1.1);
   }
+
+  &:disabled {
+    cursor: default;
+    background-color: var(--disabled-assent-color);
+
+    &:hover {
+      filter: none;
+    }
+  }
 }
 
 .link {
   text-decoration: none;
   color: var(--accent-color);
+}
+
+.input {
+  display: block;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+  &:focus {
+    outline: 1px solid var(--accent-color);
+  }
+
+  &:hover {
+    outline: 1px solid var(--accent-color);
+  }
 }

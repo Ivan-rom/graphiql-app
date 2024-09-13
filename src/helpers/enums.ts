@@ -1,9 +1,20 @@
+export enum RequestMethods {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  HEAD = 'HEAD',
+  OPTIONS = 'OPTIONS',
+  GRAPHQL = 'GRAPHQL',
+}
+
 export enum Routes {
   home = '/',
   signIn = '/sign-in',
   signUp = '/sign-up',
-  restApi = '/rest-api',
-  graphiQL = '/graphiql',
+  client = '/client',
+  restApi = `${Routes.client}/${RequestMethods.GET}`,
+  graphiQL = `${Routes.client}/${RequestMethods.GRAPHQL}`,
   history = '/history',
 }
 
@@ -17,13 +28,4 @@ export enum SignUpInputsNames {
 export enum SignInInputsNames {
   email = 'email',
   password = 'password',
-}
-
-export enum RequestMethods {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  DELETE = 'DELETE',
-  HEAD = 'HEAD',
-  OPTIONS = 'OPTIONS',
 }

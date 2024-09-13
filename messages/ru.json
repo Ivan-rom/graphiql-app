@@ -53,5 +53,19 @@
     "submit-text": "вход",
     "hint": "Еще нет аккаунта?",
     "link": "Регистрация"
+  },
+  "Client": {
+    "url-placeholder": "Введите URL или вставьте текст",
+    "send": "Отправить",
+    "headers": "Заголовки",
+    "key-placeholder": "Ключ",
+    "value-placeholder": "Значение",
+    "body-title": "Тело",
+    "variables-title": "Переменные",
+    "response": {
+      "title": "Ответ",
+      "status": "Статус"
+    },
+    "loading": "Загрузка"
   }
 }
