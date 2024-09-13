@@ -13,11 +13,12 @@
         "GraphiQL Client - Supports URL input, query and variable editing, header editing, and documentation exploration via SDL."
       ]
     },
-    "welcomeBack": "Welcome back, ",
+    "welcomeBack": "Welcome back ",
     "authLinks": {
       "signIn": "Sign in",
       "signUp": "Sign up"
     },
+    "logOut": "Log out",
     "mainLinks": {
       "restApi": "REST API",
       "graphiQL": "GraphiQL",

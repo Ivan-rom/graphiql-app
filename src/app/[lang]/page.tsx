@@ -14,7 +14,7 @@ export default function Home() {
   const userName = user?.displayName || null;
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className={styles.loader}>Loading...</p>;
   }
 
   if (error) {
