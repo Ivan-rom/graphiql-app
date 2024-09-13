@@ -4,6 +4,8 @@
   text-align: center;
   cursor: pointer;
   border-radius: 5px;
+  text-decoration: none;
+  color: var(--text-color);
 
   &:hover {
     filter: brightness(1.1);

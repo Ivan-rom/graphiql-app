@@ -1,7 +1,7 @@
 import styles from './Footer.module.css';
 import Link from 'next/link';
 import GitHubLogo from '../../assets/svg/github-logo.svg';
-import ReactLogo from '../../assets/svg/react-logo.svg';
+import RssLogo from '../../assets/svg/rss-logo.svg';
 import Image from 'next/image';
 
 function Footer() {
@@ -13,7 +13,7 @@ function Footer() {
     },
     {
       href: 'https://rs.school/courses/reactjs',
-      src: ReactLogo,
+      src: RssLogo,
       alt: 'react-icon',
     },
   ];

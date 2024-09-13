@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './Header.module.css';
-import HeaderButtons from '@/components/HeaderButtons/HeaderButtons';
+import HeaderLinks from '@/components/HeaderLinks/HeaderLinks.tsx';
 import { Link } from '@/helpers/navigation';
 import LanguageToggler from '@/components/LanguageToggler/LanguageToggler';
 import { Routes } from '@/helpers/enums';
@@ -17,11 +17,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setFixed(true);
-      } else {
-        setFixed(false);
-      }
+      setFixed(window.scrollY > 0);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -33,12 +29,14 @@ export default function Header() {
 
   return (
     <header className={classNames(styles.header, headerStyles)}>
-      <Link href={Routes.home} className={styles.logo}>
-        Unit
-      </Link>
-      <div className={styles.buttons}>
-        <HeaderButtons />
-        <LanguageToggler />
+      <div className={styles.container}>
+        <Link href={Routes.home} className={styles.logo}>
+          Unit
+        </Link>
+        <div className={styles.controls}>
+          <HeaderLinks />
+          <LanguageToggler />
+        </div>
       </div>
     </header>
   );

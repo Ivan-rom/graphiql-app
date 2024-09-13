@@ -1,16 +1,19 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1650px;
-  margin: 0 auto;
-  padding: 1rem 4%;
   position: fixed;
   right: 0;
   left: 0;
 
-  .buttons {
+  .container {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 1rem 4%;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
     gap: 1rem;
   }
 
