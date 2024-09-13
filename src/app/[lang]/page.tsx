@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import styles from './layout.module.css';
+import styles from './page.module.css';
 import WelcomeDescription from '@/components/WelcomeDescription/WelcomeDescription';
 import NavigationLinks from '@/components/NavigationLinks/NavigationLinks';
 import { auth } from '@/firebase/config';
@@ -14,7 +14,7 @@ export default function Home() {
   const userName = user?.displayName || null;
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className={styles.loader}>Loading...</p>;
   }
 
   if (error) {
