@@ -5,7 +5,6 @@ import FormField from '@/components/FormField/FormField';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Routes, SignInInputsNames } from '@/helpers/enums';
-import classNames from 'classnames';
 import styles from './page.module.css';
 import sharedStyles from '@/styles/shared.module.css';
 import { useSignInSchema } from '@/hooks/useSignInSchema';
@@ -15,7 +14,7 @@ import { Link, useRouter } from '@/helpers/navigation';
 import { toast } from 'react-toastify';
 import { AuthError, signInWithEmailAndPassword } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-import Loader from '@/components/Loader/Loader';
+import LoadingButton from '@/components/LoadingButton/LoadingButton';
 
 type FormData = {
   [SignInInputsNames.email]: string;
@@ -85,9 +84,9 @@ function SignInPage() {
               register={register(name)}
             />
           ))}
-          <button className={classNames(sharedStyles.button, styles.button)} disabled={isLoading}>
-            {isLoading ? <Loader className={styles.loader} /> : tPage('submit-text')}
-          </button>
+          <LoadingButton className={styles.button} isLoading={isLoading}>
+            {tPage('submit-text')}
+          </LoadingButton>
         </form>
         <div className={styles.hint}>
           <span>{tPage('hint')}</span>

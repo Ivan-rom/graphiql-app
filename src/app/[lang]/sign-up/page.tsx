@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import FormField from '@/components/FormField/FormField';
-import classNames from 'classnames';
 import sharedStyles from '@/styles/shared.module.css';
 import styles from './page.module.css';
 import { useSignUpSchema } from '@/hooks/useSignUpSchema';
@@ -15,7 +14,7 @@ import { auth } from '@/firebase/config';
 import { AuthError, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import Loader from '@/components/Loader/Loader';
+import LoadingButton from '@/components/LoadingButton/LoadingButton';
 
 type FormData = {
   [SignUpInputsNames.name]: string;
@@ -101,9 +100,9 @@ function SignUpPage() {
               register={register(name)}
             />
           ))}
-          <button className={classNames(sharedStyles.button, styles.button)} disabled={isLoading}>
-            {isLoading ? <Loader className={styles.loader} /> : tPage('submit-text')}
-          </button>
+          <LoadingButton isLoading={isLoading} className={styles.button}>
+            {tPage('submit-text')}
+          </LoadingButton>
         </form>
         <div className={styles.hint}>
           <span>{tPage('hint')}</span>
