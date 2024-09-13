@@ -2,7 +2,6 @@ import styles from './Footer.module.css';
 import Link from 'next/link';
 import GitHubLogo from '../../assets/svg/github-logo.svg';
 import RssLogo from '../../assets/svg/rss-logo.svg';
-import Image from 'next/image';
 
 function Footer() {
   const links = [
@@ -27,7 +26,7 @@ function Footer() {
           href={link.href}
           target="_blank"
         >
-          <Image className={styles.image} src={link.src} alt={link.alt} />
+          <link.src className={styles.image} alt={link.alt} />
         </Link>
       ))}
       <p className={styles.text}>&copy; 2024 All rights reserved.</p>
