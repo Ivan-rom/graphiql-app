@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import styles from './layout.module.css';
 import { getMessages } from 'next-intl/server';
-import StoreProvider from '../StoreProvider/StoreProvider';
+import StoreProvider from '../../components/StoreProvider/StoreProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
