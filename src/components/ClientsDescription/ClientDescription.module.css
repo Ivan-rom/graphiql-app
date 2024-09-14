@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 35px;
+  padding-top: 2%;
+  .clientSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 5px 1px var(--disabled-assent-color);
+    padding: 2%;
+
+    .icon {
+      max-width: 150px;
+      height: 150px;
+      width: 100%;
+
+      & svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-decoration: underline;
+  }
+}

@@ -1,29 +1,36 @@
 {
   "HomePage": {
-    "title": "Welcome to Graphiql App by Unit team",
-    "description": {
-      "title": "REST/GraphiQL Client",
-      "subtitle": "Project description",
-      "text": "This project is a lightweight application combining the functionalities of Postman and GraphiQL into a single interface. The application allows users to execute requests to RESTful and GraphQL APIs, providing a convenient tool for interacting with any open APIs.",
-      "listSubtitle": "Key Features:",
-      "list": [
-        "Authorization and Authentication - Access to the application is restricted to authorized users only",
-        "Request History - Ability to save and re-run previous requests.",
-        "RESTful Client - Supports HTTP method selection, URL input, header editing, request body editing, and response display",
-        "GraphiQL Client - Supports URL input, query and variable editing, header editing, and documentation exploration via SDL."
-      ]
-    },
-    "welcomeBack": "Welcome back ",
+    "title": "Welcome to RestQL App by Unit team",
+    "welcome": "Welcome",
     "authLinks": {
       "signIn": "Sign in",
       "signUp": "Sign up"
     },
     "logOut": "Log out",
     "mainLinks": {
-      "restApi": "REST API",
+      "restApi": "RESTFull API",
       "graphiQL": "GraphiQL",
       "history": "History"
-    }
+    },
+    "description": {
+      "title": "Project introduction",
+      "text": "Hello! We, the 'Unit' team, are pleased to present to you the RestQL App application. Our product, combining the functionality of Postman and GraphiQL in one interface, allows users to make requests to RESTfull and GraphQL APIs, providing a convenient tool for interacting with any open API. We approached the development of the application with great attention and responsibility. Each of the participants made their invaluable contribution to our brainchild, which we are proud of and hope that you will also find it useful and valuable. Before starting to use the application, please read the information below. This will allow you to use RestQL without errors and without any difficulties. Thank you for your attention and enjoy using, dear friend!",
+      "listSubtitle": "Ready to start? Then follow these steps:",
+      "list": [
+        "If you are not yet authorized, please register or log in.",
+        "To get started, select one of the sections: REST API, GraphiQL",
+        "Make sure you are using the correct URls, endpoints, and request methods."
+      ]
+    },
+    "clientDescription": {
+      "title": ["RESTFull client", "GraphiQL client", "Request history"],
+      "text": [
+        "To work with the REST API, follow the link of the same name. Enter the URL, select the request method, add headers and request body. Then click the 'Send' button.",
+        "To start working with graphiQL clients, also use the necessary navigation link. Enter the URL, select the request method, add headers and request body. Then click the 'Send' button.",
+        "In the 'History' section, you can view the history of requests that you sent. To do this, follow the appropriate link in the navigation. The history displays all the requests you sent, including the URL, request method, headers, and request body. You can view the details of the request, as well as repeat it."
+      ]
+    },
+    "loading": "Loading..."
   },
   "Form": {
     "name-label": "Name",
