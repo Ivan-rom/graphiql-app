@@ -45,13 +45,15 @@
     "title": "Sign up",
     "submit-text": "sign up",
     "hint": "Already have an account?",
-    "link": "Sign in"
+    "link": "Sign in",
+    "success": "successful registration"
   },
   "SignIn": {
     "title": "Sign in",
     "submit-text": "sign in",
     "hint": "Don't have an account?",
-    "link": "Sign up"
+    "link": "Sign up",
+    "success": "successful login"
   },
   "Client": {
     "url-placeholder": "Enter URL or paste text",

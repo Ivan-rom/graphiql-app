@@ -75,7 +75,7 @@ function SignUpPage() {
         displayName: data[SignUpInputsNames.name],
       });
 
-      toast.success('Success');
+      toast.success(tPage('success'));
       router.replace(Routes.home);
     } catch (e) {
       toast(tError((e as AuthError).code));

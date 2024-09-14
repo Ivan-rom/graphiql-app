@@ -57,7 +57,7 @@ function SignInPage() {
     try {
       await signInWithEmailAndPassword(auth, data[SignInInputsNames.email], data[SignInInputsNames.password]);
 
-      toast.success('Success');
+      toast.success(tPage('success'));
       router.replace(Routes.home);
     } catch (e) {
       const error = e as AuthError;
