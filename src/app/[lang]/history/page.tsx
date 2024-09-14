@@ -2,14 +2,15 @@
 import { Routes } from '@/helpers/enums';
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
+import sharedStyles from '@/styles/shared.module.css';
 import { Link } from '@/helpers/navigation';
 import HistoryLink from '@/components/HistoryLink/HistoryLink';
-import { RequestData } from '@/helpers/types';
+import { HistoryElement } from '@/helpers/types';
 import { useTranslations } from 'next-intl';
 import classNames from 'classnames';
 
 export default function History() {
-  const [history, setHistory] = useState<RequestData[] | null>(null);
+  const [history, setHistory] = useState<HistoryElement[] | null>(null);
   const t = useTranslations('History');
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function History() {
       <h1>{t('history-header')}</h1>
       {history ? (
         <div className={styles.client_links}>
-          {history.map((request: RequestData, index) => (
+          {history.map((request: HistoryElement, index) => (
             <HistoryLink key={index} request={request} />
           ))}
         </div>
@@ -33,10 +34,10 @@ export default function History() {
         <div className={styles.empty_history}>
           <p>{t('empty-msg')}</p>
           <div className={styles.client_empty_links}>
-            <Link className={classNames(styles.empty_link)} href={Routes.restApi}>
+            <Link className={classNames(sharedStyles.link)} href={Routes.restApi}>
               REST {t('client')}
             </Link>
-            <Link className={classNames(styles.empty_link)} href={Routes.graphiQL}>
+            <Link className={classNames(sharedStyles.link)} href={Routes.graphiQL}>
               GraphiQL {t('client')}
             </Link>
           </div>

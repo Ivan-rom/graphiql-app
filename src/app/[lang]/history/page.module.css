@@ -4,6 +4,8 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
+  margin-top: 80px;
+  margin-bottom: 40px;
 }
 
 .empty_history {
@@ -19,37 +21,9 @@
   gap: 30px;
 }
 
-.empty_link {
-  text-decoration: none;
-  color: var(--accent-color);
-  font-size: 20px;
-}
-
 .client_links {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  max-height: 500px;
-  padding-right: 15px;
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: var(--accent-color);
-    border-radius: 5px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--bg-color);
-    border-radius: 5px;
-    border: 2px solid var(--text-color);
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: var(--text-color);
-    border: 2px solid var(--bg-color);
-  }
+  border-radius: var(--border-radius);
+  width: 80%;
 }
