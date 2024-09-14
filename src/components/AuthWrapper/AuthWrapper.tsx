@@ -12,7 +12,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const protectedUserRoutes = [Routes.history, Routes.client, Routes.graphiQL, Routes.restApi];
+const protectedUserRoutes = [Routes.history, Routes.client];
 const protectedAnonymousRoutes = [Routes.signIn, Routes.signUp];
 
 function AuthWrapper({ children }: Props) {
