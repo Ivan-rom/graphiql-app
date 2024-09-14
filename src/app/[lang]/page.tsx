@@ -14,7 +14,7 @@ export default function Home() {
   const userName = user?.displayName || null;
 
   if (loading) {
-    return <p className={styles.loader}>Loading...</p>;
+    return <p className={styles.loader}>{t('loading')}</p>;
   }
 
   if (error) {
@@ -24,7 +24,8 @@ export default function Home() {
   return (
     <section className={styles.welcome}>
       <div className={styles.container}>
-        <h1 className={styles.title}>{isAuthorized ? t('welcomeBack') + userName : t('welcomeBack')}</h1>
+        <h1 className={styles.appName}>RestQL App</h1>
+        <h2 className={styles.title}>{isAuthorized ? t('welcome') + `, ${userName}!` : `${t('welcome')}!`}</h2>
         <NavigationLinks isAuthLinks={isAuthorized} />
         <WelcomeDescription />
       </div>

@@ -24,12 +24,11 @@
   gap: 20px;
   display: flex;
   flex-flow: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   border-radius: var(--border-radius);
-  box-shadow: 0 0 10px 3px var(--accent-color);
 
-  .title {
+  .appName {
     font-size: 2rem;
     color: var(--text-color);
   }
