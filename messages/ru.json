@@ -81,6 +81,14 @@
     "auth/invalid-email": "Указан недопустимый email",
     "auth/invalid-password": "Пароль должен быть длиннее 6 символов",
     "auth/user-not-found": "Пользователь не найден",
-    "auth/invalid-credential": "Введен неверный email или пароль"
+    "auth/invalid-credential": "Введен неверный email или пароль",
+    "auth/invalid-user-token": "Токен аутентификации недействителен",
+    "auth/user-token-expired": "Токен аутентификации истек",
+    "auth/network-request-failed": "Неудается подключиться к серверу аутентификации",
+    "auth/too-many-requests": "Слишком много попыток входа",
+    "auth/user-disabled": "Аккаунт деактивирован",
+    "auth/unauthorized-domain": "Домен не авторизован",
+    "auth/wrong-passworв": "Введен неверный пароль",
+    "auth/permission-denied": "У вас недостаточно прав"
   }
 }

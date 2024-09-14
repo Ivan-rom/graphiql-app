@@ -81,6 +81,14 @@
     "auth/invalid-email": "Invalid email specified",
     "auth/invalid-password": "Password must be longer than 6 characters",
     "auth/user-not-found": "User is not found",
-    "auth/invalid-credential": "Incorrect email or password entered"
+    "auth/invalid-credential": "Incorrect email or password entered",
+    "auth/invalid-user-token": "Auth token is not valid",
+    "auth/user-token-expired": "Auth token is expired",
+    "auth/network-request-failed": "Unable to connect to authentication server",
+    "auth/too-many-requests": "Too many login attempts",
+    "auth/user-disabled": "Account deactivated",
+    "auth/unauthorized-domain": "Domain not authorized",
+    "auth/wrong-passworв": "Incorrect password entered",
+    "auth/permission-denied": "You do not have enough permissions"
   }
 }

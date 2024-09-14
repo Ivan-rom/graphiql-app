@@ -6,6 +6,8 @@ import WelcomeDescription from '@/components/WelcomeDescription/WelcomeDescripti
 import NavigationLinks from '@/components/NavigationLinks/NavigationLinks';
 import { auth } from '@/firebase/config';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 export default function Home() {
   const t = useTranslations('HomePage');
@@ -13,12 +15,14 @@ export default function Home() {
   const isAuthorized = !!user;
   const userName = user?.displayName || null;
 
+  useEffect(() => {
+    if (error) {
+      toast(error.message);
+    }
+  }, [error]);
+
   if (loading) {
     return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error.message}</p>;
   }
 
   return (
