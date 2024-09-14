@@ -7,6 +7,7 @@ import LanguageToggler from '@/components/LanguageToggler/LanguageToggler';
 import { Routes } from '@/helpers/enums';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import Logo from '@/assets/svg/RQ-logo.svg';
 
 export default function Header() {
   const [isFixed, setFixed] = useState(false);
@@ -31,7 +32,7 @@ export default function Header() {
     <header className={classNames(styles.header, headerStyles)}>
       <div className={styles.container}>
         <Link href={Routes.home} className={styles.logo}>
-          Unit
+          <Logo />
         </Link>
         <div className={styles.controls}>
           <HeaderLinks />
