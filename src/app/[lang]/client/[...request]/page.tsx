@@ -2,7 +2,7 @@
 import { RequestMethods } from '@/helpers/enums';
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
-import { updateUrl } from '@/helpers/methods';
+import { saveRequest, updateUrl } from '@/helpers/methods';
 import { useDefaultParams } from '@/hooks/useDefaultParams';
 import Response from '@/components/Response/Response';
 import { makeRequest } from '@/services/request';
@@ -32,6 +32,7 @@ export default function ClientPage() {
     setIsLoading(true);
     makeRequest(request)
       .then(setResponseObject)
+      .then(() => saveRequest(request))
 
       //TODO: show error result to user
       // use toastify for example
