@@ -1,0 +1,36 @@
+.sdl {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+
+  .container {
+    display: flex;
+    box-shadow: 0 0 10px 3px var(--accent-color);
+    border-radius: 5px;
+    width: 100%;
+
+    .input {
+      flex-grow: 1;
+      font-size: 18px;
+    }
+  }
+
+  .button {
+    flex-shrink: 0;
+  }
+}
+
+.schemaButton {
+  flex-grow: 0;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  fill: var(--text-color);
+}

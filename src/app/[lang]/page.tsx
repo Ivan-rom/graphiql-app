@@ -8,12 +8,20 @@ import { auth } from '@/firebase/config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import ClientDescription from '@/components/ClientsDescription/ClientDescription.tsx';
 import AboutUs from '@/components/AboutUs/AboutUs.tsx';
+import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 export default function Home() {
   const t = useTranslations('HomePage');
-  const [user] = useAuthState(auth);
+  const [user, , error] = useAuthState(auth);
   const isAuthorized = !!user;
   const userName = user?.displayName || null;
+
+  useEffect(() => {
+    if (error) {
+      toast(error.message);
+    }
+  }, [error]);
 
   return (
     <section className={styles.welcome}>

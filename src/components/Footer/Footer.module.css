@@ -5,6 +5,7 @@
   width: 100%;
   padding: 10px 0;
   gap: 20px;
+  height: var(--footer-height);
 
   .links {
     display: flex;

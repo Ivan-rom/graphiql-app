@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 110px;
+    justify-content: center;
+    margin-top: var(--header-default-height);
   }
 }

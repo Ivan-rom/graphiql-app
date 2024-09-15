@@ -115,3 +115,62 @@ export const transformValue = (value: string): JSONTypes => {
     return value;
   }
 };
+
+export function formatGraphQLQuery(query: string): string {
+  let indentLevel = 0;
+  const indentString = '  ';
+  let formattedQuery = '';
+
+  for (let i = 0; i < query.length; i++) {
+    const char = query[i];
+
+    switch (char) {
+      case '{':
+        formattedQuery += ' {\n' + indentString.repeat(++indentLevel);
+        break;
+
+      case '}':
+        formattedQuery += '\n' + indentString.repeat(--indentLevel) + '}';
+        break;
+
+      case ',':
+        formattedQuery += ',\n' + indentString.repeat(indentLevel);
+        break;
+
+      default:
+        formattedQuery += char;
+        if (char === ' ' && query[i + 1] === '}') {
+          formattedQuery = formattedQuery.slice(0, -1);
+        }
+        break;
+    }
+  }
+
+  return formattedQuery;
+}
+
+export function compactGraphQLQuery(query: string): string {
+  return query
+    .replace(/\s+/g, ' ')
+    .replace(/\s*{\s*/g, '{')
+    .replace(/\s*}\s*/g, '}')
+    .replace(/\s*,\s*/g, ',')
+    .trim();
+}
+
+export const saveRequest = async (request: RequestData) => {
+  const newElement = {
+    url: request.url,
+    method: request.method,
+    href: formatURL(request),
+  };
+
+  const historyString = localStorage.getItem('history');
+  const history = [];
+  history.push(newElement);
+  if (historyString !== null) {
+    history.push(...JSON.parse(historyString));
+  }
+  localStorage.setItem('history', JSON.stringify(history));
+};
+
