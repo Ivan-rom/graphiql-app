@@ -11,7 +11,7 @@ export default defineConfig({
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
       include: ['src'],
-      exclude: ['**/__tests__', '**/i18n.ts', '**/middleware.ts', '**/firebase'],
+      exclude: ['**/__tests__', '**/i18n.ts', '**/middleware.ts', '**/firebase', '**/store/store.ts'],
     },
   },
   resolve: {
