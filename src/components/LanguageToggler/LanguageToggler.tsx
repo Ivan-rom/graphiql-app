@@ -13,7 +13,7 @@ function LanguageToggler() {
 
   const toggleLanguage = () => {
     const newLocale = locale === locales[0] ? locales[1] : locales[0];
-    const newPathname = pathname.replace(`/${locale}`, '');
+    const newPathname = pathname ? pathname.replace(`/${locale}`, '') : '';
 
     router.push(`/${newLocale}${newPathname}`);
   };
