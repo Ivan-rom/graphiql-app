@@ -13,11 +13,12 @@
         "GraphiQL Client - Supports URL input, query and variable editing, header editing, and documentation exploration via SDL."
       ]
     },
-    "welcomeBack": "Welcome back, ",
+    "welcomeBack": "Welcome back ",
     "authLinks": {
       "signIn": "Sign in",
       "signUp": "Sign up"
     },
+    "logOut": "Log out",
     "mainLinks": {
       "restApi": "REST API",
       "graphiQL": "GraphiQL",
@@ -74,7 +75,6 @@
     "description": "You can go ",
     "home-link": "home"
   },
-
   "FirebaseErrors": {
     "auth/email-already-exists": "This email is already exists",
     "auth/email-already-in-use": "This email is already in use",
@@ -90,5 +90,10 @@
     "auth/unauthorized-domain": "Domain not authorized",
     "auth/wrong-passworв": "Incorrect password entered",
     "auth/permission-denied": "You do not have enough permissions"
+  },
+  "History": {
+    "history-header": "History Requests",
+    "empty-msg": "You haven't executed any requests. It's empty here. Try:",
+    "client": "Сlient"
   }
 }

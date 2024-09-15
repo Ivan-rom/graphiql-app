@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  gap: 20px;
+
+  .links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .text {
+    font-size: 0.8rem;
+  }
+
+  .link {
+    &:first-child {
+      order: 3;
+    }
+
+    .image {
+      width: 25px;
+      height: 25px;
+      transition: filter 0.3s;
+
+      &:hover {
+        filter: drop-shadow(0 0 0.2rem var(--accent-color));
+      }
+    }
+  }
+}

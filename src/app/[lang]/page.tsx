@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 
 export default function Home() {
   const t = useTranslations('HomePage');
-  const [user, loading, error] = useAuthState(auth);
+  const [user, , error] = useAuthState(auth);
   const isAuthorized = !!user;
   const userName = user?.displayName || null;
 
@@ -20,10 +20,6 @@ export default function Home() {
       toast(error.message);
     }
   }, [error]);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <section className={styles.welcome}>

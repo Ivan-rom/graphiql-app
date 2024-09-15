@@ -115,3 +115,19 @@ export const transformValue = (value: string): JSONTypes => {
     return value;
   }
 };
+
+export const saveRequest = async (request: RequestData) => {
+  const newElement = {
+    url: request.url,
+    method: request.method,
+    href: formatURL(request),
+  };
+
+  const historyString = localStorage.getItem('history');
+  const history = [];
+  history.push(newElement);
+  if (historyString !== null) {
+    history.push(...JSON.parse(historyString));
+  }
+  localStorage.setItem('history', JSON.stringify(history));
+};
