@@ -6,9 +6,10 @@ const DEFAULT_GRAPHQL_HEADERS = {
 };
 
 const RESPONSE_ERRORS = {
-  defaultError: { status: 500, body: 'Something went wrong' },
-  badUrl: { status: 501, body: 'Endpoint url is not filled' },
-  badMethod: { status: 503, body: 'Incorrect Method selected' },
+  defaultError: { status: 512, body: 'Something went wrong' },
+  badUrl: { status: 513, body: 'Endpoint url is not filled' },
+  fetchError: { status: 514, body: 'Failed to fetch' },
+  badMethod: { status: 515, body: 'Incorrect Method selected' },
 };
 
 export const makeRequest = async ({ url, body, method, headers }: RequestData) => {
@@ -27,33 +28,39 @@ export const makeRequest = async ({ url, body, method, headers }: RequestData) =
   decodedOptions.url = url;
   decodedOptions.body = body;
 
-  try {
-    if (method === RequestMethods.GRAPHQL) {
-      requestOptions.method = RequestMethods.POST;
-      requestOptions.headers = {
-        ...DEFAULT_GRAPHQL_HEADERS,
-        ...headersObject,
-      };
-      requestOptions.body = decodedOptions.body;
-    } else {
-      requestOptions.method = method;
-      requestOptions.headers = headersObject;
-
-      if (method !== RequestMethods.GET) {
-        requestOptions.body = decodedOptions.body;
-      }
-    }
-
-    const response = await fetch(decodedOptions.url, requestOptions);
-    const res = await response.json();
-
-    const resultObject = {
-      status: response.status,
-      body: JSON.stringify(res, null, 2),
+  if (method === RequestMethods.GRAPHQL) {
+    requestOptions.method = RequestMethods.POST;
+    requestOptions.headers = {
+      ...DEFAULT_GRAPHQL_HEADERS,
+      ...headersObject,
     };
+    requestOptions.body = decodedOptions.body;
+  } else {
+    requestOptions.method = method;
+    requestOptions.headers = headersObject;
+
+    if (method !== RequestMethods.GET) {
+      requestOptions.body = decodedOptions.body;
+    }
+  }
+
+  let response;
+
+  try {
+    response = await fetch(decodedOptions.url, requestOptions);
+  } catch {
+    throw RESPONSE_ERRORS.fetchError;
+  }
+
+  const resultObject = {
+    status: response.status,
+    body: '',
+  };
+  try {
+    if (response.ok) resultObject.body = JSON.stringify(await response.json(), null, 2);
 
     return resultObject;
   } catch {
-    throw RESPONSE_ERRORS.defaultError;
+    throw resultObject;
   }
 };

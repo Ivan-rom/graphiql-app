@@ -1,6 +1,6 @@
 .response {
   padding: 10px;
-  flex-basis: 40%;
+  flex-basis: 30%;
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -74,7 +74,6 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      justify-content: start;
 
       &::-webkit-scrollbar-thumb {
         background: var(--bg-color);

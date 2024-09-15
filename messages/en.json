@@ -56,12 +56,16 @@
   },
   "Client": {
     "url-placeholder": "Enter URL or paste text",
+    "sdl-placeholder": "Enter URL for GraphQl docs",
     "send": "Send",
+    "sdl-button": "Get docs",
     "headers": "Headers",
     "key-placeholder": "Key",
     "value-placeholder": "Value",
     "body-title": "Body",
-    "variables-title": "Body variables",
+    "variables-type": "variables",
+    "variables-title": "Variables",
+    "query-title": "Query",
     "response": {
       "title": "Response",
       "status": "Status"
