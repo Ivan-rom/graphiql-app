@@ -3,6 +3,7 @@
   right: 0;
   left: 0;
   z-index: 50;
+  background-color: var(--body-bg-color);
 
   .container {
     display: flex;
@@ -35,8 +36,7 @@
   }
 
   &.fixed {
-    box-shadow: 0 1px 4px var(--disabled-assent-color);
-    background-color: var(--body-bg-color);
+    box-shadow: 0 1px 4px var(--accent-color);
     transition: all 0.3s ease-in-out;
     animation: slideDown 0.3s ease;
   }
