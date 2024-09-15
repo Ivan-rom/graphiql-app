@@ -8,6 +8,8 @@ import classNames from 'classnames';
 import { GraphQLSchema } from 'graphql';
 import Schema from '../../assets/svg/schema.svg';
 import { fetchSchema } from '@/services/schema';
+import { toast } from 'react-toastify';
+import LoadingButton from '../LoadingButton/LoadingButton';
 
 const SDL_POSTFIX = '?sdl';
 
@@ -20,9 +22,11 @@ type Props = {
 
 function SdlUrl({ updateSchema, schema, setIsSchemaVisible, isSchemaVisible }: Props) {
   const t = useTranslations('Client');
+  const tErrors = useTranslations('SdlErrors');
   const endpoint = useSelector(selectURL);
   const [sdlEndpoint, setSdlEndpoint] = useState('');
   const [isChanged, setIsChanged] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!isChanged) setSdlEndpoint(`${endpoint}${SDL_POSTFIX}`);
@@ -39,10 +43,17 @@ function SdlUrl({ updateSchema, schema, setIsSchemaVisible, isSchemaVisible }: P
     setSdlEndpoint(value.trim());
   };
 
-  const clickHandler = async () => {
-    const schema = await fetchSchema(sdlEndpoint);
-    updateSchema(schema);
-    setIsSchemaVisible(Boolean(schema));
+  const clickHandler = () => {
+    setIsLoading(true);
+    fetchSchema(sdlEndpoint)
+      .then((result) => {
+        updateSchema(result);
+        setIsSchemaVisible(Boolean(result));
+      })
+      .catch((error: string) => {
+        toast.error(tErrors(error));
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const schemaToggler = () => {
@@ -67,13 +78,14 @@ function SdlUrl({ updateSchema, schema, setIsSchemaVisible, isSchemaVisible }: P
           placeholder={t('sdl-placeholder')}
         />
       </div>
-      <button
-        className={classNames(sharedStyles.button, styles.button)}
+      <LoadingButton
         onClick={clickHandler}
+        isLoading={isLoading}
+        className={styles.button}
         disabled={sdlEndpoint === SDL_POSTFIX || !sdlEndpoint}
       >
         {t('sdl-button')}
-      </button>
+      </LoadingButton>
     </div>
   );
 }

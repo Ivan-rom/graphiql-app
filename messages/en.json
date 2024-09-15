@@ -99,5 +99,9 @@
     "history-header": "History Requests",
     "empty-msg": "You haven't executed any requests. It's empty here. Try:",
     "client": "Сlient"
+  },
+  "SdlErrors": {
+    "fetch-error": "Failed to fetch",
+    "parse-error": "Failed to parse"
   }
 }
