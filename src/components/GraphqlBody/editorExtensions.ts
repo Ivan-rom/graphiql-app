@@ -11,17 +11,16 @@ interface GraphQLSyntaxError extends GraphQLError {
 function graphqlLinter(view: EditorView): Diagnostic[] {
   const doc = view.state.doc.toString();
   try {
-    parse(doc); // Пытаемся распарсить документ GraphQL
+    parse(doc);
   } catch (error) {
-    const gqlError = error as GraphQLSyntaxError; // Явно указываем тип ошибки GraphQL
+    const gqlError = error as GraphQLSyntaxError;
 
-    // Если возникает ошибка, возвращаем синтаксическое сообщение об ошибке
     const message = gqlError.message;
-    const location = gqlError.locations?.[0]; // Проверяем, есть ли информация о локации
+    const location = gqlError.locations?.[0];
     if (!location) return [];
 
     const from = location.column - 1;
-    const to = from + 1; // Выделяем одну колонку, где произошла ошибка
+    const to = from + 1;
     return [
       {
         from,
@@ -31,7 +30,7 @@ function graphqlLinter(view: EditorView): Diagnostic[] {
       },
     ];
   }
-  return []; // Если нет ошибок, ничего не возвращаем
+  return [];
 }
 
 export const editorExtensions: Extension = [linter(graphqlLinter), EditorView.lineWrapping];
