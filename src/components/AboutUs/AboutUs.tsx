@@ -21,13 +21,10 @@ export default function AboutUs() {
       <ul className={styles.list}>
         {tTeam.map((member, index) => (
           <li key={index} className={styles.listItem}>
-            <Link
-              className={`${sharedStyles.link} ${styles.link}`}
-              href={member.github}
-              target="_blank"
-            >
+            <Link className={`${sharedStyles.link} ${styles.link}`} href={member.github} target="_blank">
               {member.name}
-            </Link> - {member.role}
+            </Link>{' '}
+            - {member.role}
           </li>
         ))}
       </ul>

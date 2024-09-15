@@ -15,7 +15,7 @@ export default function ClientDescription() {
     <div className={styles.container}>
       {titles.map((title, index) => (
         <div key={index} className={styles.clientSection}>
-          <div  className={styles.clientDescription}>
+          <div className={styles.clientDescription}>
             <h3 className={styles.title}>{title}</h3>
             <p className={styles.text}>{texts[index]}</p>
           </div>

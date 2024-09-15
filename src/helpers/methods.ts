@@ -173,4 +173,3 @@ export const saveRequest = async (request: RequestData) => {
   }
   localStorage.setItem('history', JSON.stringify(history));
 };
-
