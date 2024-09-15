@@ -6,16 +6,14 @@ import WelcomeDescription from '@/components/WelcomeDescription/WelcomeDescripti
 import NavigationLinks from '@/components/NavigationLinks/NavigationLinks';
 import { auth } from '@/firebase/config';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import ClientDescription from '@/components/ClientsDescription/ClientDescription.tsx';
+import AboutUs from '@/components/AboutUs/AboutUs.tsx';
 
 export default function Home() {
   const t = useTranslations('HomePage');
-  const [user, loading, error] = useAuthState(auth);
+  const [user, , error] = useAuthState(auth);
   const isAuthorized = !!user;
   const userName = user?.displayName || null;
-
-  if (loading) {
-    return <p className={styles.loader}>{t('loading')}</p>;
-  }
 
   if (error) {
     return <p>Error: {error.message}</p>;
@@ -24,10 +22,14 @@ export default function Home() {
   return (
     <section className={styles.welcome}>
       <div className={styles.container}>
-        <h1 className={styles.appName}>RestQL App</h1>
-        <h2 className={styles.title}>{isAuthorized ? t('welcome') + `, ${userName}!` : `${t('welcome')}!`}</h2>
-        <NavigationLinks isAuthLinks={isAuthorized} />
+        <div className={styles.titleBlock}>
+          <h1 className={styles.appName}>RestQL App</h1>
+          <h2 className={styles.title}>{isAuthorized ? t('welcome') + `, ${userName}!` : `${t('welcome')}!`}</h2>
+          <NavigationLinks isAuthLinks={isAuthorized} />
+        </div>
         <WelcomeDescription />
+        <ClientDescription />
+        <AboutUs />
       </div>
     </section>
   );

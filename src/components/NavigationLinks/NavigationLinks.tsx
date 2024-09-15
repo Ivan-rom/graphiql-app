@@ -15,12 +15,7 @@ export default function NavigationLinks({ isAuthLinks }: NavigationLinksProps) {
   return (
     <div className={styles.links}>
       {links.map(({ href, label }, index) => (
-        <Link
-          className={styles.link}
-          key={index}
-          href={href}
-          prefetch={isAuthLinks ? false : undefined}
-        >
+        <Link className={styles.link} key={index} href={href} prefetch={isAuthLinks ? false : undefined}>
           {t(label)}
         </Link>
       ))}

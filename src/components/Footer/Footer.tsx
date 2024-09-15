@@ -20,12 +20,7 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       {links.map((link, index) => (
-        <Link
-          className={styles.link}
-          key={index}
-          href={link.href}
-          target="_blank"
-        >
+        <Link className={styles.link} key={index} href={link.href} target="_blank">
           <link.src className={styles.image} alt={link.alt} />
         </Link>
       ))}

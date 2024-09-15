@@ -13,7 +13,6 @@
       "history": "History"
     },
     "description": {
-      "title": "Project introduction",
       "text": "Hello! We, the 'Unit' team, are pleased to present to you the RestQL App application. Our product, combining the functionality of Postman and GraphiQL in one interface, allows users to make requests to RESTfull and GraphQL APIs, providing a convenient tool for interacting with any open API. We approached the development of the application with great attention and responsibility. Each of the participants made their invaluable contribution to our brainchild, which we are proud of and hope that you will also find it useful and valuable. Before starting to use the application, please read the information below. This will allow you to use RestQL without errors and without any difficulties. Thank you for your attention and enjoy using, dear friend!",
       "listSubtitle": "Ready to start? Then follow these steps:",
       "list": [
@@ -25,12 +24,38 @@
     "clientDescription": {
       "title": ["RESTFull client", "GraphiQL client", "Request history"],
       "text": [
-        "To work with the REST API, follow the link of the same name. Enter the URL, select the request method, add headers and request body. Then click the 'Send' button.",
-        "To start working with graphiQL clients, also use the necessary navigation link. Enter the URL, select the request method, add headers and request body. Then click the 'Send' button.",
-        "In the 'History' section, you can view the history of requests that you sent. To do this, follow the appropriate link in the navigation. The history displays all the requests you sent, including the URL, request method, headers, and request body. You can view the details of the request, as well as repeat it."
+        "To work with REST API, follow the link of the same name. You can send requests using all available methods to any API, the request body in a convenient code editor, with syntax highlighting, change and add headers for your requests. And if something goes wrong, RestQL will definitely notify you with a pop-up window with error information.",
+        "To start working with graphiQL clients, also use the necessary navigation link. While in the client, simply select the appropriate method from the drop-down menu. In the editor, there is the ability to use and edit for such parameters as 'variables' and 'query'. Additionally, we have added the ability to get the graphQL schema. With its help, the editor will display prompts with possible options for filling in the 'query' field for the request. In addition, the 'Content-Type' header is preset to 'application/json' and hidden for your convenience.",
+        "In the 'History' section, you can view the history of requests that you sent. The history displays all the requests that you sent, including the URL, request method, headers, and request body. You can view the details of the request, as well as repeat it. You will be redirected to the editing page. The parameters that you used earlier when writing your requests will already be preset"
       ]
     },
-    "loading": "Loading..."
+    "aboutUs": {
+      "title": "About us",
+      "text": "We are the 'Unit' team. For the final project, we were assembled into a team thanks to our mentor. Here we gained invaluable experience and knowledge. We felt the joy and difficulties of developing a very interesting application using modern technologies. We are proud of our project and hope that it will be useful to you too. Thank you for your attention and enjoy using it!",
+      "subtitle": "Teammates:",
+      "members": [
+        {
+          "name": "Ivan Romanenko",
+          "role": "Team Lead",
+          "github": "https://github.com/Ivan-rom"
+        },
+        {
+          "name": "Tatsiana Yatsuk",
+          "role": "Frontend Developer",
+          "github": "https://github.com/khvorosttt"
+        },
+        {
+          "name": "Vladimir Maslenkov",
+          "role": "Frontend Developer",
+          "github": "https://github.com/Volodya13"
+        },
+        {
+          "name": "Aliaksei Rudak",
+          "role": "Sensei",
+          "github": "https://github.com/lexarudak"
+        }
+      ]
+    }
   },
   "Form": {
     "name-label": "Name",
