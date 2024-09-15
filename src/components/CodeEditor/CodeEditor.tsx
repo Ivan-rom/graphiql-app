@@ -3,6 +3,7 @@ import { basicSetup, EditorView } from 'codemirror';
 import { useEffect, useRef, useState } from 'react';
 import './codeEditor.css';
 import classNames from 'classnames';
+import { editorTheme } from './editorTheme';
 
 type Props = {
   extensions: Extension;
@@ -29,7 +30,7 @@ function CodeEditor({ extensions, value, className, blurHandler }: Props) {
 
       const state = EditorState.create({
         doc: value,
-        extensions: [basicSetup, extensions, eventListeners],
+        extensions: [basicSetup, extensions, editorTheme, eventListeners],
       });
 
       const view = new EditorView({ state, parent: editor.current });
