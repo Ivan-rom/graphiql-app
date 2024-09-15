@@ -34,6 +34,7 @@ describe('test history page', () => {
         History: {
           'history-header': 'History Requests',
           'empty-msg': "You haven't executed any requests. It's empty here. Try:",
+          client: 'Client',
         },
       },
     });
