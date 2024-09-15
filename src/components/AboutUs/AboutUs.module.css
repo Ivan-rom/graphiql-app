@@ -27,13 +27,5 @@
       gap: 10px;
       align-items: center;
     }
-
-    .link {
-      @media (hover: hover) {
-        &:hover {
-          color: var(--disabled-assent-color);
-        }
-      }
-    }
   }
 }
