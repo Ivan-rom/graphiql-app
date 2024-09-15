@@ -3,7 +3,7 @@ import { IVariable, RequestData, VariableKeys } from '@/helpers/types';
 import { RequestMethods } from '@/helpers/enums';
 import { DEFAULT_VARIABLE } from '@/helpers/constants';
 
-const initialState: RequestData = {
+export const initialState: RequestData = {
   url: '',
   method: RequestMethods.GET,
   body: '',
