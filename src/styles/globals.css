@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+:root {
+  --body-bg-color: #181922;
+  --bg-color: #272937;
+  --accent-color: #d6305f;
+  --text-color: #ffffff;
+  --error-color: #ff5555;
+
+  --status-info-color: #68aad6;
+  --status-success-color: #73c573;
+  --status-redirect-color: #d6a368;
+  --status-clientError-color: #d6d468;
+  --status-serverError-color: #d6305f;
+
+  --editor-string-color: #73c573;
+  --editor-number-color: #68aad6;
+  --editor-boolean-color: #d6a368;
+  --editor-null-color: #d6d468;
+  --editor-select-color: #393e64;
+  --editor-default-color: #808080;
+  --editor-error-bg-color: #45485d;
+  --editor-variable-name-color: #ef6197;
+  --editor-keyword-color: #ec94aa;
+  --editor-atom-color: #ff6cd3;
+  --editor-attribute-name-color: #936cff;
+
+  --toastify-color-progress-dark: var(--accent-color) !important;
+  --toastify-color-dark: var(--bg-color) !important;
+  --toastify-color-error: var(--error-color) !important;
+  --toastify-text-color-dark: var(--text-color) !important;
+
+  --box-shadow: 0 0 4px 1px #d6305f;
+
+  --border-radius: 10px;
+
+  --header-default-height: 90px;
+  --footer-height: 49px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  background-color: var(--body-bg-color);
+  color: var(--text-color);
+}
+
+button {
+  all: unset;
+}
+
+input {
+  outline: none;
+}

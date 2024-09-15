@@ -1,0 +1,10 @@
+.links {
+  display: flex;
+  gap: 10px;
+}
+
+.link {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}

@@ -1,0 +1,138 @@
+{
+  "HomePage": {
+    "title": "Welcome to RestQL App by Unit team",
+    "welcome": "Welcome",
+    "authLinks": {
+      "signIn": "Sign in",
+      "signUp": "Sign up"
+    },
+    "logOut": "Log out",
+    "mainLinks": {
+      "restApi": "RESTFull API",
+      "graphiQL": "GraphiQL",
+      "history": "Requests history"
+    },
+    "description": {
+      "text": "Hello! We, the 'Unit' team, are pleased to present to you the RestQL App application. Our product, combining the functionality of Postman and GraphiQL in one interface, allows users to make requests to RESTfull and GraphQL APIs, providing a convenient tool for interacting with any open API. We approached the development of the application with great attention and responsibility. Each of the participants made their invaluable contribution to our brainchild, which we are proud of and hope that you will also find it useful and valuable. Before starting to use the application, please read the information below. This will allow you to use RestQL without errors and without any difficulties. Thank you for your attention and enjoy using, dear friend!",
+      "list": [
+        "If you are not yet authorized, please register or log in.",
+        "To get started, select one of the sections: REST API, GraphiQL",
+        "Make sure you are using the correct URls, endpoints, and request methods."
+      ]
+    },
+    "clientDescription": {
+      "title": ["RESTFull client", "GraphiQL client", "Request history"],
+      "text": [
+        "To work with REST API, follow the link of the same name. You can send requests using all available methods to any API, the request body in a convenient code editor, with syntax highlighting, change and add headers for your requests. And if something goes wrong, RestQL will definitely notify you with a pop-up window with error information.",
+        "To start working with graphiQL clients, also use the necessary navigation link. While in the client, simply select the appropriate method from the drop-down menu. In the editor, there is the ability to use and edit for such parameters as variables and query. Additionally, we have added the ability to get the graphQL schema. With its help, the editor will display prompts with possible options for filling in the 'query' field for the request. In addition, the Content-Type header is preset to application/json and hidden for your convenience.",
+        "In the Requests History section, you can view the history of requests that you sent. The history displays all the requests that you sent, including the URL, request method, headers, and request body. You can view the details of the request, as well as repeat it. You will be redirected to the editing page. The parameters that you used earlier when writing your requests will already be preset"
+      ]
+    },
+    "aboutUs": {
+      "title": "About us",
+      "text": "All this application was written by the cool Unit team, and is a project within the RS School course.",
+      "subtitle": "Teammates:",
+      "members": [
+        {
+          "name": "Ivan Romanenko",
+          "role": "Team Lead",
+          "github": "https://github.com/Ivan-rom"
+        },
+        {
+          "name": "Tatsiana Yatsuk",
+          "role": "Frontend Developer",
+          "github": "https://github.com/khvorosttt"
+        },
+        {
+          "name": "Vladimir Maslenkov",
+          "role": "Frontend Developer",
+          "github": "https://github.com/Volodya13"
+        },
+        {
+          "name": "Aliaksei Rudak",
+          "role": "Mentor",
+          "github": "https://github.com/lexarudak"
+        }
+      ]
+    }
+  },
+  "Form": {
+    "name-label": "Name",
+    "name-placeholder": "Enter name",
+    "email-label": "Email",
+    "email-placeholder": "Enter email",
+    "password-label": "Password",
+    "password-placeholder": "Enter password",
+    "confirmPassword-label": "Confirm password",
+    "confirmPassword-placeholder": "Repeat password",
+    "field-required": "This field is required",
+    "email-valid": "Incorrect email",
+    "passwords-match": "Passwords must match",
+    "password-length": "Must be minimum 8 symbols",
+    "password-letter": "Must be at least 1 letter",
+    "password-digit": "Must be at least 1 digit",
+    "password-spec-char": "Must be at least 1 special character (!@#$%^&*)"
+  },
+  "SignUp": {
+    "title": "Sign up",
+    "submit-text": "sign up",
+    "hint": "Already have an account?",
+    "link": "Sign in",
+    "success": "successful registration"
+  },
+  "SignIn": {
+    "title": "Sign in",
+    "submit-text": "sign in",
+    "hint": "Don't have an account?",
+    "link": "Sign up",
+    "success": "successful login"
+  },
+  "Client": {
+    "url-placeholder": "Enter URL or paste text",
+    "sdl-placeholder": "Enter URL for GraphQl docs",
+    "send": "Send",
+    "sdl-button": "Get docs",
+    "headers": "Headers",
+    "key-placeholder": "Key",
+    "value-placeholder": "Value",
+    "body-title": "Body",
+    "variables-type": "variables",
+    "variables-title": "Variables",
+    "query-title": "Query",
+    "response": {
+      "title": "Response",
+      "status": "Status"
+    },
+    "loading": "Loading"
+  },
+  "NotFound": {
+    "title": "Page is not found",
+    "description": "You can go ",
+    "home-link": "home"
+  },
+  "FirebaseErrors": {
+    "auth/email-already-exists": "This email is already exists",
+    "auth/email-already-in-use": "This email is already in use",
+    "auth/invalid-email": "Invalid email specified",
+    "auth/invalid-password": "Password must be longer than 6 characters",
+    "auth/user-not-found": "User is not found",
+    "auth/invalid-credential": "Incorrect email or password entered",
+    "auth/invalid-user-token": "Auth token is not valid",
+    "auth/user-token-expired": "Auth token is expired",
+    "auth/network-request-failed": "Unable to connect to authentication server",
+    "auth/too-many-requests": "Too many login attempts",
+    "auth/user-disabled": "Account deactivated",
+    "auth/unauthorized-domain": "Domain not authorized",
+    "auth/wrong-passworв": "Incorrect password entered",
+    "auth/permission-denied": "You do not have enough permissions"
+  },
+  "History": {
+    "history-header": "History Requests",
+    "empty-msg": "You haven't executed any requests. It's empty here. Try:",
+    "client": "Сlient"
+  },
+  "SdlErrors": {
+    "fetch-error": "Failed to fetch",
+    "parse-error": "Failed to parse"
+  }
+}

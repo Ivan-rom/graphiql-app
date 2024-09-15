@@ -1,0 +1,50 @@
+.description {
+  display: flex;
+  flex-flow: column;
+  width: 50%;
+
+  .title {
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    margin: 15px 0;
+  }
+
+  .text {
+    line-height: 1.8rem;
+    text-wrap: balance;
+    color: var(--text-color);
+    margin-bottom: 20px;
+  }
+
+  .list {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 25px;
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+
+    & li {
+      position: relative;
+      font-size: 14px;
+
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+
+      &:before {
+        content: '!';
+        font-weight: 700;
+        text-align: center;
+        position: absolute;
+        left: -20px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: var(--accent-color);
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+.editor {
+  font-size: 16px;
+  background-color: transparent;
+  padding: 5px 5px 5px 0;
+  border-radius: var(--border-radius);
+  color: var(--editor-default-color);
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: var(--border-radius);
+  }
+
+  .cm-tooltip {
+    background: var(--editor-error-bg-color);
+    color: var(--text-color);
+    border: none;
+  }
+
+  .cm-diagnostic-error {
+    border-left: 5px solid var(--error-color);
+  }
+
+  .cm-lintPoint {
+    &::after {
+      border-bottom-color: var(--error-color);
+    }
+  }
+
+  .cm-editor .cm-selectionBackground {
+    background-color: var(--editor-select-color);
+  }
+
+  .cm-editor.cm-focused {
+    outline: none;
+  }
+
+  .cm-gutters,
+  .cm-activeLineGutter {
+    background-color: transparent;
+    border: none;
+  }
+
+  .cm-activeLine {
+    background-color: transparent;
+  }
+
+  .cm-cursor {
+    border-color: var(--accent-color);
+  }
+
+  .cm-focused,
+  .cm-activeLine {
+    .cm-matchingBracket {
+      background-color: var(--bg-color);
+    }
+  }
+}
