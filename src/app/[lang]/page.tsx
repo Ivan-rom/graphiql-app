@@ -9,13 +9,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default function Home() {
   const t = useTranslations('HomePage');
-  const [user, loading, error] = useAuthState(auth);
+  const [user, , error] = useAuthState(auth);
   const isAuthorized = !!user;
   const userName = user?.displayName || null;
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   if (error) {
     return <p>Error: {error.message}</p>;

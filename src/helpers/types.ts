@@ -25,3 +25,9 @@ export enum VariableKeys {
 export type changeVariableType = (value: string, name: VariableKeys, index: number) => void;
 
 export type JSONTypes = string | null | number | boolean | { [key: string]: JSONTypes } | JSONTypes[];
+
+export type HistoryElement = {
+  href: string;
+  method: string;
+  url: string;
+};

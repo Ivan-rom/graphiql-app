@@ -2,12 +2,16 @@ import { NextIntlClientProvider } from 'next-intl';
 import styles from './layout.module.css';
 import { getMessages } from 'next-intl/server';
 import StoreProvider from '../StoreProvider/StoreProvider';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
+import { ReactNode } from 'react';
+import AuthWrapper from '@/components/AuthWrapper/AuthWrapper';
 
 type Props = {
   params: {
     lang: string;
   };
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default async function Layout({ children, params }: Props) {
@@ -18,7 +22,11 @@ export default async function Layout({ children, params }: Props) {
       <body className={styles.body}>
         <StoreProvider>
           <NextIntlClientProvider messages={messages}>
-            <main className={styles.main}>{children}</main>
+            <Header />
+            <main className={styles.main}>
+              <AuthWrapper>{children}</AuthWrapper>
+            </main>
+            <Footer />
           </NextIntlClientProvider>
         </StoreProvider>
       </body>

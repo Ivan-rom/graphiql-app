@@ -1,0 +1,33 @@
+.historyLink {
+  background-color: var(--bg-color);
+  padding: 10px;
+  display: flex;
+  text-decoration: none;
+  gap: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  border: 1px solid var(--bg-color);
+
+  &:first-of-type {
+    border-radius: 5px 5px 0 0;
+  }
+
+  &:last-of-type {
+    border-radius: 0 0 5px 5px;
+  }
+
+  &:hover {
+    border-color: var(--accent-color);
+  }
+}
+
+.method {
+  color: var(--accent-color);
+  font-weight: bold;
+  width: 90px;
+}
+
+.url {
+  color: white;
+  flex-grow: 1;
+}
