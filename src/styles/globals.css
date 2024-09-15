@@ -29,6 +29,9 @@
   --toastify-text-color-dark: var(--text-color) !important;
 
   --border-radius: 10px;
+
+  --header-default-height: 90px;
+  --footer-height: 49px;
 }
 
 * {
