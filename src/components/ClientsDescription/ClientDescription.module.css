@@ -5,6 +5,7 @@
   flex-direction: column;
   gap: 35px;
   padding-top: 2%;
+
   .clientSection {
     display: flex;
     align-items: center;
@@ -12,9 +13,13 @@
     gap: 5%;
     width: 100%;
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
     padding: 2%;
     background-color: var(--bg-color);
+
+    .text {
+
+      line-height: 1.8rem;
+    }
 
     .icon {
       max-width: 150px;
@@ -35,6 +40,5 @@
   .title {
     font-size: 1.3rem;
     margin-bottom: 1rem;
-    text-decoration: underline;
   }
 }
