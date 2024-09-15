@@ -46,13 +46,15 @@
     "title": "Sign up",
     "submit-text": "sign up",
     "hint": "Already have an account?",
-    "link": "Sign in"
+    "link": "Sign in",
+    "success": "successful registration"
   },
   "SignIn": {
     "title": "Sign in",
     "submit-text": "sign in",
     "hint": "Don't have an account?",
-    "link": "Sign up"
+    "link": "Sign up",
+    "success": "successful login"
   },
   "Client": {
     "url-placeholder": "Enter URL or paste text",
@@ -72,9 +74,34 @@
     },
     "loading": "Loading"
   },
+  "NotFound": {
+    "title": "Page is not found",
+    "description": "You can go ",
+    "home-link": "home"
+  },
+  "FirebaseErrors": {
+    "auth/email-already-exists": "This email is already exists",
+    "auth/email-already-in-use": "This email is already in use",
+    "auth/invalid-email": "Invalid email specified",
+    "auth/invalid-password": "Password must be longer than 6 characters",
+    "auth/user-not-found": "User is not found",
+    "auth/invalid-credential": "Incorrect email or password entered",
+    "auth/invalid-user-token": "Auth token is not valid",
+    "auth/user-token-expired": "Auth token is expired",
+    "auth/network-request-failed": "Unable to connect to authentication server",
+    "auth/too-many-requests": "Too many login attempts",
+    "auth/user-disabled": "Account deactivated",
+    "auth/unauthorized-domain": "Domain not authorized",
+    "auth/wrong-passworв": "Incorrect password entered",
+    "auth/permission-denied": "You do not have enough permissions"
+  },
   "History": {
     "history-header": "History Requests",
     "empty-msg": "You haven't executed any requests. It's empty here. Try:",
     "client": "Сlient"
+  },
+  "SdlErrors": {
+    "fetch-error": "Failed to fetch",
+    "parse-error": "Failed to parse"
   }
 }

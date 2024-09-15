@@ -2,7 +2,6 @@
   --body-bg-color: #181922;
   --bg-color: #272937;
   --accent-color: #d6305f;
-  --disabled-assent-color: rgb(214, 48, 95, 0.7);
   --text-color: #ffffff;
   --error-color: #ff5555;
 
@@ -24,7 +23,15 @@
   --editor-atom-color: #ff6cd3;
   --editor-attribute-name-color: #936cff;
 
+  --toastify-color-progress-dark: var(--accent-color) !important;
+  --toastify-color-dark: var(--bg-color) !important;
+  --toastify-color-error: var(--error-color) !important;
+  --toastify-text-color-dark: var(--text-color) !important;
+
   --border-radius: 10px;
+
+  --header-default-height: 90px;
+  --footer-height: 49px;
 }
 
 * {

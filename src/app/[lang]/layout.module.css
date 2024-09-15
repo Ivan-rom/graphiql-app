@@ -11,6 +11,6 @@
     flex-direction: column;
     width: 100%;
     justify-content: center;
-    margin-top: 90px;
+    margin-top: var(--header-default-height);
   }
 }

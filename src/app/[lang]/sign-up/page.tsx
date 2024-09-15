@@ -5,14 +5,16 @@ import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import FormField from '@/components/FormField/FormField';
-import classNames from 'classnames';
 import sharedStyles from '@/styles/shared.module.css';
 import styles from './page.module.css';
 import { useSignUpSchema } from '@/hooks/useSignUpSchema';
 import { Link, useRouter } from '@/helpers/navigation';
-import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/firebase/config';
-import { updateProfile } from 'firebase/auth';
+import { AuthError, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
+import LoadingButton from '@/components/LoadingButton/LoadingButton';
 
 type FormData = {
   [SignUpInputsNames.name]: string;
@@ -43,6 +45,8 @@ const inputs: { name: SignUpInputsNames; type: string }[] = [
 function SignUpPage() {
   const t = useTranslations('Form');
   const tPage = useTranslations('SignUp');
+  const tError = useTranslations('FirebaseErrors');
+
   const schema = useSignUpSchema();
   const {
     register,
@@ -51,24 +55,33 @@ function SignUpPage() {
   } = useForm<FormData>({ resolver: yupResolver(schema) });
   const router = useRouter();
   const [user] = useAuthState(auth);
-  const [signUp] = useCreateUserWithEmailAndPassword(auth);
+  const [isLoading, setIsLoading] = useState(false);
 
-  if (user) {
-    router.replace(Routes.home);
-  }
+  useEffect(() => {
+    if (user) router.replace(Routes.home);
+  }, [user, router]);
 
   const submitHandler = async (data: FormData) => {
+    setIsLoading(true);
+
     try {
-      await signUp(data[SignUpInputsNames.email], data[SignUpInputsNames.password]);
-      await updateProfile(auth.currentUser!, {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        data[SignUpInputsNames.email],
+        data[SignUpInputsNames.password],
+      );
+
+      await updateProfile(user, {
         displayName: data[SignUpInputsNames.name],
       });
-      // TODO: push result to Redux
-      router.replace('/');
-    } catch {
-      // TODO: Show error result to user
-      // use toastify for example
+
+      toast.success(tPage('success'));
+      router.replace(Routes.home);
+    } catch (e) {
+      toast(tError((e as AuthError).code));
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -87,7 +100,9 @@ function SignUpPage() {
               register={register(name)}
             />
           ))}
-          <button className={classNames(sharedStyles.button, styles.button)}>{tPage('submit-text')}</button>
+          <LoadingButton isLoading={isLoading} className={styles.button}>
+            {tPage('submit-text')}
+          </LoadingButton>
         </form>
         <div className={styles.hint}>
           <span>{tPage('hint')}</span>

@@ -14,6 +14,7 @@ import Headers from '@/components/Headers/Headers';
 import { selectRequest } from '@/store/features/selectors';
 import { useParams } from 'next/navigation';
 import { METHODS } from '@/helpers/constants';
+import { toast } from 'react-toastify';
 import GraphqlBody from '@/components/GraphqlBody/GraphqlBody';
 import RestfulBody from '@/components/RestfulBody/RestfulBody';
 
@@ -35,9 +36,10 @@ export default function ClientPage() {
       .then(setResponseObject)
       .then(() => saveRequest(request))
 
-      //TODO: show error result to user
-      // use toastify for example
-      .catch(setResponseObject)
+      .catch((res: { status: number; body: string }) => {
+        setResponseObject(res);
+        toast.error(res.body);
+      })
 
       .finally(() => setIsLoading(false));
   };

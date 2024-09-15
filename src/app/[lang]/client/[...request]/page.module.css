@@ -1,6 +1,6 @@
 .page {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - var(--footer-height) - var(--header-default-height));
   overflow: hidden;
   justify-content: space-between;
 }

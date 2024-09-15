@@ -1,16 +1,22 @@
 import { buildClientSchema, getIntrospectionQuery } from 'graphql';
 
 export const fetchSchema = async (url: string) => {
+  let response;
+
   try {
-    const res = await fetch(url, {
+    response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ query: getIntrospectionQuery() }),
     });
+  } catch {
+    throw 'fetch-error';
+  }
 
-    const introspection = await res.json();
+  try {
+    const introspection = await response.json();
 
     if (introspection.errors) {
       return null;
@@ -20,6 +26,6 @@ export const fetchSchema = async (url: string) => {
 
     return clientSchema;
   } catch {
-    return null;
+    throw 'parse-error';
   }
 };

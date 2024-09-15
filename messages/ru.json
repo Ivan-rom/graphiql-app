@@ -46,13 +46,15 @@
     "title": "Регистрация",
     "submit-text": "зарегистрироваться",
     "hint": "Уже есть аккаунт?",
-    "link": "Вход"
+    "link": "Вход",
+    "success": "Успешная регистрация"
   },
   "SignIn": {
     "title": "Вход",
     "submit-text": "вход",
     "hint": "Еще нет аккаунта?",
-    "link": "Регистрация"
+    "link": "Регистрация",
+    "success": "Успешный вход"
   },
   "Client": {
     "url-placeholder": "Введите URL или вставьте текст",
@@ -72,9 +74,34 @@
     },
     "loading": "Загрузка"
   },
+  "NotFound": {
+    "title": "Страница не найдена",
+    "description": "Вы можете перейти ",
+    "home-link": "на главную"
+  },
+  "FirebaseErrors": {
+    "auth/email-already-exists": "Адрес электронной почты уже существует",
+    "auth/email-already-in-use": "Адрес электронной почты уже используется",
+    "auth/invalid-email": "Указан недопустимый email",
+    "auth/invalid-password": "Пароль должен быть длиннее 6 символов",
+    "auth/user-not-found": "Пользователь не найден",
+    "auth/invalid-credential": "Введен неверный email или пароль",
+    "auth/invalid-user-token": "Токен аутентификации недействителен",
+    "auth/user-token-expired": "Токен аутентификации истек",
+    "auth/network-request-failed": "Неудается подключиться к серверу аутентификации",
+    "auth/too-many-requests": "Слишком много попыток входа",
+    "auth/user-disabled": "Аккаунт деактивирован",
+    "auth/unauthorized-domain": "Домен не авторизован",
+    "auth/wrong-passworв": "Введен неверный пароль",
+    "auth/permission-denied": "У вас недостаточно прав"
+  },
   "History": {
     "history-header": "История Запросов",
     "empty-msg": "Вы не выполнили ни одного запроса. Здесь пусто. Попробуйте:",
     "client": "Клиент"
+  },
+  "SdlErrors": {
+    "fetch-error": "Не удалось выполнить запрос",
+    "parse-error": "Не удалось распарсить данные"
   }
 }
