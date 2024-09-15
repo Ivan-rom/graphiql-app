@@ -15,13 +15,11 @@ export function MethodSelector() {
 
   return (
     <select value={method ? method : ''} className={styles.methods} onChange={changeHandler}>
-      {Object.values(RequestMethods).map((method) => {
-        return (
-          <option key={method} value={method}>
-            {method}
-          </option>
-        );
-      })}
+      {Object.values(RequestMethods).map((method) => (
+        <option key={method} value={method}>
+          {method}
+        </option>
+      ))}
     </select>
   );
 }

@@ -22,7 +22,6 @@ describe('VariableComponent', () => {
       { messages },
     );
 
-    // Проверяем наличие плейсхолдеров и значений полей
     expect(screen.getByPlaceholderText('Key')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Value')).toBeInTheDocument();
     expect(screen.getByDisplayValue('Authorization')).toBeInTheDocument();
@@ -35,7 +34,6 @@ describe('VariableComponent', () => {
       { messages },
     );
 
-    // Вызываем событие потери фокуса
     const keyInput = screen.getByDisplayValue('Authorization');
     fireEvent.blur(keyInput, { target: { value: 'Authorization' } });
 
