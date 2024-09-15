@@ -1,0 +1,31 @@
+.aboutUs {
+  margin-top: 35px;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  align-items: start;
+  width: 100%;
+  background-color: var(--bg-color);
+  padding: 2%;
+  border-radius: var(--border-radius);
+
+  .text {
+    font-size: 1rem;
+    line-height: 1.8rem;
+    text-wrap: balance;
+  }
+
+  .list {
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+    align-items: start;
+    width: 100%;
+
+    .listItem {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+}

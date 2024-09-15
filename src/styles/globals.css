@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
 :root {
   --body-bg-color: #181922;
   --bg-color: #272937;
@@ -28,6 +30,8 @@
   --toastify-color-error: var(--error-color) !important;
   --toastify-text-color-dark: var(--text-color) !important;
 
+  --box-shadow: 0 0 4px 1px #d6305f;
+
   --border-radius: 10px;
 
   --header-default-height: 90px;
@@ -41,7 +45,7 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Roboto, sans-serif;
   background-color: var(--body-bg-color);
   color: var(--text-color);
 }

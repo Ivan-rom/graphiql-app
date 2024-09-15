@@ -21,12 +21,7 @@ function LanguageToggler() {
   return (
     <div className={styles.languageToggler}>
       <label className={styles.switch}>
-        <input
-          className={styles.input}
-          type="checkbox"
-          checked={locale === locales[0]}
-          onChange={toggleLanguage}
-        />
+        <input className={styles.input} type="checkbox" checked={locale === locales[0]} onChange={toggleLanguage} />
         <span
           className={`
           ${styles.slider} 

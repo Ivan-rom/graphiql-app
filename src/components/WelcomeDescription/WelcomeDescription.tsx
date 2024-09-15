@@ -7,17 +7,14 @@ export default function WelcomeDescription() {
 
   return (
     <div className={styles.description}>
-      <h2 className={styles.title}>{tDescription('title')}</h2>
-      <h3 className={styles.subtitle}>{tDescription('subtitle')}</h3>
       <p className={styles.text}>{tDescription('text')}</p>
-      <h3 className={styles.subtitle}>{tDescription('listSubtitle')}</h3>
-      <ol className={styles.list}>
+      <ul className={styles.list}>
         {tList.map((item, index) => (
           <li key={index} className={styles.listItem}>
             {item}
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   );
 }
