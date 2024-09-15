@@ -6,7 +6,7 @@ type Props = {
 };
 
 function Loader({ className }: Props) {
-  return <div className={classNames(styles.loader, className)} />;
+  return <div data-testid="loader" className={classNames(styles.loader, className)} />;
 }
 
 export default Loader;
