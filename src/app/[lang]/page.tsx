@@ -11,20 +11,16 @@ import AboutUs from '@/components/AboutUs/AboutUs.tsx';
 
 export default function Home() {
   const t = useTranslations('HomePage');
-  const [user, , error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const isAuthorized = !!user;
   const userName = user?.displayName || null;
-
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
 
   return (
     <section className={styles.welcome}>
       <div className={styles.container}>
         <div className={styles.titleBlock}>
           <h1 className={styles.appName}>RestQL App</h1>
-          <h2 className={styles.title}>{isAuthorized ? t('welcome') + `, ${userName}!` : `${t('welcome')}!`}</h2>
+          <h2 className={styles.title}>{isAuthorized ? `${t('welcome')}, ${userName}!` : `${t('welcome')}!`}</h2>
           <NavigationLinks isAuthLinks={isAuthorized} />
         </div>
         <WelcomeDescription />
