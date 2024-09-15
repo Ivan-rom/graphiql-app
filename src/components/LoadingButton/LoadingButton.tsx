@@ -12,6 +12,7 @@ type Props = Partial<HTMLAttributes<HTMLButtonElement>> & {
 function LoadingButton({ className, isLoading, children, disabled, ...props }: Props) {
   return (
     <button
+      data-testid="loading-button"
       className={classNames(sharedStyles.button, styles.loadingButton, className)}
       disabled={disabled || isLoading}
       {...props}
